@@ -1,7 +1,9 @@
 <?php
-include_once("controller/InicioDeSesionController.php");
+include_once("controller/UsuarioController.php");
+include_once("controller/LobbyController.php");
 
-include_once("model/InicioDeSesionModel.php");
+include_once("model/UsuarioModel.php");
+include_once("model/LobbyModel.php");
 
 include_once("helper/Database.php");
 include_once("helper/Router.php");
@@ -14,16 +16,26 @@ include_once('vendor/mustache/src/Mustache/Autoloader.php');
 class Configuration
 {
     // CONTROLLERS
-    public static function getInicioDeSesionController()
+    public static function getUsuarioController()
     {
-        return new InicioDeSesionController(self::getInicioDeSesionModel(), self::getPresenter());
+        return new UsuarioController(self::getUsuarioModel(), self::getPresenter());
+    }
+
+    public static function getLobbyController()
+    {
+        return new LobbyController(self::getLobbyModel(), self::getPresenter());
     }
 
     // MODELS
 
-    private static function getInicioDeSesionModel()
+    private static function getUsuarioModel()
     {
-        return new InicioDeSesionModel(self::getDatabase());
+        return new UsuarioModel(self::getDatabase());
+    }
+
+    private static function getLobbyModel()
+    {
+        return new LobbyModel(self::getDatabase());
     }
 
 
@@ -42,7 +54,7 @@ class Configuration
 
     public static function getRouter()
     {
-        return new Router("getInicioDeSesionController", "get");
+        return new Router("getUsuarioController", "get");
     }
 
     private static function getPresenter()

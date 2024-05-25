@@ -1,10 +1,13 @@
 
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    <form action="" method="post">
-        <input type="text" name="username" placeholder="Nombre de Usuario" required>
+    <form action="/ProyectoFinal/index.php/usuario/iniciarSesion" method="post">
+        <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <input type="submit" value="Iniciar Sesión">
     </form>
-    <p>¿No tienes una cuenta? <a href="/ProyectoFinal/index.php/InicioDeSesion/getRegistro">Regístrate</a></p>
+    {{#error}}
+        <p>{{error}}</p>
+    {{/error}}
+    <p>¿No tienes una cuenta? <a href="/ProyectoFinal/index.php/usuario/getRegistro">Regístrate</a></p>
 </div>

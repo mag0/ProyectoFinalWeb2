@@ -1,6 +1,6 @@
 <?php
 
-class InicioDeSesionModel
+class LobbyModel
 {
     private $database;
 

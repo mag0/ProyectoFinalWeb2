@@ -1,6 +1,6 @@
 <?php
 
-class InicioDeSesionController
+class LobbyController
 {
     private $model;
     private $presenter;
@@ -13,11 +13,6 @@ class InicioDeSesionController
 
     public function get()
     {
-        $this->presenter->render("view/inicioDeSesionView.mustache");
-    }
-
-    public function getRegistro()
-    {
-        $this->presenter->render("view/registroView.mustache");
+        $this->presenter->render("view/lobbyView.mustache");
     }
 }
