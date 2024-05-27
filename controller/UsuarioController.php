@@ -23,21 +23,31 @@ class UsuarioController
 
     public function registrar()
     {
-        $nombreUsuario = $_POST['nombreUsuario'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $passwordRepetida = $_POST['passwordRepetida'];
+        $datos_usuario = array(
+            "nombreCompleto" => $_POST['nombreCompleto'],
+            "anioDeNacimiento" => $_POST['nombreUsuario'],
+            "genero" => $_POST['genero'],
+            "pais" => $_POST['pais'],
+            "ciudad" => $_POST['ciudad'],
+            "email" => $_POST['email'],
+            "password" => $_POST['password'],
+            "passwordRepetida" => $_POST['passwordRepetida'],
+            "nombreUsuario" => $_POST['nombreUsuario'],
+            "perfil" => $_POST['perfil'],
+            "fechaRegistro" => "null"
+        );
 
-        $existeUsuario = $this->model->verSiExisteUsuario($nombreUsuario, $email)[0];
+        $existeUsuario = $this->model->verSiExisteUsuarioPorNombreEEmail(
+            $datos_usuario["nombreUsuario"],$datos_usuario["email"])[0];
 
-        if($password != $passwordRepetida){
+        if($datos_usuario["password"] != $datos_usuario["passwordRepetida"]){
             $error = "Las contraseñas tienen que ser iguales";
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         }else if($existeUsuario['usuario_existe'] > 0){
             $error = "El usuario ya existe";
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         }else{
-            $this->model->agregarUsuario($nombreUsuario,$email,$password);
+            $this->model->agregarUsuario($datos_usuario);
             header('location:index.php');
             exit();
         }
@@ -50,11 +60,11 @@ class UsuarioController
 
         $existeUsuario = $this->model->verSiExisteUsuarioPorNombreYPassword($nombreUsuario, $password)[0];
 
-        if($existeUsuario['usuario_existe'] == 1){
-            $error = "El usuario no existe";
+        if($existeUsuario['usuario_existe'] == 0){
+            $error = "Datos invalidos";
             $this->presenter->render("view/inicioDeSesionView.mustache", ["error" => $error]);
         }else{
-            header('location:/ProyectoFinal/index.php/lobby/get');
+            header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
             exit();
         }
     }

@@ -1,13 +1,55 @@
-<div class="register-container">
-    <h2>Registro</h2>
-    <form action="/ProyectoFinal/index.php/usuario/registrar" method="post">
-        <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required>
-        <input type="email" name="email" placeholder="Correo Electrónico" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <input type="password" name="passwordRepetida" placeholder="Confirmar Contraseña" required>
-        {{#error}}
-        <p>{{error}}</p>
-        {{/error}}
-        <input type="submit" value="Registrarse">
-    </form>
+<div class="container">
+    <div class="register-box">
+        <h1>Regístrate</h1>
+        <form action="/ProyectoFinal/index.php/usuario/registrar" method="post">
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Nombre Completo" name="nombreCompleto" required>
+                </div>
+                <div class="textbox">
+                    <input type="date" placeholder="Año de Nacimiento" name="anioDeNacimiento" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="radiobox">
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="masculino" name="genero" value="masculino" required>
+                    <label for="femenino">Femenino</label>
+                    <input type="radio" id="femenino" name="genero" value="femenino" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="País" name="pais" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Ciudad" name="ciudad" required>
+                </div>
+                <div class="textbox">
+                    <input type="email" placeholder="Correo Electrónico" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="password" placeholder="Contraseña" name="password" required>
+                </div>
+                <div class="textbox">
+                    <input type="password" placeholder="Confirma Contraseña" name="passwordRepetida" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Usuario" name="nombreUsuario" required>
+                </div>
+                <div class="textbox">
+                    <input type="file" accept="image/*" name="perfil">
+                </div>
+            </div>
+            {{#error}}
+                <p style="color:red">{{error}}</p>
+            {{/error}}
+            <button type="submit" class="btn">Registrarse</button>
+        </form>
+    </div>
 </div>
+

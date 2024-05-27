@@ -12,17 +12,29 @@ class UsuarioModel
     public function verSiExisteUsuarioPorNombreEEmail($nombreUsuario,$email)
     {
         return $this->database->query("SELECT COUNT(*) AS usuario_existe FROM usuario WHERE 
-                                                   nombre_usuario = '$nombreUsuario' OR email = '$email'");
+                                                   nombreUsuario = '$nombreUsuario' OR email = '$email'");
     }
 
     public function verSiExisteUsuarioPorNombreYPassword($nombreUsuario,$password)
     {
         return $this->database->query("SELECT COUNT(*) AS usuario_existe FROM usuario WHERE 
-                                                   nombre_usuario = '$nombreUsuario' OR password = '$password'");
+                                                   nombreUsuario = '$nombreUsuario' AND password = '$password'");
     }
 
-    public function agregarUsuario($nombre, $email, $password)
+    public function agregarUsuario($datos_usuario)
     {
-        $this->database->execute("INSERT INTO usuario (nombre_usuario, email, password) VALUES ('$nombre', '$email', '$password')");
+        $nombreCompleto = $_POST['nombreCompleto'];
+        $anioDeNacimiento = $_POST['nombreUsuario'];
+        $genero = $_POST['genero'];
+        $pais = $_POST['pais'];
+        $ciudad = $_POST['ciudad'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $nombreUsuario = $_POST['nombreUsuario'];
+        $perfil = $_POST['perfil'];
+        $fechaRegistro = $_POST['fechaRegistro'];
+        $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, perfil, fechaRegistro) 
+                                    VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
+                                                '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro')");
     }
 }

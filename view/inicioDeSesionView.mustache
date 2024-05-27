@@ -1,13 +1,18 @@
-
-<div class="login-container">
-    <h2>Iniciar Sesión</h2>
-    <form action="/ProyectoFinal/index.php/usuario/iniciarSesion" method="post">
-        <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
-        <input type="submit" value="Iniciar Sesión">
-    </form>
-    {{#error}}
-        <p>{{error}}</p>
-    {{/error}}
-    <p>¿No tienes una cuenta? <a href="/ProyectoFinal/index.php/usuario/getRegistro">Regístrate</a></p>
-</div>
+<div class="container">
+        <div style="width:25%" class="register-box login-box">
+            <h1>Inicia Sesión</h1>
+            <form action="/ProyectoFinal/index.php/usuario/iniciarSesion" method="post">
+                <div class="textbox" style="margin-bottom:20px">
+                    <input type="text" placeholder="Usuario" name="nombreUsuario" required>
+                </div>
+                <div class="textbox" style="margin-bottom:20px">
+                    <input type="password" placeholder="Contraseña" name="password" required>
+                </div>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+            {{#error}}
+               <p style="color:red">{{error}}</p>
+            {{/error}}
+            <p class="register-link">¿No tienes cuenta? <a href="/ProyectoFinal/index.php/usuario/getRegistro">Regístrate</a></p>
+        </div>
+    </div>
