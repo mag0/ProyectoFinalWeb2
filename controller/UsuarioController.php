@@ -1,14 +1,17 @@
 <?php
 
 class UsuarioController
+
 {
     private $model;
     private $presenter;
+    private $mailer;
 
-    public function __construct($model, $presenter)
+    public function __construct($model, $presenter, $mailer)
     {
         $this->model = $model;
         $this->presenter = $presenter;
+        $this->mailer = $mailer;
     }
 
     public function get()
@@ -25,7 +28,7 @@ class UsuarioController
     {
         $datos_usuario = array(
             "nombreCompleto" => $_POST['nombreCompleto'],
-            "anioDeNacimiento" => $_POST['nombreUsuario'],
+            "anioDeNacimiento" => $_POST['anioDeNacimiento'],
             "genero" => $_POST['genero'],
             "pais" => $_POST['pais'],
             "ciudad" => $_POST['ciudad'],
@@ -34,9 +37,8 @@ class UsuarioController
             "passwordRepetida" => $_POST['passwordRepetida'],
             "nombreUsuario" => $_POST['nombreUsuario'],
             "perfil" => $_POST['perfil'],
-            "fechaRegistro" => "null"
+            "fechaRegistro" => date("Y-m-d")
         );
-
         $existeUsuario = $this->model->verSiExisteUsuarioPorNombreEEmail(
             $datos_usuario["nombreUsuario"],$datos_usuario["email"])[0];
 
@@ -44,12 +46,25 @@ class UsuarioController
             $error = "Las contraseñas tienen que ser iguales";
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         }else if($existeUsuario['usuario_existe'] > 0){
-            $error = "El usuario ya existe";
+            $error = "Ya existe un usuario con ese nombre y/o email";
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         }else{
             $this->model->agregarUsuario($datos_usuario);
-            header('location:index.php');
-            exit();
+
+            // Enviar correo de confirmación
+            $to = $datos_usuario['email'];
+            $subject = 'Confirmación de Registro';
+            $body = 'Gracias por registrarte en nuestro sitio. Por favor, confirma tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://example.com/confirm?token=someToken">Confirmar</a>';
+            $result = $this->mailer->sendEmail($to, $subject, $body);
+
+            // Manejar resultado del envío del correo
+            if ($result !== 'El mensaje ha sido enviado') {
+                $error = "Hubo un problema al enviar el correo de confirmación. Por favor, inténtelo de nuevo.";
+                $this->presenter->render("view/registroView.mustache", ["error" => $error]);
+            } else {
+                header('location:index.php');
+                exit();
+            }
         }
     }
 

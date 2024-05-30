@@ -23,18 +23,19 @@ class UsuarioModel
 
     public function agregarUsuario($datos_usuario)
     {
-        $nombreCompleto = $_POST['nombreCompleto'];
-        $anioDeNacimiento = $_POST['nombreUsuario'];
-        $genero = $_POST['genero'];
-        $pais = $_POST['pais'];
-        $ciudad = $_POST['ciudad'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $nombreUsuario = $_POST['nombreUsuario'];
-        $perfil = $_POST['perfil'];
-        $fechaRegistro = $_POST['fechaRegistro'];
+        $nombreCompleto = $datos_usuario['nombreCompleto'];
+        $anioDeNacimiento = $datos_usuario['anioDeNacimiento'];
+        $genero = $datos_usuario['genero'];
+        $pais = $datos_usuario['pais'];
+        $ciudad = $datos_usuario['ciudad'];
+        $email = $datos_usuario['email'];
+        $password = $datos_usuario['password'];
+        $nombreUsuario = $datos_usuario['nombreUsuario'];
+        $perfil = $datos_usuario['perfil'];
+        $fechaRegistro = $datos_usuario['fechaRegistro'];
+
         $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, perfil, fechaRegistro) 
-                                    VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
-                                                '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro')");
+                                VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
+                                            '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro')");
     }
 }
