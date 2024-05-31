@@ -7,7 +7,6 @@ include_once("model/LobbyModel.php");
 
 include_once("helper/Database.php");
 include_once("helper/Router.php");
-include_once("helper/Mailer.php");
 
 include_once("helper/Presenter.php");
 include_once("helper/MustachePresenter.php");
@@ -19,7 +18,7 @@ class Configuration
     // CONTROLLERS
     public static function getUsuarioController()
     {
-        return new UsuarioController(self::getUsuarioModel(), self::getPresenter(), self::getMailer());
+        return new UsuarioController(self::getUsuarioModel(), self::getPresenter());
     }
 
     public static function getLobbyController()
@@ -61,10 +60,5 @@ class Configuration
     private static function getPresenter()
     {
         return new MustachePresenter("view/template");
-    }
-
-    public static function getMailer()
-    {
-        return new Mailer();
     }
 }
