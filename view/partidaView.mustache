@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+</head>
+<body>
+{{#pregunta}}
+    <div class="container">
+                <div class="lobby-box">
+                    <h1>{{texto_pregunta}}</h1>
+                        <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get&respuesta=1'">{{respuesta_1}}</button>
+                        <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get&respuesta=2'">{{respuesta_2}}</button>
+                        <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get&respuesta=3'">{{respuesta_3}}</button>
+                        <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get&respuesta=4'">{{respuesta_4}}</button>
+                </div>
+            </div>
+            {{/pregunta}}

@@ -1,9 +1,11 @@
 <?php
 include_once("controller/UsuarioController.php");
 include_once("controller/LobbyController.php");
+include_once("controller/PartidaController.php");
 
 include_once("model/UsuarioModel.php");
 include_once("model/LobbyModel.php");
+include_once("model/PartidaModel.php");
 
 include_once("helper/Database.php");
 include_once("helper/Router.php");
@@ -26,6 +28,11 @@ class Configuration
         return new LobbyController(self::getLobbyModel(), self::getPresenter());
     }
 
+    public static function getPartidaController()
+    {
+        return new PartidaController(self::getPartidaModel(), self::getPresenter());
+    }
+
     // MODELS
 
     private static function getUsuarioModel()
@@ -36,6 +43,11 @@ class Configuration
     private static function getLobbyModel()
     {
         return new LobbyModel(self::getDatabase());
+    }
+
+    private static function getPartidaModel()
+    {
+        return new PartidaModel(self::getDatabase());
     }
 
 

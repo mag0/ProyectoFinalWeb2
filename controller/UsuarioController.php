@@ -1,4 +1,7 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class UsuarioController
 {
     private $model;
@@ -53,22 +56,72 @@ class UsuarioController
             $error = "Ya existe un usuario con ese nombre y/o email";
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         } else {
-            $this->model->agregarUsuario($datos_usuario);
+            $img = "";
+            if($_FILES["foto"]["error"] == 0){
+                $nuevoNombre = time();
+                $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
+                $destino = "public/uploads/" . $nuevoNombre . "." . $extension;
+                move_uploaded_file($_FILES["foto"]["tmp_name"],$destino);
+                $img="$nuevoNombre.$extension";
+            }
 
-            // Enviar correo de confirmación
-            $mailer = new Mailer();
-            $to = $datos_usuario['email'];
-            $subject = 'Confirmación de Registro';
-            $body = 'Gracias por registrarte en nuestro sitio. Por favor, confirma tu correo electrónico haciendo clic en el siguiente enlace: <a href="http://example.com/confirm?token=someToken">Confirmar</a>';
-            $result = $mailer->sendEmail($to, $subject, $body);
+            $token = uniqid();
+            $datos_usuario['perfil'] = $img;
+            $datos_usuario['token'] = $token;
 
-            // Manejar resultado del envío del correo
-            if ($result !== 'El mensaje ha sido enviado') {
+            $result = $this->model->agregarUsuario($datos_usuario);
+
+            if(!$result) unlink("public/uploads/" . $img );
+
+            if ($this->enviarEmailRegistro($datos_usuario['email'], $datos_usuario['nombreCompleto'], $token)) {
+                $this->presenter->render("view/registroView.mustache", ["success" => "Se envió un correo de verificación."]);
+            } else {
                 $error = "Hubo un problema al enviar el correo de confirmación. Por favor, inténtelo de nuevo.";
                 $this->presenter->render("view/registroView.mustache", ["error" => $error]);
+            }
+        }
+    }
+
+    public function enviarEmailRegistro($email, $nombre, $token)
+    {
+        $enlaceVerificacion = 'http://localhost/login/verificarUsuario?token=' . $token . '&email=' . $email;
+
+        $mailer = new PHPMailer(true);
+        try {
+            $mailer->isSMTP();
+            $mailer->Host = 'smtp.gmail.com';
+            $mailer->SMTPAuth = true;
+            $mailer->Username = 'pregunta2.unlam@gmail.com';
+            $mailer->Password = 'srtbcimoovaimmjl';
+            $mailer->Port = 587;
+
+            $mailer->setFrom('pregunta2.unlam@gmail.com', 'Pregunta2');
+            $mailer->addAddress($email, $nombre);
+
+            $mailer->isHTML(true);
+            $mailer->Subject = 'Verificacion de Registro en Pregunta2';
+            $mailer->Body = '<h1>¡Hola ' . $nombre . '!</h1><br> <h3>¡Gracias por registrarte! <br></br> Por favor, haz clic en el siguiente enlace para verificar tu cuenta: <a href="' . $enlaceVerificacion . '">Verificar cuenta</a></h3>';
+            $mailer->send();
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function verificarUsuario()
+    {
+        $token = $_GET['token'];
+        $email = $_GET['email'];
+
+        if (empty($token) || empty($email)) {
+            $this->presenter->render("view/errorView.mustache", ["error" => "Token o email faltante"]);
+        } else {
+            $usuarioVerificado = $this->model->verificarUsuario($token, $email);
+            if ($usuarioVerificado) {
+                $this->presenter->render("view/successView.mustache", ["success" => "Usuario verificado con éxito"]);
             } else {
-                header('location:index.php');
-                exit();
+                $this->presenter->render("view/errorView.mustache", ["error" => "Error al verificar el usuario"]);
             }
         }
     }
@@ -84,9 +137,21 @@ class UsuarioController
             $error = "Datos invalidos";
             $this->presenter->render("view/inicioDeSesionView.mustache", ["error" => $error]);
         } else {
+            session_start();
+            $_SESSION['id'] = $existeUsuario['id'];
+            $_SESSION['nombreUsuario'] = $nombreUsuario;
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
             exit();
         }
     }
+
+    public function salir()
+    {
+        session_start();
+        session_destroy();
+        header("location:/ProyectoFinal/index.php?controller=usuario&action=get");
+        exit();
+    }
 }
+?>
 

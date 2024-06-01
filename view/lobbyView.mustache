@@ -1,14 +1,15 @@
     <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
 </head>
 <body>
+
     <div class="container">
             <div class="lobby-box">
-                <h1>Bienvenido, [Nombre del Usuario]</h1>
+                <h1>Bienvenido, {{nombreUsuario}}</h1>
                 <p>Puntaje: [Puntaje]</p>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php/partida/crear'">Crear Nueva
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get'">Crear Nueva
                     Partida</button>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php/ranking'">Ver Ranking</button>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php'">Cerrar
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar
                     Sesión</button>
                 <div class="game-list">
                     <h2>Partidas Jugadas</h2>

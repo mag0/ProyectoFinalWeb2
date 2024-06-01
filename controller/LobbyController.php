@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class LobbyController
 {
     private $model;
@@ -13,6 +13,7 @@ class LobbyController
 
     public function get()
     {
-        $this->presenter->render("view/lobbyView.mustache");
+
+        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario']]);
     }
 }

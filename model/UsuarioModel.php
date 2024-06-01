@@ -38,4 +38,9 @@ class UsuarioModel
                                 VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
                                             '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro')");
     }
+
+    public function getUsuario($nombreUsuario)
+    {
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
+    }
 }
