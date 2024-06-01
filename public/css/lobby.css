@@ -1,35 +1,52 @@
 .container {
-    width: 100%;
-    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .lobby-box {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    position: relative;
     background: #fff;
     text-align: center;
-    padding: 40px;
-    border-radius: 20px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 3px solid #6A5ACD;
+    animation: float 6s ease-in-out infinite;
+    box-sizing: border-box;
 }
 
 .lobby-box h1 {
-    margin-bottom: 20px;
+    margin: 0 0 20px;
+    padding: 0;
+    color: #333;
+    font-size: 24px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.user-info {
-    margin-bottom: 20px;
+.lobby-box p {
+    margin: 0 0 20px;
+    padding: 0;
+    color: #333;
+    font-size: 18px;
 }
 
 .btn {
+    width: 100%;
     background: #6A5ACD;
     border: none;
-    padding: 10px 20px;
-    margin: 10px;
+    padding: 10px;
     cursor: pointer;
+    font-size: 18px;
     color: #fff;
     border-radius: 10px;
     transition: background 0.3s ease;
+    margin-bottom: 10px; /* Separar los botones */
 }
 
 .btn:hover {
@@ -49,9 +66,14 @@
 }
 
 .game-list li {
+    list-style: none;
     margin-bottom: 10px;
     cursor: pointer;
     padding: .4em 0;
+}
+
+.game-list li a{
+    text-decoration: none;
 }
 
 .game-list li:hover {
@@ -61,7 +83,7 @@
 .game-list ul {
     list-style-type: none;
     padding: 0;
-    max-height: 200px; /* Altura máxima de la lista */
+    height: 200px; /* Altura máxima de la lista */
     overflow-y: auto; /* Habilitar el scroll vertical */
     border: 1px solid #ccc; /* Borde para visualización */
     scrollbar-width: thin; /* Ancho del scrollbar (para Firefox) */
@@ -89,4 +111,28 @@
 
 .game-list ul::-webkit-scrollbar-track {
     background-color: #f1f1f1; /* Color del track (fondo) */
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .lobby-box {
+        padding: 20px;
+    }
+
+    .lobby-box h1 {
+        font-size: 20px;
+    }
+
+    .lobby-box p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .game-list h2 {
+        font-size: 18px;
+    }
 }
