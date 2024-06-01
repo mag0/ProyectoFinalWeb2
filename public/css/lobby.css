@@ -1,0 +1,92 @@
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lobby-box {
+    background: #fff;
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.lobby-box h1 {
+    margin-bottom: 20px;
+}
+
+.user-info {
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: #6A5ACD;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #483D8B;
+}
+
+.game-list {
+    text-align: center;
+}
+
+.game-list ul {
+    list-style-type: none;
+    padding: .2em 0;
+    max-height: 200px; /* Altura máxima de la caja */
+    overflow-y: auto; /* Habilitar el scroll vertical */
+    border: 1px solid #ccc;
+}
+
+.game-list li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: .4em 0;
+}
+
+.game-list li:hover {
+    background-color: #8376d8;
+
+}
+.game-list ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px; /* Altura máxima de la lista */
+    overflow-y: auto; /* Habilitar el scroll vertical */
+    border: 1px solid #ccc; /* Borde para visualización */
+    scrollbar-width: thin; /* Ancho del scrollbar (para Firefox) */
+}
+
+/* Estilos para WebKit (Chrome, Safari, etc.) */
+.game-list ul::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.game-list ul::-webkit-scrollbar-thumb {
+    background-color: #6A5ACD; /* Color del thumb (barra) */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.game-list ul::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del track (fondo) */
+}
+
+/* Estilos para Firefox */
+.game-list ul::-webkit-scrollbar-thumb {
+    background-color: #6A5ACD; /* Color del thumb (barra) */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.game-list ul::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del track (fondo) */
+}
