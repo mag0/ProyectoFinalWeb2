@@ -13,7 +13,11 @@ class LobbyController
 
     public function get()
     {
+        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],"puntaje" =>$_SESSION['puntaje']]);
+    }
 
-        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario']]);
+    public function verRanking()
+    {
+        $this->presenter->render("view/rankingView.mustache");
     }
 }

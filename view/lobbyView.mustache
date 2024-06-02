@@ -4,11 +4,11 @@
 
     <div class="container">
             <div class="lobby-box">
-                <h1>Bienvenido, {{nombreUsuario}}</h1>
-                <p>Puntaje: [Puntaje]</p>
+                <h1>Bienvenido {{nombreUsuario}}</h1>
+                <p>Puntaje total del dia: {{puntaje}}</p>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get'">Crear Nueva
                     Partida</button>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php/ranking'">Ver Ranking</button>
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=verRanking'">Ver Ranking</button>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar
                     Sesión</button>
                 <div class="game-list">
