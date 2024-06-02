@@ -35,7 +35,7 @@ class UsuarioController
             "password" => $_POST['password'],
             "passwordRepetida" => $_POST['passwordRepetida'],
             "nombreUsuario" => htmlspecialchars($_POST['nombreUsuario']),
-            "perfil" => htmlspecialchars($_POST['perfil']),
+            "perfil" => '',
             "fechaRegistro" => date("Y-m-d")
         );
 
@@ -57,12 +57,13 @@ class UsuarioController
             $this->presenter->render("view/registroView.mustache", ["error" => $error]);
         } else {
             $img = "";
-            if($_FILES["foto"]["error"] == 0){
+            if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] == 0) {
                 $nuevoNombre = time();
                 $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
                 $destino = "public/uploads/" . $nuevoNombre . "." . $extension;
-                move_uploaded_file($_FILES["foto"]["tmp_name"],$destino);
-                $img="$nuevoNombre.$extension";
+                if (move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
+                    $img = "$nuevoNombre.$extension";
+                }
             }
 
             $token = uniqid();
@@ -71,10 +72,12 @@ class UsuarioController
 
             $result = $this->model->agregarUsuario($datos_usuario);
 
-            if(!$result) unlink("public/uploads/" . $img );
+            if (!$result && !empty($img)) {
+                unlink("public/uploads/" . $img);
+            }
 
             if ($this->enviarEmailRegistro($datos_usuario['email'], $datos_usuario['nombreCompleto'], $token)) {
-                $this->presenter->render("view/registroView.mustache", ["success" => "Se envió un correo de verificación."]);
+                $this->presenter->render("view/inicioDeSesionView.mustache", ["success" => "Se envió un correo de verificación."]);
             } else {
                 $error = "Hubo un problema al enviar el correo de confirmación. Por favor, inténtelo de nuevo.";
                 $this->presenter->render("view/registroView.mustache", ["error" => $error]);
@@ -84,22 +87,23 @@ class UsuarioController
 
     public function enviarEmailRegistro($email, $nombre, $token)
     {
-        $enlaceVerificacion = 'http://localhost/login/verificarUsuario?token=' . $token . '&email=' . $email;
+        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php?controller=lobby&action=get';
 
         $mailer = new PHPMailer(true);
         try {
             $mailer->isSMTP();
             $mailer->Host = 'smtp.gmail.com';
             $mailer->SMTPAuth = true;
-            $mailer->Username = 'pregunta2.unlam@gmail.com';
-            $mailer->Password = 'srtbcimoovaimmjl';
+            $mailer->Username = 'angeldnk25@gmail.com';
+            $mailer->Password = 'squxouuwbamxirry
+';
             $mailer->Port = 587;
 
-            $mailer->setFrom('pregunta2.unlam@gmail.com', 'Pregunta2');
+            $mailer->setFrom('angeldnk25@gmail.com', 'Preguntovich');
             $mailer->addAddress($email, $nombre);
 
             $mailer->isHTML(true);
-            $mailer->Subject = 'Verificacion de Registro en Pregunta2';
+            $mailer->Subject = 'Verificacion de Registro en Preguntovich';
             $mailer->Body = '<h1>¡Hola ' . $nombre . '!</h1><br> <h3>¡Gracias por registrarte! <br></br> Por favor, haz clic en el siguiente enlace para verificar tu cuenta: <a href="' . $enlaceVerificacion . '">Verificar cuenta</a></h3>';
             $mailer->send();
 
@@ -140,7 +144,6 @@ class UsuarioController
             session_start();
             $_SESSION['id'] = $existeUsuario['id'];
             $_SESSION['nombreUsuario'] = $nombreUsuario;
-            $_SESSION['puntaje'] = 0;
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
             exit();
         }
@@ -155,4 +158,3 @@ class UsuarioController
     }
 }
 ?>
-
