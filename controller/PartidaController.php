@@ -14,28 +14,21 @@ class PartidaController
 
     public function get()
     {
-        if(isset($_POST['respuesta'])){
-            echo $_POST['respuesta'];
-            echo $_POST['respuestaCorrecta'];
-        }
-            $this->pregunta = $this->model->getPregunta()[0];
-            $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
 
-            $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
-                "pregunta" =>$this->pregunta]);
+        $this->pregunta = $this->model->getPregunta()[0];
+        $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
+        $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
+            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta']]);
     }
     public function verificarRespuesta()
     {
-
         if(!isset($_POST['respuesta']) || $_POST['respuesta'] == $_POST['respuestaCorrecta']){
             $_SESSION['puntaje'] += 1;
-            header('location:/ProyectoFinal/index.php?controller=partida&action=get&respuesta='.$_POST['respuesta']);
+            $_SESSION['numeroPregunta'] += 1;
+            header('location:/ProyectoFinal/index.php?controller=partida&action=get');
             exit();
         }else{
-            header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
-            exit();
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntaje'], "numeroPregunta" =>$_SESSION['numeroPregunta']]);
         }
     }
-
-
 }

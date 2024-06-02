@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="register-box">
+        <h1>Regístrate</h1>
+        {{#usuario}}
+        <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" required>
+                </div>
+                <div class="textbox">
+                    <input type="date" value="{{anioDeNacimiento}}" name="anioDeNacimiento" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="radiobox">
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="masculino" name="genero" value="masculino" {{#esMasculino}}checked{{/esMasculino}} required>
+                    <label for="femenino">Femenino</label>
+                    <input type="radio" id="femenino" name="genero" value="femenino" {{#esFemenino}}checked{{/esFemenino}} required>
+                </div>
+                <div class="textbox">
+                    <input type="text" value="{{pais}}" name="pais" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{ciudad}}" name="ciudad" required>
+                </div>
+                <div class="textbox">
+                    <input type="email" value="{{email}}" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
+                </div>
+                <div class="textbox">
+                    <input type="file" accept="image/*" name="perfil">
+                </div>
+            </div>
+            {{#error}}
+                <p style="color:red">{{error}}</p>
+            {{/error}}
+            <button type="submit" class="btn">Modificar</button>
+            <button type="submit" class="btn">Volver</button>
+        </form>
+        {{/usuario}}
+    </div>
+</div>

@@ -8,4 +8,9 @@ class LobbyModel
     {
         $this->database = $database;
     }
+
+    public function getUsuario($nombreUsuario)
+    {
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
+    }
 }

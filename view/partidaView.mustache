@@ -4,7 +4,9 @@
 {{#pregunta}}
     <div class="container">
                 <div class="lobby-box">
-                    <h1>{{texto_pregunta}}</h1>
+                    <h1>Pregunta {{numeroPregunta}}</h1>
+                    <p>Categoria: {{categoria}}</p>
+                    <p>{{texto_pregunta}}</p>
                     <form action="/ProyectoFinal/index.php?controller=partida&action=verificarRespuesta" method="post">
                         <input type="hidden" name="respuestaCorrecta" value="{{respuesta_correcta}}">
                         <button class="btn" name="respuesta" value="1">{{respuesta_1}}</button>
