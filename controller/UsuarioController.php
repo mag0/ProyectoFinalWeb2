@@ -144,6 +144,7 @@ class UsuarioController
             session_start();
             $_SESSION['id'] = $existeUsuario['id'];
             $_SESSION['nombreUsuario'] = $nombreUsuario;
+            $_SESSION['puntaje'] = 0;
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
             exit();
         }
@@ -157,4 +158,3 @@ class UsuarioController
         exit();
     }
 }
-?>
