@@ -13,9 +13,15 @@ class LobbyController
 
     public function get()
     {
-        $_SESSION['numeroPregunta'] = 1;
+        $_SESSION['numeroPregunta'] = 0;
         $_SESSION['puntajeActual'] = 0;
-        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],"puntaje" =>$_SESSION['puntaje']]);
+        $partidas = $this->model->getPartidas($_SESSION['id']);
+
+        foreach ($partidas as $indice => $partida) {
+            $partidas[$indice]['numeroDePartida'] = $indice + 1;
+        }
+
+        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['id'],"puntaje" =>$_SESSION['puntaje'],"partidas" =>$partidas]);
     }
 
     public function verRanking()

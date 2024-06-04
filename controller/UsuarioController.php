@@ -87,7 +87,7 @@ class UsuarioController
 
     public function enviarEmailRegistro($email, $nombre, $token)
     {
-        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php?controller=lobby&action=get';
+        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php';
 
         $mailer = new PHPMailer(true);
         try {
@@ -142,7 +142,7 @@ class UsuarioController
             $this->presenter->render("view/inicioDeSesionView.mustache", ["error" => $error]);
         } else {
             session_start();
-            $_SESSION['id'] = $existeUsuario['id'];
+            $_SESSION['id'] = $this->model->getUsuario($nombreUsuario)[0]['id'];
             $_SESSION['nombreUsuario'] = $nombreUsuario;
             $_SESSION['puntaje'] = 0;
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');

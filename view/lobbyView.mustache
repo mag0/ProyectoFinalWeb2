@@ -15,14 +15,14 @@
                 <div class="game-list">
                     <h2>Partidas Jugadas</h2>
                     <ul>
-                        <!-- Aquí irán las partidas jugadas -->
-                        <li><a href="/ProyectoFinal/index.php/partida/ver/[IDPartida]">Partida 1 - Resultado: Ganada</a>
-                        </li>
-                        <li><a href="/ProyectoFinal/index.php/partida/ver/[IDPartida]">Partida 2 - Resultado: Perdida</a>
-                        </li>
-
-                        <!-- Agregar más partidas según sea necesario -->
+                        {{#partidas}}
+                            <li><a href="/ProyectoFinal/index.php/partida/ver/{{IDPartida}}">Partida: {{numeroDePartida}} - Puntaje: {{puntaje_obtenido}} - Fecha: {{fecha}}</a></li>
+                        {{/partidas}}
+                        {{^partidas}}
+                            <p>No hay partidas disponibles.</p>
+                        {{/partidas}}
                     </ul>
+
                 </div>
             </div>
         </div>

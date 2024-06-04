@@ -6,6 +6,7 @@
                 <div class="lobby-box">
                     <h1>Pregunta {{numeroPregunta}}</h1>
                     <p>Categoria: <span style="color:white;background-color:{{color}};padding:5px;border-radius:10px;font-weight:900">{{categoria}}</span></p>
+                    <p>Categoria: <span style="color:white;background-color:{{colorDificultad}};padding:5px;border-radius:10px;font-weight:900">{{dificultad}}</span></p>
                     <p>{{texto_pregunta}}</p>
                     <form action="/ProyectoFinal/index.php?controller=partida&action=verificarRespuesta" method="post">
                         <input type="hidden" name="respuestaCorrecta" value="{{respuesta_correcta}}">

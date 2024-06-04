@@ -17,8 +17,10 @@ class PartidaController
         $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
         $_SESSION['pregunta'] = $this->pregunta;
         $color = $this->asignarColorACategoria($_SESSION['pregunta']);
+        $colorDificultad = $this->asignarColorADificultad($_SESSION['pregunta']);
+
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
-            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "color" => $color]);
+            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "color" => $color, "colorDificultad" => $colorDificultad]);
     }
     public function verificarRespuesta()
     {
@@ -30,7 +32,13 @@ class PartidaController
             exit();
         }else{
             $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_POST['respuestaCorrecta']);
-            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'], "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta]);
+            $partida = array(
+                "id_usuario" => htmlspecialchars($_SESSION['id']),
+                "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
+                "fecha" => date("Y-m-d")
+            );
+            $this->model->guardarPartida($partida);
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'], "numeroPregunta" =>$_SESSION['numeroPregunta'], "respuestaCorrecta" =>$respuestaCorrecta]);
         }
     }
 
@@ -69,5 +77,16 @@ class PartidaController
         ];
 
         return $colores[$categoria['categoria']] ?? "grey";
+    }
+
+    public function asignarColorADificultad($dificultad)
+    {
+        $colores = [
+            "facil" => "lightgreen",
+            "medio" => "orange",
+            "dificil" => "red"
+        ];
+
+        return $colores[$dificultad['dificultad']] ?? "grey";
     }
 }

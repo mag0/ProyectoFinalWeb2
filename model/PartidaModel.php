@@ -13,4 +13,14 @@ class PartidaModel
     {
         return $this->database->query("SELECT * FROM pregunta ORDER BY RAND() LIMIT 1");
     }
+
+    public function guardarPartida($partida)
+    {
+        $id_usuario = $partida['id_usuario'];
+        $puntaje_obtenido = $partida['puntaje_obtenido'];
+        $fecha= $partida['fecha'];
+
+        $this->database->execute("INSERT INTO partida (id_usuario, puntaje_obtenido, fecha) 
+                                VALUES ('$id_usuario', '$puntaje_obtenido', '$fecha')");
+    }
 }

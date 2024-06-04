@@ -9,6 +9,11 @@ class UsuarioModel
         $this->database = $database;
     }
 
+    public function getUsuario($nombreUsuario)
+    {
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
+    }
+
     public function verSiExisteUsuarioPorNombreEEmail($nombreUsuario,$email)
     {
         return $this->database->query("SELECT COUNT(*) AS usuario_existe FROM usuario WHERE 
@@ -37,10 +42,5 @@ class UsuarioModel
         $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, perfil, fechaRegistro) 
                                 VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
                                             '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro')");
-    }
-
-    public function getUsuario($nombreUsuario)
-    {
-        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
     }
 }

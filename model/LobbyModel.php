@@ -13,4 +13,14 @@ class LobbyModel
     {
         return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
     }
+
+    public function getPartidas($idUsuario)
+    {
+        return $this->database->query("SELECT * FROM partida WHERE id_usuario = '$idUsuario'");
+    }
+
+    public function getCantidadDePartidas($idUsuario)
+    {
+        return $this->database->query("SELECT COUNT(*) FROM partida WHERE id_usuario = '$idUsuario'");
+    }
 }
