@@ -37,8 +37,11 @@ class PartidaController
                 "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
                 "fecha" => date("Y-m-d")
             );
+            $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
+            $this->model->sumarPuntaje($_SESSION['puntajeActual'], $_SESSION['nombreUsuario']);
             $this->model->guardarPartida($partida);
-            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'], "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta]);
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
+                "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta]);
         }
     }
 

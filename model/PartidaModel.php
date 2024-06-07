@@ -23,4 +23,9 @@ class PartidaModel
         $this->database->execute("INSERT INTO partida (id_usuario, puntaje_obtenido, fecha) 
                                 VALUES ('$id_usuario', '$puntaje_obtenido', '$fecha')");
     }
+
+    public function sumarPuntaje($puntaje, $nombreUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET puntaje_total = puntaje_total + '$puntaje' WHERE nombreUsuario = '$nombreUsuario'");
+    }
 }
