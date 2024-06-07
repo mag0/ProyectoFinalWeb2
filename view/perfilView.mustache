@@ -5,6 +5,7 @@
 <div class="container">
     <div class="register-box">
         <h1>Regístrate</h1>
+{{#esUsuarioSesion}}
         {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
             <div class="form-row">
@@ -49,5 +50,49 @@
             <button type="submit" class="btn">Volver</button>
         </form>
         {{/usuario}}
+{{/esUsuarioSesion}}
+
+{{^esUsuarioSesion}}
+    {{#usuario}}
+        <form action="/ProyectoFinal/index.php?controller=lobby&action=verRanking" method="post">
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" disabled>
+                </div>
+                <div class="textbox">
+                    <input type="date" value="{{anioDeNacimiento}}" name="anioDeNacimiento" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="radiobox">
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="masculino" name="genero" value="masculino" {{#esMasculino}}checked{{/esMasculino}} disabled>
+                    <label for="femenino">Femenino</label>
+                    <input type="radio" id="femenino" name="genero" value="femenino" {{#esFemenino}}checked{{/esFemenino}} disabled>
+                </div>
+                <div class="textbox">
+                    <input type="text" value="{{pais}}" name="pais" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{ciudad}}" name="ciudad" disabled>
+                </div>
+                <div class="textbox">
+                    <input type="email" value="{{email}}" name="email" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" disabled>
+                </div>
+                <div class="textbox">
+                    <input type="file" accept="image/*" name="perfil">
+                </div>
+            </div>
+            <button type="submit" class="btn">Volver</button>
+        </form>
+        {{/usuario}}
+{{/esUsuarioSesion}}
     </div>
 </div>

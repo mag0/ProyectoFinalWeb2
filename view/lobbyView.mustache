@@ -1,11 +1,11 @@
     <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
 </head>
 <body>
-
+{{#usuarioActivo}}
     <div class="container">
             <div class="lobby-box">
                 <h1>Bienvenido {{nombreUsuario}}</h1>
-                <p>Puntaje total del dia: {{puntaje}}</p>
+                <p>Puntaje total: {{puntaje_total}}</p>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get'">Crear Nueva
                     Partida</button>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=verRanking'">Ver Ranking</button>
@@ -26,3 +26,4 @@
                 </div>
             </div>
         </div>
+        {{/usuarioActivo}}

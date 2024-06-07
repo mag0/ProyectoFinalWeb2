@@ -23,4 +23,10 @@ class LobbyModel
     {
         return $this->database->query("SELECT COUNT(*) FROM partida WHERE id_usuario = '$idUsuario'");
     }
+
+    public function getUsuarios()
+    {
+        return $this->database->query("SELECT * FROM usuario ORDER BY puntaje_total DESC");
+    }
+
 }

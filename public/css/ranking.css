@@ -1,55 +1,132 @@
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-.lobby-box, .ranking-box {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 2px solid #007bff; /* Agregamos el borde de color */
+.lobby-box {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    position: relative;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 3px solid #6A5ACD;
+    animation: float 6s ease-in-out infinite;
+    box-sizing: border-box;
 }
 
-h1 {
+.lobby-box h1 {
+    margin: 0 0 20px;
+    padding: 0;
+    color: #333;
     font-size: 24px;
-    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lobby-box p {
+    margin: 0 0 20px;
+    padding: 0;
+    color: #333;
+    font-size: 18px;
 }
 
 .btn {
-    background-color: #007bff;
-    color: #fff;
+    width: 100%;
+    background: #6A5ACD;
     border: none;
-    border-radius: 3px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px;
     cursor: pointer;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+    margin-bottom: 10px; /* Separar los botones */
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background: #483D8B;
 }
 
-.ranking-list {
-    margin-top: 30px;
+.game-list {
+    text-align: center;
 }
 
-h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-ol {
-    list-style: none;
+.game-list ul {
+    list-style-type: none;
     padding: 0;
-    margin: 0;
+    max-height: 400px; /* Altura máxima de la caja */
+    overflow-y: auto; /* Habilitar el scroll vertical */
+    border: 1px solid #ccc;
 }
 
-li {
-    font-size: 16px;
-    margin-bottom: 5px;
+.game-list li {
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: .6em 4em;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+.game-list li:hover {
+    background-color: #8376d8;
+
+}
+
+/* Estilos para WebKit (Chrome, Safari, etc.) */
+.game-list ul::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.game-list ul::-webkit-scrollbar-thumb {
+    background-color: #6A5ACD; /* Color del thumb (barra) */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.game-list ul::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del track (fondo) */
+}
+
+/* Estilos para Firefox */
+.game-list ul::-webkit-scrollbar-thumb {
+    background-color: #6A5ACD; /* Color del thumb (barra) */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.game-list ul::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del track (fondo) */
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .lobby-box {
+        padding: 20px;
+    }
+
+    .lobby-box h1 {
+        font-size: 20px;
+    }
+
+    .lobby-box p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .game-list h2 {
+        font-size: 18px;
+    }
 }
 

@@ -13,7 +13,7 @@ class LobbyController
 
     public function get()
     {
-        $_SESSION['numeroPregunta'] = 0;
+        $_SESSION['numeroPregunta'] = 1;
         $_SESSION['puntajeActual'] = 0;
         $partidas = $this->model->getPartidas($_SESSION['id']);
 
@@ -21,19 +21,29 @@ class LobbyController
             $partidas[$indice]['numeroDePartida'] = $indice + 1;
         }
 
-        $this->presenter->render("view/lobbyView.mustache", ["nombreUsuario" =>$_SESSION['id'],"puntaje" =>$_SESSION['puntaje'],"partidas" =>$partidas]);
+        $this->presenter->render("view/lobbyView.mustache", ["usuarioActivo" =>$_SESSION['usuarioActivo'],"puntaje" =>$_SESSION['puntaje'],"partidas" =>$partidas]);
     }
 
     public function verRanking()
     {
-        $this->presenter->render("view/rankingView.mustache");
+        $usuarios = $this->model->getUsuarios();
+        foreach ($usuarios as $indice => $usuario) {
+            $usuarios[$indice]['numeroDeUsuario'] = $indice + 1;
+        }
+        $this->presenter->render("view/rankingView.mustache", ["usuarios" =>$usuarios]);
     }
 
     public function verPerfil()
     {
-        $usuario = $this->model->getUsuario($_SESSION['nombreUsuario'])[0];
+        $esUsuarioSesion = false;
+        if(isset($_GET['usuarioBuscado'])){
+            $usuario = $this->model->getUsuario($_GET['usuarioBuscado'])[0];
+        }else{
+            $usuario = $this->model->getUsuario($_SESSION['nombreUsuario'])[0];
+            $esUsuarioSesion = true;
+        }
         $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
         $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
-        $this->presenter->render("view/perfilView.mustache", ["usuario" =>$usuario]);
+        $this->presenter->render("view/perfilView.mustache", ["usuario" =>$usuario,"esUsuarioSesion" =>$esUsuarioSesion]);
     }
 }

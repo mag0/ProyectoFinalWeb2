@@ -38,7 +38,7 @@ class PartidaController
                 "fecha" => date("Y-m-d")
             );
             $this->model->guardarPartida($partida);
-            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'], "numeroPregunta" =>$_SESSION['numeroPregunta'], "respuestaCorrecta" =>$respuestaCorrecta]);
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'], "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta]);
         }
     }
 

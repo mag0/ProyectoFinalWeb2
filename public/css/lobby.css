@@ -80,14 +80,6 @@
     background-color: #8376d8;
 
 }
-.game-list ul {
-    list-style-type: none;
-    padding: 0;
-    height: 200px; /* Altura máxima de la lista */
-    overflow-y: auto; /* Habilitar el scroll vertical */
-    border: 1px solid #ccc; /* Borde para visualización */
-    scrollbar-width: thin; /* Ancho del scrollbar (para Firefox) */
-}
 
 /* Estilos para WebKit (Chrome, Safari, etc.) */
 .game-list ul::-webkit-scrollbar {

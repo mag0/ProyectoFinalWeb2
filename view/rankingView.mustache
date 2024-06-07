@@ -1,22 +1,17 @@
-    <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+    <link rel="stylesheet" href="/ProyectoFinal/public/css/ranking.css">
 </head>
 <body>
     <div class="container">
             <div class="lobby-box">
                 <h1>Ranking</h1>
                 <div class="game-list">
-                    <h2>Mejores jugadores</h2>
                     <ul>
-                        <li>1 - nombre - Puntaje: 100</li>
-                        <li>2 - nombre - Puntaje: 95</li>
-                        <li>3 - nombre - Puntaje: 90</li>
-                        <li>4 - nombre - Puntaje: 85</li>
-                        <li>5 - nombre - Puntaje: 80</li>
-                        <li>6 - nombre - Puntaje: 75</li>
-                        <li>7 - nombre - Puntaje: 70</li>
-                        <li>8 - nombre - Puntaje: 65</li>
-                        <li>9 - nombre - Puntaje: 60</li>
-                        <li>10 - nombre - Puntaje: 55</li>
+                    {{#usuarios}}
+                        <a href="/ProyectoFinal/index.php?controller=lobby&action=verPerfil&usuarioBuscado={{nombreUsuario}}"><li>{{numeroDeUsuario}} - {{nombreUsuario}} - Puntaje: {{puntaje_total}}</li><a>
+                    {{/usuarios}}
+                    {{^usuarios}}
+                        <p>No hay usuarios disponibles.</p>
+                    {{/usuarios}}
                     </ul>
                 </div>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'">Volver</button>

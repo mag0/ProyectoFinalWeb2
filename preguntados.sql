@@ -37,15 +37,28 @@ CREATE TABLE IF NOT EXISTS `usuario` (
     `password` VARCHAR(100) NOT NULL,
     `nombreUsuario` VARCHAR(50) NOT NULL UNIQUE,
     `perfil` VARCHAR(255),
-    `fechaRegistro` DATE NOT NULL
+    `fechaRegistro` DATE NOT NULL,
+    `puntaje_total` INT 0,
+    `cuenta_validada` tinyint FALSE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `fechaRegistro`) VALUES
-             ('Maria Gonzalez', '1992-08-25', 'femenino', 'Pais3', 'Ciudad3', 'maria@example.com', 'pikachu12', 'Maria', '2024-06-03');
+INSERT INTO `usuario` (`nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `fechaRegistro`, `puntaje_total`, `cuenta_validada`)
+VALUES
+    ('Maria Gonzalez', '1992-08-25', 'femenino', 'Pais3', 'Ciudad3', 'maria@example.com', 'pikachu12', 'Maria', '2024-06-03', 120, FALSE),
+    ('Juan Perez', '1988-05-14', 'masculino', 'Pais1', 'Ciudad1', 'juan@example.com', 'password123', 'JuanP', '2024-06-03', 150, FALSE),
+    ('Luis Lopez', '1990-12-12', 'masculino', 'Pais2', 'Ciudad2', 'luis@example.com', 'pass456', 'LuisL', '2024-06-03', 95, FALSE),
+    ('Ana Martinez', '1995-03-22', 'femenino', 'Pais4', 'Ciudad4', 'ana@example.com', 'qwerty', 'AnaM', '2024-06-03', 200, FALSE),
+    ('Carlos Sanchez', '1985-11-30', 'masculino', 'Pais5', 'Ciudad5', 'carlos@example.com', 'password789', 'CarlosS', '2024-06-03', 180, FALSE),
+    ('Elena Ramirez', '1993-07-18', 'femenino', 'Pais6', 'Ciudad6', 'elena@example.com', 'pass987', 'ElenaR', '2024-06-03', 110, FALSE),
+    ('Pedro Gomez', '1991-09-09', 'masculino', 'Pais7', 'Ciudad7', 'pedro@example.com', 'asd123', 'PedroG', '2024-06-03', 75, FALSE),
+    ('Lucia Diaz', '1989-04-05', 'femenino', 'Pais8', 'Ciudad8', 'lucia@example.com', 'pass456', 'LuciaD', '2024-06-03', 140, FALSE),
+    ('Miguel Torres', '1987-01-15', 'masculino', 'Pais9', 'Ciudad9', 'miguel@example.com', '123456', 'MiguelT', '2024-06-03', 130, FALSE),
+    ('Sofia Herrera', '1994-06-27', 'femenino', 'Pais10', 'Ciudad10', 'sofia@example.com', 'qwe789', 'SofiaH', '2024-06-03', 160, FALSE);
+
 
 
 -- --------------------------------------------------------
