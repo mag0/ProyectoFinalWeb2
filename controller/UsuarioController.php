@@ -66,7 +66,8 @@ class UsuarioController
                 }
             }
 
-            $token = uniqid();
+            $token = uniqid(); /* Para generar un identificador único  */
+
             $datos_usuario['perfil'] = $img;
             $datos_usuario['token'] = $token;
 
@@ -85,7 +86,7 @@ class UsuarioController
         }
     }
 
-    public function enviarEmailRegistro($email, $nombre, $token)
+    public function enviarEmailRegistro($email, $nombre)
     {
         $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php';
 
@@ -119,13 +120,14 @@ class UsuarioController
         $email = $_GET['email'];
 
         if (empty($token) || empty($email)) {
-            $this->presenter->render("view/errorView.mustache", ["error" => "Token o email faltante"]);
+            header('Location:/error?codError=333');
+            exit();
         } else {
             $usuarioVerificado = $this->model->verificarUsuario($token, $email);
             if ($usuarioVerificado) {
-                $this->presenter->render("view/successView.mustache", ["success" => "Usuario verificado con éxito"]);
+                header('Location: /login?EXITO=1');
             } else {
-                $this->presenter->render("view/errorView.mustache", ["error" => "Error al verificar el usuario"]);
+                header('Location:/error?codError=333');
             }
         }
     }

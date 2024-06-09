@@ -15,13 +15,29 @@ class LobbyController
     {
         $_SESSION['numeroPregunta'] = 1;
         $_SESSION['puntajeActual'] = 0;
+
+       
+        if (!isset($_SESSION['id'])) {
+
+            $_SESSION['id'] = 0;
+        }
+
         $partidas = $this->model->getPartidas($_SESSION['id']);
 
         foreach ($partidas as $indice => $partida) {
             $partidas[$indice]['numeroDePartida'] = $indice + 1;
         }
 
-        $this->presenter->render("view/lobbyView.mustache", ["usuarioActivo" =>$_SESSION['usuarioActivo'],"puntaje" =>$_SESSION['puntaje'],"partidas" =>$partidas]);
+
+        if (!isset($_SESSION['puntaje'])) {
+            $_SESSION['puntaje'] = 0;
+        }
+
+        $this->presenter->render("view/lobbyView.mustache", [
+            "usuarioActivo" => $_SESSION['usuarioActivo'],
+            "puntaje" => $_SESSION['puntaje'],
+            "partidas" => $partidas
+        ]);
     }
 
     public function verRanking()
@@ -30,20 +46,21 @@ class LobbyController
         foreach ($usuarios as $indice => $usuario) {
             $usuarios[$indice]['numeroDeUsuario'] = $indice + 1;
         }
-        $this->presenter->render("view/rankingView.mustache", ["usuarios" =>$usuarios]);
+        $this->presenter->render("view/rankingView.mustache", ["usuarios" => $usuarios]);
     }
 
     public function verPerfil()
     {
         $esUsuarioSesion = false;
-        if(isset($_GET['usuarioBuscado'])){
+        if (isset($_GET['usuarioBuscado'])) {
             $usuario = $this->model->getUsuario($_GET['usuarioBuscado'])[0];
-        }else{
+        } else {
             $usuario = $this->model->getUsuario($_SESSION['nombreUsuario'])[0];
             $esUsuarioSesion = true;
         }
         $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
         $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
-        $this->presenter->render("view/perfilView.mustache", ["usuario" =>$usuario,"esUsuarioSesion" =>$esUsuarioSesion]);
+        $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => $esUsuarioSesion]);
     }
 }
+?>
