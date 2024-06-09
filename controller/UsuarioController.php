@@ -145,6 +145,7 @@ class UsuarioController
         } else {
             session_start();
             $_SESSION['usuarioActivo'] = $this->model->getUsuario($nombreUsuario)[0];
+            $_SESSION['nombreUsuario'] = $_SESSION['usuarioActivo']['nombreUsuario'];
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
             exit();
         }

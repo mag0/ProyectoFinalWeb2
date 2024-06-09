@@ -17,12 +17,11 @@ class LobbyController
         $_SESSION['puntajeActual'] = 0;
 
        
-        if (!isset($_SESSION['id'])) {
-
-            $_SESSION['id'] = 0;
+        if (!isset($_SESSION['usuarioActivo']['id'])) {
+            $_SESSION['usuarioActivo']['id'] = 0;
         }
 
-        $partidas = $this->model->getPartidas($_SESSION['id']);
+        $partidas = $this->model->getPartidas($_SESSION['usuarioActivo']['id']);
 
         foreach ($partidas as $indice => $partida) {
             $partidas[$indice]['numeroDePartida'] = $indice + 1;
@@ -55,7 +54,7 @@ class LobbyController
         if (isset($_GET['usuarioBuscado'])) {
             $usuario = $this->model->getUsuario($_GET['usuarioBuscado'])[0];
         } else {
-            $usuario = $this->model->getUsuario($_SESSION['nombreUsuario'])[0];
+            $usuario = $_SESSION['usuarioActivo'];
             $esUsuarioSesion = true;
         }
         $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
@@ -63,4 +62,3 @@ class LobbyController
         $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => $esUsuarioSesion]);
     }
 }
-?>

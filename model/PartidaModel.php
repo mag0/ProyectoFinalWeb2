@@ -9,9 +9,9 @@ class PartidaModel
         $this->database = $database;
     }
 
-    public function getPregunta()
+    public function getPregunta($dificultadActual)
     {
-        return $this->database->query("SELECT * FROM pregunta ORDER BY RAND() LIMIT 1");
+        return $this->database->query("SELECT * FROM pregunta WHERE dificultad = '$dificultadActual' ORDER BY RAND() LIMIT 1");
     }
 
     public function guardarPartida($partida)

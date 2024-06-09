@@ -13,7 +13,8 @@ class PartidaController
 
     public function get()
     {
-        $this->pregunta = $this->model->getPregunta()[0];
+        $dificultadActual = $this->asignarDificultad();
+        $this->pregunta = $this->model->getPregunta($dificultadActual)[0];
         $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
         $_SESSION['pregunta'] = $this->pregunta;
         $color = $this->asignarColorACategoria($_SESSION['pregunta']);
@@ -33,7 +34,7 @@ class PartidaController
         }else{
             $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_POST['respuestaCorrecta']);
             $partida = array(
-                "id_usuario" => htmlspecialchars($_SESSION['id']),
+                "id_usuario" => htmlspecialchars($_SESSION['usuarioActivo']['id']),
                 "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
                 "fecha" => date("Y-m-d")
             );
@@ -86,10 +87,22 @@ class PartidaController
     {
         $colores = [
             "facil" => "lightgreen",
-            "medio" => "orange",
+            "normal" => "orange",
             "dificil" => "red"
         ];
 
         return $colores[$dificultad['dificultad']] ?? "grey";
     }
+    private function asignarDificultad()
+    {
+        if($_SESSION['numeroPregunta'] <= 10){
+            $dificultadActual = 'facil';
+        }else if($_SESSION['numeroPregunta'] >= 11 && $_SESSION['numeroPregunta'] <= 20){
+            $dificultadActual = 'normal';
+        }else{
+            $dificultadActual = 'dificil';
+        }
+        return $dificultadActual;
+    }
+
 }
