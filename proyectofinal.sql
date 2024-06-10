@@ -139,6 +139,23 @@ INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pa
 (11, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'Liniers', 'angelleyesdk@gmail.com', '12345', 'AngelDNK', '', '2024-06-09', 0, '666508e4e84ed', 0),
 (12, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '', '2024-06-01', 0, '666508e4e84ed', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `preguntas_vistas`
+--
+
+CREATE TABLE `preguntas_vistas` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id_usuario` int(11) NOT NULL,
+    `id_pregunta` int(11) NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `id_usuario` (`id_usuario`),
+    KEY `id_pregunta` (`id_pregunta`),
+    CONSTRAINT `preguntas_vistas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `preguntas_vistas_ibfk_2` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -184,6 +201,12 @@ ALTER TABLE `pregunta`
 --
 ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `preguntas_vistas`
+--
+ALTER TABLE `preguntas_vistas`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Restricciones para tablas volcadas

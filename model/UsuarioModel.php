@@ -55,8 +55,8 @@ class UsuarioModel
         $fechaRegistro = $datos_usuario['fechaRegistro'];
         $token = $datos_usuario['token'];
 
-        $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, perfil, fechaRegistro, token) 
+        $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, perfil, fechaRegistro, puntaje_total, token) 
                                 VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
-                                            '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro','$token')");
+                                            '$email', '$password', '$nombreUsuario', '$perfil', '$fechaRegistro', 0,'$token')");
     }
 }

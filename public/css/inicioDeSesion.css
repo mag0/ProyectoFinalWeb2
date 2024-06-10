@@ -31,6 +31,23 @@
     margin-bottom: 20px;
 }
 
+.textbox{
+    margin-top: 1em;
+}
+
+.textbox label{
+    width: 100%;
+    padding: 10px;
+    background: lightslategrey;
+    border: none;
+    outline: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
 .textbox, .radiobox {
     flex: 1;
     margin-right: 10px;

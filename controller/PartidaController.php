@@ -14,11 +14,12 @@ class PartidaController
     public function get()
     {
         $dificultadActual = $this->asignarDificultad();
-        $this->pregunta = $this->model->getPregunta($dificultadActual)[0];
+        $this->pregunta = $this->model->getPregunta($dificultadActual, $_SESSION['usuarioActivo']['id'])[0];
         $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
         $_SESSION['pregunta'] = $this->pregunta;
         $color = $this->asignarColorACategoria($_SESSION['pregunta']);
         $colorDificultad = $this->asignarColorADificultad($_SESSION['pregunta']);
+        $this->model->marcarPregunta($_SESSION['pregunta']['id'],$_SESSION['usuarioActivo']['id']);
 
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
             "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "color" => $color, "colorDificultad" => $colorDificultad]);
