@@ -149,11 +149,7 @@ CREATE TABLE `preguntas_vistas` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `id_usuario` int(11) NOT NULL,
     `id_pregunta` int(11) NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `id_usuario` (`id_usuario`),
-    KEY `id_pregunta` (`id_pregunta`),
-    CONSTRAINT `preguntas_vistas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
-    CONSTRAINT `preguntas_vistas_ibfk_2` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON DELETE CASCADE
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -217,6 +213,14 @@ ALTER TABLE `preguntas_vistas`
 --
 ALTER TABLE `partida`
   ADD CONSTRAINT `partida_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+--
+-- Filtros para la tabla `preguntas_vistas`
+--
+ALTER TABLE `preguntas_vistas`
+    ADD CONSTRAINT `partida_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `partida_ibfk_3` FOREIGN KEY (`id_pregunta`) REFERENCES `pregunta` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
