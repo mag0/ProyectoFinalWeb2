@@ -1,0 +1,30 @@
+.countdown {
+    text-align: center;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+}
+
+#countdown {
+    font-size: 38px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #3e8e41;
+}

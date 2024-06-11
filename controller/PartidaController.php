@@ -26,24 +26,29 @@ class PartidaController
     }
     public function verificarRespuesta()
     {
-        if(!isset($_POST['respuesta']) || $_POST['respuesta'] == $_POST['respuestaCorrecta']){
+        if(isset($_GET['tiempo']) || $_POST['respuesta'] != $_SESSION['respuestaCorrecta']){
+                if(isset($_GET['tiempo'])){
+                    $mensaje = 'Tiempo agotado';
+                }else{
+                    $mensaje = 'Respuesta Incorrecta';
+                }
+                $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_SESSION['respuestaCorrecta']);
+                $partida = array(
+                    "id_usuario" => htmlspecialchars($_SESSION['usuarioActivo']['id']),
+                    "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
+                    "fecha" => date("Y-m-d")
+                );
+                $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
+                $this->model->sumarPuntaje($_SESSION['puntajeActual'], $_SESSION['nombreUsuario']);
+                $this->model->guardarPartida($partida);
+                $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
+                    "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta, "mensaje" =>$mensaje]);
+        }else{
             $_SESSION['puntaje'] += 1;
             $_SESSION['puntajeActual'] += 1;
             $_SESSION['numeroPregunta'] += 1;
             header('location:/ProyectoFinal/index.php?controller=partida&action=get');
             exit();
-        }else{
-            $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_POST['respuestaCorrecta']);
-            $partida = array(
-                "id_usuario" => htmlspecialchars($_SESSION['usuarioActivo']['id']),
-                "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
-                "fecha" => date("Y-m-d")
-            );
-            $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
-            $this->model->sumarPuntaje($_SESSION['puntajeActual'], $_SESSION['nombreUsuario']);
-            $this->model->guardarPartida($partida);
-            $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
-                "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta]);
         }
     }
 
