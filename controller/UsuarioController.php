@@ -35,7 +35,7 @@ class UsuarioController
             "password" => $_POST['password'],
             "passwordRepetida" => $_POST['passwordRepetida'],
             "nombreUsuario" => htmlspecialchars($_POST['nombreUsuario']),
-            "perfil" => '',
+            "foto" => $_POST['foto'],
             "fechaRegistro" => date("Y-m-d")
         );
 
@@ -60,26 +60,34 @@ class UsuarioController
             if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] == 0) {
                 $nuevoNombre = time();
                 $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-                $destino = "public/uploads/" . $nuevoNombre . "." . $extension;
+                $destino = "./public/uploads/" . $nuevoNombre . "." . $extension;
                 if (move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
                     $img = "$nuevoNombre.$extension";
+                    $datos_usuario['foto'] = $img;
+                } else {
+                    $error = "Error al mover el archivo de imagen";
+                    $this->presenter->render("view/registroView.mustache", ["error" => $error]);
+                    return;
                 }
             }
 
-            $token = uniqid(); /* Para generar un identificador único  */
+            $token = uniqid();
 
-            $datos_usuario['perfil'] = $img;
             $datos_usuario['token'] = $token;
 
             $result = $this->model->agregarUsuario($datos_usuario);
 
             if (!$result && !empty($img)) {
-                unlink("public/uploads/" . $img);
+                unlink($destino); // Eliminar la imagen si la inserción de usuario falla
+                $error = "Error al agregar el usuario";
+                $this->presenter->render("view/registroView.mustache", ["error" => $error]);
+                return;
             }
 
             if ($this->enviarEmailRegistro($datos_usuario['email'], $datos_usuario['nombreCompleto'], $token)) {
                 $this->presenter->render("view/inicioDeSesionView.mustache", ["success" => "Se envió un correo de verificación."]);
             } else {
+                unlink($destino); // Eliminar la imagen si falla el envío del correo
                 $error = "Hubo un problema al enviar el correo de confirmación. Por favor, inténtelo de nuevo.";
                 $this->presenter->render("view/registroView.mustache", ["error" => $error]);
             }

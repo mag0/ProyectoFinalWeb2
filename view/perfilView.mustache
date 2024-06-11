@@ -4,10 +4,13 @@
 <body>
 <div class="container">
     <div class="register-box">
-        <h1>Regístrate</h1>
+        <h1>Perfil</h1>
 {{#esUsuarioSesion}}
         {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
+             <div class="form-row">
+              <img src="./public/uploads/{{foto}}" class="w-100">
+                </div>
             <div class="form-row">
                 <div class="textbox">
                     <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" required>
@@ -39,8 +42,10 @@
                 <div class="textbox">
                     <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
                 </div>
+
                 <div class="textbox">
-                    <input type="file" accept="image/*" name="perfil">
+
+                <input type="file" accept="image/*" name="perfil">
                 </div>
             </div>
             {{#error}}
