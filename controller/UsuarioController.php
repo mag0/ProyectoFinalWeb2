@@ -35,7 +35,6 @@ class UsuarioController
             "password" => $_POST['password'],
             "passwordRepetida" => $_POST['passwordRepetida'],
             "nombreUsuario" => htmlspecialchars($_POST['nombreUsuario']),
-            "foto" => $_POST['foto'],
             "fechaRegistro" => date("Y-m-d")
         );
 
@@ -77,9 +76,11 @@ class UsuarioController
 
             $result = $this->model->agregarUsuario($datos_usuario);
 
-            if (!$result && !empty($img)) {
-                unlink($destino); // Eliminar la imagen si la inserción de usuario falla
-                $error = "Error al agregar el usuario";
+            if ($result !== true) {
+                if (!empty($img)) {
+                    unlink($destino); // Eliminar la imagen si la inserción de usuario falla
+                }
+                $error = "Error al agregar el usuario: " . $result;
                 $this->presenter->render("view/registroView.mustache", ["error" => $error]);
                 return;
             }

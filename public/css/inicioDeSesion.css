@@ -8,7 +8,7 @@
 .register-box {
     width: 100%;
     max-width: 800px;
-    padding: 40px;
+    padding: 20px 40px;
     background: #fff;
     text-align: center;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -19,7 +19,7 @@
 
 .register-box h1 {
     margin: 0 0 30px;
-    padding: 0;
+    padding: 10px;
     color: #333;
     font-size: 24px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
@@ -28,24 +28,33 @@
 .form-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+
+}
+.form-label{
+    display: flex;
+    direction: initial;
+    margin: 4px;
+
+}
+
+.form-row-imagen {
+    display: flex;
+    direction: initial;
+    position: relative;
+    bottom: 30px;
+
+}
+
+.imagen {
+    border-radius: 50%;
+    max-height: 25%;
+    max-width: 25%;
 }
 
 .textbox{
     margin-top: 1em;
-}
-
-.textbox label{
-    width: 100%;
-    padding: 10px;
-    background: lightslategrey;
-    border: none;
-    outline: none;
-    color: white;
-    border-radius: 10px;
-    font-size: 18px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
+    position: relative;
+    bottom: 30px;
 }
 
 .textbox, .radiobox {
@@ -80,6 +89,19 @@
 
 .btn:hover {
     background: #483D8B;
+}
+
+.btn-perfil{
+    width: 100%;
+    background: #6A5ACD;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 10px;
+    transition: background 0.3s ease;
 }
 
 /* Responsive Styles */

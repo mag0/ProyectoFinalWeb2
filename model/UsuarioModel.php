@@ -54,12 +54,18 @@ class UsuarioModel
         $email = $datos_usuario['email'];
         $password = $datos_usuario['password'];
         $nombreUsuario = $datos_usuario['nombreUsuario'];
-        $foto = $datos_usuario['foto'];
+        $foto = isset($datos_usuario['foto']) ? $datos_usuario['foto'] : null;
         $fechaRegistro = $datos_usuario['fechaRegistro'];
         $token = $datos_usuario['token'];
 
-        $this->database->execute("INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, foto, fechaRegistro, puntaje_total, token) 
-                        VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', 
-                                    '$email', '$password', '$nombreUsuario', '$foto', '$fechaRegistro', 0, '$token')");
+        $sql = "INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, foto, fechaRegistro, puntaje_total, token) 
+            VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', '$email', '$password', '$nombreUsuario', '$foto', '$fechaRegistro', 0, '$token')";
+
+        try {
+            $this->database->execute($sql);
+            return true;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

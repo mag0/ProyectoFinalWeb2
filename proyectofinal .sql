@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2024 a las 00:01:40
+-- Tiempo de generación: 14-06-2024 a las 08:13:16
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -42,7 +42,7 @@ INSERT INTO `partida` (`id`, `id_usuario`, `puntaje_obtenido`, `fecha`) VALUES
 (1, 1, 85, '2024-06-01'),
 (2, 1, 90, '2024-05-02'),
 (3, 1, 75, '2024-01-03'),
-(5, 62, 2, '2024-06-11');
+(7, 119, 7, '2024-06-14');
 
 -- --------------------------------------------------------
 
@@ -115,9 +115,14 @@ CREATE TABLE `preguntas_vistas` (
 --
 
 INSERT INTO `preguntas_vistas` (`id`, `id_usuario`, `id_pregunta`) VALUES
-(2, 62, 2),
-(3, 62, 6),
-(4, 62, 8);
+(7, 119, 1),
+(8, 119, 5),
+(9, 119, 3),
+(10, 119, 10),
+(11, 119, 6),
+(12, 119, 4),
+(13, 119, 8),
+(14, 119, 9);
 
 -- --------------------------------------------------------
 
@@ -147,18 +152,18 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `puntaje_total`, `token`, `cuenta_validada`) VALUES
-(1, 'Maria Gonzalez', '1992-08-25', 'femenino', 'Pais3', 'Ciudad3', 'maria@example.com', 'pikachu12', 'Maria', '', '2024-06-03', 120, '666508e4e84ed', 0),
-(2, 'Juan Perez', '1988-05-14', 'masculino', 'Pais1', 'Ciudad1', 'juan@example.com', 'password123', 'JuanP', '', '2024-06-03', 150, '666508e4e84ed', 0),
-(3, 'Luis Lopez', '1990-12-12', 'masculino', 'Pais2', 'Ciudad2', 'luis@example.com', 'pass456', 'LuisL', '', '2024-06-03', 95, '666508e4e84ed', 0),
-(4, 'Ana Martinez', '1995-03-22', 'femenino', 'Pais4', 'Ciudad4', 'ana@example.com', 'qwerty', 'AnaM', '', '2024-06-03', 200, '666508e4e84ed', 0),
-(5, 'Carlos Sanchez', '1985-11-30', 'masculino', 'Pais5', 'Ciudad5', 'carlos@example.com', 'password789', 'CarlosS', '', '2024-06-03', 180, '666508e4e84ed', 0),
-(6, 'Elena Ramirez', '1993-07-18', 'femenino', 'Pais6', 'Ciudad6', 'elena@example.com', 'pass987', 'ElenaR', '', '2024-06-03', 110, '666508e4e84ed', 0),
-(7, 'Pedro Gomez', '1991-09-09', 'masculino', 'Pais7', 'Ciudad7', 'pedro@example.com', 'asd123', 'PedroG', '', '2024-06-03', 75, '666508e4e84ed', 0),
-(8, 'Lucia Diaz', '1989-04-05', 'femenino', 'Pais8', 'Ciudad8', 'lucia@example.com', 'pass456', 'LuciaD', '', '2024-06-03', 140, '666508e4e84ed', 0),
-(9, 'Miguel Torres', '1987-01-15', 'masculino', 'Pais9', 'Ciudad9', 'miguel@example.com', '123456', 'MiguelT', '', '2024-06-03', 130, '666508e4e84ed', 0),
-(10, 'Sofia Herrera', '1994-06-27', 'femenino', 'Pais10', 'Ciudad10', 'sofia@example.com', 'qwe789', 'SofiaH', '', '2024-06-03', 160, '666508e4e84ed', 0),
-(12, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '', '2024-06-01', 0, '666508e4e84ed', 0),
-(62, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'CIUDAD DE BUENOS AIRES - LINIERS', 'angelleyesdk@gmail.com', '123', 'AngelDNK', 'b0.png', '2024-06-11', 2, '6667f48f70091', 0);
+(1, 'Maria Gonzalez', '1992-08-25', 'femenino', 'Argentina', 'Ciudad3', 'maria@example.com', 'pikachu12', 'Maria', '1699279835.png', '2024-06-03', 120, '666508e4e84ed', 0),
+(2, 'Juan Perez', '1988-05-14', 'masculino', 'Argentina', 'Ciudad1', 'juan@example.com', 'password123', 'JuanP', 'Preguntados.png', '2024-06-03', 150, '666508e4e84ed', 0),
+(3, 'Luis Lopez', '1990-12-12', 'masculino', 'Argentina', 'Ciudad2', 'luis@example.com', 'pass456', 'LuisL', '1699296978.jpg', '2024-06-03', 95, '666508e4e84ed', 0),
+(4, 'Ana Martinez', '1995-03-22', 'femenino', 'Argentina', 'Ciudad4', 'ana@example.com', 'qwerty', 'AnaM', '1699566454.jpg', '2024-06-03', 200, '666508e4e84ed', 0),
+(5, 'Carlos Sanchez', '1985-11-30', 'masculino', 'Argentina', 'Ciudad5', 'carlos@example.com', 'password789', 'CarlosS', '1699404120.webp', '2024-06-03', 180, '666508e4e84ed', 0),
+(6, 'Elena Ramirez', '1993-07-18', 'femenino', 'Argentina', 'Ciudad6', 'elena@example.com', 'pass987', 'ElenaR', '1699399349.jpg', '2024-06-03', 110, '666508e4e84ed', 0),
+(7, 'Pedro Gomez', '1991-09-09', 'masculino', 'Argentina', 'Ciudad7', 'pedro@example.com', 'asd123', 'PedroG', '1699919393.jpg', '2024-06-03', 75, '666508e4e84ed', 0),
+(8, 'Lucia Diaz', '1989-04-05', 'femenino', 'Argentina', 'Ciudad8', 'lucia@example.com', 'pass456', 'LuciaD', '1699758606.jpg', '2024-06-03', 140, '666508e4e84ed', 0),
+(9, 'Miguel Torres', '1987-01-15', 'masculino', 'Argentina', 'Ciudad9', 'miguel@example.com', '123456', 'MiguelT', '1697154413.jpeg', '2024-06-03', 130, '666508e4e84ed', 0),
+(10, 'Sofia Herrera', '1994-06-27', 'femenino', 'Argentina', 'Ciudad10', 'sofia@example.com', 'qwe789', 'SofiaH', '1699621422.jpg', '2024-06-03', 160, '666508e4e84ed', 0),
+(12, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '1699109847.jpg', '2024-06-01', 0, '666508e4e84ed', 0),
+(119, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'CIUDAD DE BUENOS AIRES - LINIERS', 'angelleyesdk@gmail.com', '12', 'AngelDNK', '1718320800.jpeg', '2024-06-14', 7, '666b7ea0d705f', 0);
 
 --
 -- Índices para tablas volcadas
@@ -200,7 +205,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
@@ -212,13 +217,13 @@ ALTER TABLE `pregunta`
 -- AUTO_INCREMENT de la tabla `preguntas_vistas`
 --
 ALTER TABLE `preguntas_vistas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- Restricciones para tablas volcadas
