@@ -1,5 +1,39 @@
 <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
+    <script>
+        let map;
 
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map-container'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2
+            });
+
+            map.addListener('click', function (event) {
+                const latLng = event.latLng;
+
+
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: latLng }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+
+                            const country = results[0].address_components.find(component => component.types.includes('country'));
+                            const city = results[0].address_components.find(component => component.types.includes('locality'));
+
+
+                            document.getElementById('pais').value = country ? country.long_name : '';
+                            document.getElementById('ciudad').value = city ? city.long_name : '';
+                        } else {
+                            window.alert('No se encontraron resultados.');
+                        }
+                    } else {
+                        window.alert('La geocodificación inversa falló debido a: ' + status);
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -21,14 +55,14 @@
                     <label for="femenino">Femenino</label>
                     <input type="radio" id="femenino" name="genero" value="femenino" required>
                 </div>
-                <div class="textbox">
-                    <input type="text" placeholder="País" name="pais" required>
-                </div>
+               <div class="textbox">
+                                   <input type="text" placeholder="Usuario" name="nombreUsuario" required>
+                               </div>
             </div>
             <div class="form-row">
                 <div class="textbox">
-                    <input type="text" placeholder="Ciudad" name="ciudad" required>
-                </div>
+                                   <input type="file" accept="image/*" class="form-control form-control-custom" id="foto" name="foto" required>
+                               </div>
                 <div class="textbox">
                     <input type="email" placeholder="Correo Electrónico" name="email" required>
                 </div>
@@ -42,13 +76,14 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="textbox">
-                    <input type="text" placeholder="Usuario" name="nombreUsuario" required>
-                </div>
-                <div class="textbox">
-                    <input type="file" accept="image/*" class="form-control form-control-custom" id="foto" name="foto" required>
-                </div>
+                 <div class="textbox">
+                                    <input type="text" id="pais" placeholder="País" name="pais" required>
+                                </div>
+                 <div class="textbox">
+                                     <input type="text" id="ciudad" placeholder="Ciudad" name="ciudad" required>
+                                 </div>
             </div>
+             <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
             {{#error}}
                 <p style="color:red">{{error}}</p>
             {{/error}}

@@ -1,5 +1,39 @@
 <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
+    <script>
+        let map;
 
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map-container'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2
+            });
+
+            map.addListener('click', function (event) {
+                const latLng = event.latLng;
+
+
+                const geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ location: latLng }, function (results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+
+                            const country = results[0].address_components.find(component => component.types.includes('country'));
+                            const city = results[0].address_components.find(component => component.types.includes('locality'));
+
+
+                            document.getElementById('pais').value = country ? country.long_name : '';
+                            document.getElementById('ciudad').value = city ? city.long_name : '';
+                        } else {
+                            window.alert('No se encontraron resultados.');
+                        }
+                    } else {
+                        window.alert('La geocodificación inversa falló debido a: ' + status);
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -21,13 +55,13 @@
                 </div>
             </div>
             <div class="form-row">
+               <div class="textbox">
+                                    <label for="nombreUsuario" class="form-label">Nombre de usuario:</label>
+                                   <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
+                               </div>
                 <div class="textbox">
-                                    <label for="pais" class="form-label">Pais:</label>
-                                    <input type="text" value="{{pais}}" name="pais" required>
-                                </div>
-                 <div class="textbox">
-                                     <label for="ciudad" class="form-label">Ciudad:</label>
-                                    <input type="text" value="{{ciudad}}" name="ciudad" required>
+                                 <label for="cambiarImagen" class="form-label">Cambiar imagen:</label>
+                                <input type="file" accept="image/*" name="perfil">
                                 </div>
             </div>
             <div class="form-row">
@@ -43,23 +77,24 @@
                     <input type="email" value="{{email}}" name="email" required>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="textbox">
-                     <label for="nombreUsuario" class="form-label">Nombre de usuario:</label>
-                    <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
-                </div>
-
-                <div class="textbox">
-                 <label for="cambiarImagen" class="form-label">Cambiar imagen:</label>
-                <input type="file" accept="image/*" name="perfil">
-                </div>
-            </div>
+                <div class="form-row">
+                 <div class="textbox">
+                    <label for="pais"  class="form-label">Pais:</label>
+                    <input type="text" id="pais" value="{{pais}}" name="pais" required>
+                 </div>
+                    <div class="textbox">
+                        <label for="ciudad" class="form-label">Ciudad:</label>
+                        <input type="text" id="ciudad" value="{{ciudad}}" name="ciudad" required>
+                    </div>
+                 </div>
+                 <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
             {{#error}}
                 <p style="color:red">{{error}}</p>
             {{/error}}
-            <button type="submit" class="btn-perfil">Mostrar QR del Perfil</button>
-            <button type="submit" class="btn-perfil">Modificar</button>
-            <button type="submit" class="btn-perfil">Volver</button>
+                    <div class="btn-contenedor">
+                        <button type="submit" class="btn-perfil">Volver</button>
+                        <button type="submit" class="btn-perfil">Modificar</button>
+                    </div>
 
         </form>
         {{/usuario}}
@@ -70,16 +105,7 @@
         <form action="/ProyectoFinal/index.php?controller=lobby&action=verRanking" method="post">
             <div class="form-row-imagen">
                  <img class="imagen" src="./public/uploads/{{foto}}">
-            </div>
-            <div class="form-row">
-                <div class="textbox">
-                    <label for="nombreCompleto" style="margin-bottom: 2em;">Nombre completo</label>
-                    <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" disabled>
-                </div>
-                <div class="textbox">
-                    <label for="anioDeNacimiento">Año de nacimiento</label>
-                    <input type="date" value="{{anioDeNacimiento}}" name="anioDeNacimiento" disabled>
-                </div>
+                 <p class="puntaje"> Puntaje final: {{puntaje_total}} </p>
             </div>
             <div class="form-row">
                 <div class="textbox">
@@ -87,10 +113,27 @@
                     <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" disabled>
                 </div>
                 <div class="textbox">
+                    <label for="anioDeNacimiento">Año de nacimiento</label>
+                    <input type="date" value="{{anioDeNacimiento}}" name="anioDeNacimiento" disabled>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="textbox">
                     <label for="pais">Pais</label>
                     <input type="text" value="{{pais}}" name="pais" disabled>
                 </div>
+                <div class="textbox">
+                                    <label for="ciudad">Ciudad</label>
+                                    <input type="text" value="{{ciudad}}" name="ciudad" disabled>
+                                </div>
+
             </div>
+             <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
+
+            <button type="submit" class="btn">Ver partidas realizadas</button>
+            <button type="submit" class="btn">Mostrar QR</button>
             <button type="submit" class="btn">Volver</button>
         </form>
         {{/usuario}}

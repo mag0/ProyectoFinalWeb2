@@ -37,15 +37,17 @@
 
 }
 
-.form-row-imagen {
-
-}
 
 .imagen {
     width: 10em;
     height: 10em;
     border-radius: 50%;
     margin-bottom: 2em;
+}
+
+.puntaje {
+    margin-top: -10px;
+    font-size: 24px;
 }
 
 .textbox{
@@ -77,6 +79,7 @@
     background: #6A5ACD;
     border: none;
     padding: 10px;
+    margin: 2px;
     cursor: pointer;
     font-size: 18px;
     color: #fff;
@@ -99,6 +102,10 @@
     color: #fff;
     border-radius: 10px;
     transition: background 0.3s ease;
+}
+.btn-contenedor{
+    display: flex;
+    flex-direction: initial;
 }
 
 /* Responsive Styles */
