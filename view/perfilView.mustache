@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
+ <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
     <script>
         let map;
+        let geocoder;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map-container'), {
@@ -9,21 +10,27 @@
                 zoom: 2
             });
 
+            geocoder = new google.maps.Geocoder();
+
+            // Obtener valores de ciudad y país del HTML
+            const city = document.getElementById('ciudad').value;
+            const country = document.getElementById('pais').value;
+
+            if (city && country) {
+                geocodeAddress(city, country);
+            }
+
             map.addListener('click', function (event) {
                 const latLng = event.latLng;
 
-
-                const geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ location: latLng }, function (results, status) {
                     if (status === 'OK') {
                         if (results[0]) {
+                            const countryComponent = results[0].address_components.find(component => component.types.includes('country'));
+                            const cityComponent = results[0].address_components.find(component => component.types.includes('locality'));
 
-                            const country = results[0].address_components.find(component => component.types.includes('country'));
-                            const city = results[0].address_components.find(component => component.types.includes('locality'));
-
-
-                            document.getElementById('pais').value = country ? country.long_name : '';
-                            document.getElementById('ciudad').value = city ? city.long_name : '';
+                            document.getElementById('pais').value = countryComponent ? countryComponent.long_name : '';
+                            document.getElementById('ciudad').value = cityComponent ? cityComponent.long_name : '';
                         } else {
                             window.alert('No se encontraron resultados.');
                         }
@@ -33,12 +40,29 @@
                 });
             });
         }
+
+        function geocodeAddress(city, country) {
+            const address = `${city}, ${country}`;
+            geocoder.geocode({ address: address }, function (results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    map.setZoom(10); // Ajusta el nivel de zoom según tus necesidades
+
+                    new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    console.error('La geocodificación falló debido a: ' + status);
+                }
+            });
+        }
     </script>
 </head>
 <body>
 <div class="container">
     <div class="register-box">
-{{#esUsuarioSesion}}
+        {{#esUsuarioSesion}}
         {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
             <div class="form-row-imagen">
@@ -46,7 +70,7 @@
             </div>
             <div class="form-row">
                 <div class="textbox">
-                     <label for="nombreCompleto" class="form-label">Nombre completo:</label>
+                    <label for="nombreCompleto" class="form-label">Nombre completo:</label>
                     <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" required>
                 </div>
                 <div class="textbox">
@@ -55,47 +79,41 @@
                 </div>
             </div>
             <div class="form-row">
-               <div class="textbox">
-                                    <label for="nombreUsuario" class="form-label">Nombre de usuario:</label>
-                                   <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
-                               </div>
                 <div class="textbox">
-                                 <label for="cambiarImagen" class="form-label">Cambiar imagen:</label>
-                                <input type="file" accept="image/*" name="perfil">
-                                </div>
+                    <label for="nombreUsuario" class="form-label">Nombre de usuario:</label>
+                    <input type="text" value="{{nombreUsuario}}" name="nombreUsuario" required>
+                </div>
+                <div class="textbox">
+                     <label for="contrasenia" class="form-label">Contraseña:</label>
+                     <input type="text" value="{{password}}" name="contrasenia" required>
+                </div>
             </div>
             <div class="form-row">
-               <div class="radiobox">
-                                    <label for="genero" class="form-label">Genero:</label>
-                                   <label for="masculino">Masculino</label>
-                                   <input type="radio" id="masculino" name="genero" value="masculino" {{#esMasculino}}checked{{/esMasculino}} required>
-                                   <label for="femenino">Femenino</label>
-                                   <input type="radio" id="femenino" name="genero" value="femenino" {{#esFemenino}}checked{{/esFemenino}} required>
-                               </div>
+                <div class="radiobox">
+                    <label for="genero" class="form-label">Genero:</label>
+                    <label for="masculino">Masculino</label>
+                    <input type="radio" id="masculino" name="genero" value="masculino" {{#esMasculino}}checked{{/esMasculino}} required>
+                    <label for="femenino">Femenino</label>
+                    <input type="radio" id="femenino" name="genero" value="femenino" {{#esFemenino}}checked{{/esFemenino}} required>
+                </div>
                 <div class="textbox">
-                     <label for="email" class="form-label">Email:</label>
+                    <label for="email" class="form-label">Email:</label>
                     <input type="email" value="{{email}}" name="email" required>
                 </div>
             </div>
-                <div class="form-row">
-                 <div class="textbox">
-                    <label for="pais"  class="form-label">Pais:</label>
-                    <input type="text" id="pais" value="{{pais}}" name="pais" required>
-                 </div>
-                    <div class="textbox">
-                        <label for="ciudad" class="form-label">Ciudad:</label>
-                        <input type="text" id="ciudad" value="{{ciudad}}" name="ciudad" required>
-                    </div>
-                 </div>
-                 <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
-            {{#error}}
-                <p style="color:red">{{error}}</p>
-            {{/error}}
-                    <div class="btn-contenedor">
-                        <button type="submit" class="btn-perfil">Volver</button>
-                        <button type="submit" class="btn-perfil">Modificar</button>
-                    </div>
+             <div class="form-row" style="display:none">
+                  <input type="text" id="pais" value="{{pais}}" name="pais" required>
+                  <input type="text" id="ciudad" value="{{ciudad}}" name="ciudad" required>
+             </div>
 
+            <div id="map-container" style="width: 100%; height: 180px; margin-top: -20px;"></div>
+            {{#error}}
+            <p style="color:red">{{error}}</p>
+            {{/error}}
+            <div class="btn-contenedor">
+                <button type="submit" class="btn-perfil">Volver</button>
+                <button type="submit" class="btn-perfil">Modificar</button>
+            </div>
         </form>
         {{/usuario}}
 {{/esUsuarioSesion}}
@@ -117,18 +135,9 @@
                     <input type="date" value="{{anioDeNacimiento}}" name="anioDeNacimiento" disabled>
                 </div>
             </div>
-
-            <div class="form-row">
-
-                <div class="textbox">
-                    <label for="pais">Pais</label>
-                    <input type="text" value="{{pais}}" name="pais" disabled>
-                </div>
-                <div class="textbox">
-                                    <label for="ciudad">Ciudad</label>
-                                    <input type="text" value="{{ciudad}}" name="ciudad" disabled>
-                                </div>
-
+            <div class="form-row" style="display:none">
+                <input type="text" id="pais" value="{{pais}}" name="pais" required>
+                <input type="text" id="ciudad" value="{{ciudad}}" name="ciudad" required>
             </div>
              <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
 
