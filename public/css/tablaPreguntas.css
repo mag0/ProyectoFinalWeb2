@@ -1,0 +1,110 @@
+/* Estilos para la tabla de preguntas */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.lobby-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-height: 50vh; /* Altura máxima del 50% de la pantalla */
+    overflow-y: auto; /* Scroll vertical cuando el contenido excede la altura */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+.game-list {
+    margin-top: 20px;
+}
+
+.preguntas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.preguntas-table th, .preguntas-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.preguntas-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.preguntas-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.btn {
+    background-color: #6A5ACD;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .lobby-box {
+        padding: 20px;
+    }
+
+    .lobby-box h1 {
+        font-size: 22px;
+    }
+
+    .lobby-box p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lobby-box {
+        padding: 10px;
+    }
+
+    .lobby-box h1 {
+        font-size: 20px;
+    }
+
+    .lobby-box p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .preguntas-table th,
+    .preguntas-table td {
+        padding: 10px;
+    }
+}

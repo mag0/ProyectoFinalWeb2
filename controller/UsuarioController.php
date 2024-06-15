@@ -155,7 +155,14 @@ class UsuarioController
             session_start();
             $_SESSION['usuarioActivo'] = $this->model->getUsuario($nombreUsuario)[0];
             $_SESSION['nombreUsuario'] = $_SESSION['usuarioActivo']['nombreUsuario'];
+
+            if($_SESSION['usuarioActivo']['editor']){
+                header('location:/ProyectoFinal/index.php?controller=editor&action=get');
+            }else if($_SESSION['usuarioActivo']['admin']){
             header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+            }else{
+                header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+            }
             exit();
         }
     }

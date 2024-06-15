@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+</head>
+<body>
+    <div class="container">
+        <div class="lobby-box">
+            {{#preguntasTotales}}
+                <h1 style="margin-top:0">Preguntas activas</h1>
+            {{/preguntasTotales}}
+            {{#preguntasReportadas}}
+                <h1 style="margin-top:0">Preguntas reportadas</h1>
+            {{/preguntasReportadas}}
+            {{#preguntasSugeridas}}
+                <h1 style="margin-top:0">Preguntas sugeridas</h1>
+            {{/preguntasSugeridas}}
+            <div class="game-list">
+                <table class="preguntas-table">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Pregunta</th>
+                            <th>Respuesta Correcta</th>
+                            <th>Respuesta 1</th>
+                            <th>Respuesta 2</th>
+                            <th>Respuesta 3</th>
+                            <th>Respuesta 4</th>
+                            <th>Dificultad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#preguntas}}
+                        <tr>
+                            <td>{{categoria}}</td>
+                            <td>{{texto_pregunta}}</td>
+                            <td>{{respuesta_correcta}}</td>
+                            <td>{{respuesta_1}}</td>
+                            <td>{{respuesta_2}}</td>
+                            <td>{{respuesta_3}}</td>
+                            <td>{{respuesta_4}}</td>
+                            <td>{{dificultad}}</td>
+                            <td>
+                                {{#preguntasTotales}}
+                                <button class="btn">Modificar</button>
+                                <button class="btn">Eliminar</button>
+                                {{/preguntasTotales}}
+                                {{#preguntasReportadas}}
+                                <button class="btn">Aprobar</button>
+                                <button class="btn">Eliminar</button>
+                                {{/preguntasReportadas}}
+                                {{#preguntasSugeridas}}
+                                <button class="btn">Aprobar</button>
+                                <button class="btn">Rechazar</button>
+                                {{/preguntasSugeridas}}
+                            </td>
+                        </tr>
+                        {{/preguntas}}
+                        {{^preguntas}}
+                        <tr>
+                            <td colspan="9">No hay preguntas disponibles.</td>
+                        </tr>
+                        {{/preguntas}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=get'">Volver</button>
+    </div>
+</body>
+</html>
+

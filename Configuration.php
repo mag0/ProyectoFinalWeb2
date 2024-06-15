@@ -2,10 +2,14 @@
 include_once("controller/UsuarioController.php");
 include_once("controller/LobbyController.php");
 include_once("controller/PartidaController.php");
+include_once("controller/AdminController.php");
+include_once("controller/EditorController.php");
 
 include_once("model/UsuarioModel.php");
 include_once("model/LobbyModel.php");
 include_once("model/PartidaModel.php");
+include_once("model/EditorModel.php");
+include_once("model/AdminModel.php");
 
 include_once("helper/Database.php");
 include_once("helper/Router.php");
@@ -36,6 +40,16 @@ class Configuration
         return new PartidaController(self::getPartidaModel(), self::getPresenter());
     }
 
+    public static function getAdminController()
+    {
+        return new AdminController(self::getAdminModel(), self::getPresenter());
+    }
+
+    public static function getEditorController()
+    {
+        return new EditorController(self::getEditorModel(), self::getPresenter());
+    }
+
     // MODELS
 
     private static function getUsuarioModel()
@@ -51,6 +65,16 @@ class Configuration
     private static function getPartidaModel()
     {
         return new PartidaModel(self::getDatabase());
+    }
+
+    private static function getAdminModel()
+    {
+        return new AdminModel(self::getDatabase());
+    }
+
+    private static function getEditorModel()
+    {
+        return new EditorModel(self::getDatabase());
     }
 
 
