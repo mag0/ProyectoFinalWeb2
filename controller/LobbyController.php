@@ -68,4 +68,24 @@ class LobbyController
             $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => true]);
         }
     }
+
+    public function sugerirPregunta()
+    {
+        if(isset($_GET['sugerir'])){
+            $pregunta = array(
+                "categoria" => htmlspecialchars($_POST['categoria']),
+                "texto_pregunta" => htmlspecialchars($_POST['texto_pregunta']),
+                "respuesta_correcta" => htmlspecialchars($_POST['respuesta_correcta']),
+                "respuesta_1" => htmlspecialchars($_POST['respuesta_1']),
+                "respuesta_2" => htmlspecialchars($_POST['respuesta_2']),
+                "respuesta_3" => htmlspecialchars($_POST['respuesta_3']),
+                "respuesta_4" => htmlspecialchars($_POST['respuesta_4']),
+                "dificultad" => htmlspecialchars($_POST['dificultad'])
+            );
+            $this->model->crearPreguntaSugerida($pregunta);
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["sugerir" => "Pregunta enviada correctamente!"]);
+        }else {
+            $this->presenter->render("view/formularioPregunta.mustache", ["sugerir" => true]);
+        }
+    }
 }

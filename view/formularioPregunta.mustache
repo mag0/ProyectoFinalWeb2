@@ -145,3 +145,68 @@
     </div>
 </div>
 {{/modificar}}
+
+{{#sugerir}}
+<div class="container">
+    <div class="register-box">
+        <h1>Crear pregunta</h1>
+        <form action="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta&sugerir" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="textbox">
+                    <select name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Matematica">Matematica</option>
+                        <option value="Arte">Arte</option>
+                        <option value="Cultura">Cultura</option>
+                        <option value="Ciencia">Ciencia</option>
+                    </select>
+                </div>
+                <div class="textbox">
+                    <select name="dificultad" required>
+                         <option value="">Selecciona una dificultad</option>
+                         <option value="geografia">Facil</option>
+                         <option value="normal">Normal</option>
+                         <option value="dificil">Dificil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Pregunta" name="texto_pregunta" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 1" name="respuesta_1" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 2" name="respuesta_2" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 3" name="respuesta_3" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 4" name="respuesta_4" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                     <select name="respuesta_correcta" required>
+                         <option value="">Selecciona la resuesta correcta</option>
+                         <option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                     </select>
+                </div>
+                <div class="textbox"></div>
+            </div>
+            <button type="submit" class="btn">Sugerir pregunta</button>
+        </form>
+        <button onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'" class="btn" style="margin-top: .5em">Volver</button>
+    </div>
+</div>
+{{/sugerir}}
