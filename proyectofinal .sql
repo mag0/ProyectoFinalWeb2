@@ -74,14 +74,14 @@ INSERT INTO `pregunta` (`id`, `categoria`, `texto_pregunta`, `respuesta_correcta
 (1, 'Historia', '¿En qué año llegó Cristóbal Colón a América?', 3, '1500', '1498', '1492', '1482', 'facil', false),
 (2, 'Deportes', '¿Cuántos jugadores hay en un equipo de fútbol?', 2, '10', '11', '12', '9', 'facil', false),
 (3, 'Cultura', '¿Cuál es la capital de Francia?', 4, 'Madrid', 'Roma', 'Londres', 'París', 'facil', false),
-(4, 'Geografía', '¿Cuál es el río más largo del mundo?', 4, 'Nilo', 'Mississippi', 'Yangtsé', 'Amazonas', 'facil', false),
-(5, 'Ciencia', '¿Qué planeta es conocido como el planeta rojo?', 4, 'Júpiter', 'Saturno', 'Venus', 'Marte', 'facil', false),
+(4, 'Geografia', '¿Cuál es el río más largo del mundo?', 4, 'Nilo', 'Mississippi', 'Yangtsé', 'Amazonas', 'facil', false),
+(5, 'Ciencia', '¿Qué planeta es conocido como el planeta rojo?', 4, 'Júpiter', 'Saturno', 'Venus', 'Marte', 'facil', true),
 (6, 'Arte', '¿Quién pintó la Mona Lisa?', 4, 'Pablo Picasso', 'Vincent van Gogh', 'Claude Monet', 'Leonardo da Vinci', 'facil', false),
 (7, 'Historia', '¿Qué evento inició la Segunda Guerra Mundial?', 4, 'Invasión de Francia', 'Ataque a Pearl Harbor', 'Batalla de Stalingrado', 'Invasión de Polonia', 'facil', false),
 (8, 'Cultura', '¿Quién escribió \"Don Quijote de la Mancha\"?', 4, 'Gabriel García Márquez', 'Federico García Lorca', 'Jorge Luis Borges', 'Miguel de Cervantes', 'facil', false),
 (9, 'Deportes', '¿En qué año se celebraron los primeros Juegos Olímpicos modernos?', 3, '1900', '1888', '1896', '1904', 'facil', false),
 (10, 'Ciencia', '¿Cuál es el elemento químico con símbolo O?', 4, 'Osmio', 'Oro', 'Oganesón', 'Oxígeno', 'facil', false),
-(11, 'Geografía', '¿Cuál es el país más grande del mundo?', 4, 'Canadá', 'China', 'Estados Unidos', 'Rusia', 'normal', false),
+(11, 'Geografia', '¿Cuál es el país más grande del mundo?', 4, 'Canadá', 'China', 'Estados Unidos', 'Rusia', 'normal', true),
 (12, 'Historia', '¿Quién fue el primer presidente de Estados Unidos?', 4, 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams', 'George Washington', 'normal', false),
 (13, 'Deportes', '¿Qué equipo ha ganado más veces la Champions League?', 4, 'Barcelona', 'Manchester United', 'AC Milan', 'Real Madrid', 'normal', false),
 (14, 'Cultura', '¿Quién es el autor de \"Cien años de soledad\"?', 4, 'Mario Vargas Llosa', 'Isabel Allende', 'Julio Cortázar', 'Gabriel García Márquez', 'normal', false),
@@ -92,7 +92,7 @@ INSERT INTO `pregunta` (`id`, `categoria`, `texto_pregunta`, `respuesta_correcta
 (19, 'Deportes', '¿En qué deporte se utiliza una raqueta y una pelota amarilla?', 4, 'Bádminton', 'Squash', 'Racquetball', 'Tenis', 'normal', false),
 (20, 'Ciencia', '¿Cuál es el órgano más grande del cuerpo humano?', 4, 'Hígado', 'Corazón', 'Pulmones', 'Piel', 'normal', false),
 (21, 'Historia', '¿Quién lideró la independencia de India?', 4, 'Jawaharlal Nehru', 'Indira Gandhi', 'Subhas Chandra Bose', 'Mahatma Gandhi', 'dificil', false),
-(22, 'Geografía', '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'dificil', false),
+(22, 'Geografia', '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'dificil', false),
 (23, 'Cultura', '¿Cuál es el idioma más hablado en el mundo?', 4, 'Español', 'Inglés', 'Hindú', 'Mandarín', 'dificil', false),
 (24, 'Ciencia', '¿Qué teoría científica fue propuesta por Albert Einstein en 1905?', 4, 'Teoría del Big Bang', 'Teoría de la Evolución', 'Teoría de la Deriva Continental', 'Teoría de la Relatividad', 'dificil', false),
 (25, 'Arte', '¿Quién pintó \"El grito\"?', 4, 'Salvador Dalí', 'Pablo Picasso', 'Henri Matisse', 'Edvard Munch', 'dificil', false),
@@ -100,7 +100,7 @@ INSERT INTO `pregunta` (`id`, `categoria`, `texto_pregunta`, `respuesta_correcta
 (27, 'Cultura', '¿En qué año comenzó la Revolución Francesa?', 4, '1792', '1804', '1776', '1789', 'dificil', false),
 (28, 'Deportes', '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'dificil', false),
 (29, 'Ciencia', '¿Cuál es la fórmula química del ozono?', 4, 'O2', 'O4', 'H2O', 'O3', 'dificil', false),
-(30, 'Geografía', '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true);
+(30, 'Geografia', '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true);
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,7 @@ INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pa
 
 INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `token`, `cuenta_validada`, `admin`, `editor`) VALUES
 (13, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE),
-(14, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editorUser', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE);
+(14, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editor', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE);
 --
 -- Índices para tablas volcadas
 --
@@ -202,7 +202,8 @@ CREATE TABLE `preguntas_sugeridas` (
 
 INSERT INTO `preguntas_sugeridas` (`id`, `categoria`, `texto_pregunta`, `respuesta_correcta`, `respuesta_1`, `respuesta_2`, `respuesta_3`, `respuesta_4`, `dificultad`) VALUES
 (1, 'Matematica', '¿Cuál es la raiz cuadrada de 49?', 2, '1', '7', '4', '10', 'facil'),
-(2, 'Matematica', '¿Cuál es la raiz cuadrada de 144?', 1, '12', '7', '4', '10', 'facil');
+(2, 'Matematica', '¿Cuál es la raiz cuadrada de 144?', 1, '12', '7', '4', '10', 'facil').
+(3, 'Matematica', '¿Cuál es la raiz cuadrada de 100?', 4, '12', '7', '4', '10', 'facil');
 
 --
 -- Indices de la tabla `partida`
@@ -270,7 +271,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `preguntas_sugeridas`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

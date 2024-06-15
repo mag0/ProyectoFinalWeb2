@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+</head>
+<body>
+{{#crear}}
+<div class="container">
+    <div class="register-box">
+        <h1>Crear pregunta</h1>
+        <form action="/ProyectoFinal/index.php?controller=editor&action=crearPregunta&crearPregunta" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="textbox">
+                    <select name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Matematica">Matematica</option>
+                        <option value="Arte">Arte</option>
+                        <option value="Cultura">Cultura</option>
+                        <option value="Ciencia">Ciencia</option>
+                    </select>
+                </div>
+                <div class="textbox">
+                    <select name="dificultad" required>
+                         <option value="">Selecciona una dificultad</option>
+                         <option value="geografia">Facil</option>
+                         <option value="normal">Normal</option>
+                         <option value="dificil">Dificil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Pregunta" name="texto_pregunta" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 1" name="respuesta_1" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 2" name="respuesta_2" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 3" name="respuesta_3" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Respuesta 4" name="respuesta_4" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                     <select name="respuesta_correcta" required>
+                         <option value="">Selecciona la resuesta correcta</option>
+                         <option value="1">1</option>
+                         <option value="2">2</option>
+                         <option value="3">3</option>
+                         <option value="4">4</option>
+                     </select>
+                </div>
+                <div class="textbox"></div>
+            </div>
+            <button type="submit" class="btn">Crear Pregunta</button>
+        </form>
+        <button onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=get'" class="btn" style="margin-top: .5em">Volver</button>
+    </div>
+</div>
+{{/crear}}
+
+{{#modificar}}
+<div class="container">
+    <div class="register-box">
+        <h1>Modificar pregunta</h1>
+        {{#pregunta}}
+        <form action="/ProyectoFinal/index.php?controller=editor&action=modificarPregunta" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="textbox">
+                <label class="form-label">Categoria</label>
+                    <select name="categoria" required>
+                        <option value="">Selecciona una categoría</option>
+                        <option value="Geografia" {{#isGeografia}}selected{{/isGeografia}}>Geografia</option>
+                        <option value="Matematica" {{#isMatematica}}selected{{/isMatematica}}>Matematica</option>
+                        <option value="Arte" {{#isArte}}selected{{/isArte}}>Arte</option>
+                        <option value="Cultura" {{#isCultura}}selected{{/isCultura}}>Cultura</option>
+                        <option value="Ciencia" {{#isCiencia}}selected{{/isCiencia}}>Ciencia</option>
+                        <option value="Historia" {{#isHistoria}}selected{{/isHistoria}}>Historia</option>
+                        <option value="Deportes" {{#isDeportes}}selected{{/isDeportes}}>Deportes</option>
+                    </select>
+                </div>
+                <div class="textbox">
+                <label class="form-label">Dificultad</label>
+                    <select name="dificultad" required>
+                         <option value="">Selecciona una dificultad</option>
+                         <option value="facil" {{#isFacil}}selected{{/isFacil}}>Facil</option>
+                         <option value="normal" {{#isNormal}}selected{{/isNormal}}>Normal</option>
+                         <option value="dificil" {{#isDificil}}selected{{/isDificil}}>Dificil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                <label class="form-label">Pregunta</label>
+                    <input type="text" placeholder="Pregunta" name="texto_pregunta" value="{{texto_pregunta}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                <label class="form-label">Primera respuesta</label>
+                    <input type="text" placeholder="Respuesta 1" name="respuesta_1" value="{{respuesta_1}}" required>
+                </div>
+                <div class="textbox">
+                <label class="form-label">Segunda respuesta</label>
+                    <input type="text" placeholder="Respuesta 2" name="respuesta_2" value="{{respuesta_2}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                <label class="form-label">Tercera respuesta</label>
+                    <input type="text" placeholder="Respuesta 3" name="respuesta_3" value="{{respuesta_3}}" required>
+                </div>
+                <div class="textbox">
+                <label class="form-label">Cuarta respuesta</label>
+                    <input type="text" placeholder="Respuesta 4" name="respuesta_4" value="{{respuesta_4}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="textbox">
+                <label class="form-label">Respuesta correcta</label>
+                     <select name="respuesta_correcta" required>
+                         <option value="">Selecciona la resuesta correcta</option>
+                         <option value="1" {{#is1}}selected{{/is1}}>1</option>
+                         <option value="2" {{#is2}}selected{{/is2}}>2</option>
+                         <option value="3" {{#is3}}selected{{/is3}}>3</option>
+                         <option value="4" {{#is4}}selected{{/is4}}>4</option>
+                     </select>
+                </div>
+                <div class="textbox"></div>
+            </div>
+            {{#error}}
+            <p style="color:red">{{error}}</p>
+            {{/error}}
+            <button type="submit" class="btn">Crear Pregunta</button>
+        </form>
+        <button onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=getPreguntas'" class="btn" style="margin-top: .5em">Volver</button>
+        {{/pregunta}}
+    </div>
+</div>
+{{/modificar}}

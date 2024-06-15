@@ -51,4 +51,9 @@ class PartidaModel
         $this->database->execute("INSERT INTO `preguntas_vistas` (`id_usuario`, `id_pregunta`) VALUES ('$idUsuario', '$idPregunta')");
     }
 
+    public function reportarPregunta($idPregunta)
+    {
+        return $this->database->execute("UPDATE pregunta SET reportada = true WHERE id = '$idPregunta'");
+    }
+
 }

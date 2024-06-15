@@ -1,12 +1,18 @@
 <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
 </head>
 <body>
+
     <div class="container">
                 <div class="lobby-box">
+                {{#reporte}}
+                <h1 style="color:green">{{reporte}}</h1>
+                {{/reporte}}
+                {{#mensaje}}
                     <h1 style="color:red">{{mensaje}} ):</h1>
                     <h1>La respuesta era: {{respuestaCorrecta}}</h1>
                     <p>Puntaje conseguido: {{puntaje}}</p>
                     <p>Preguntas respondidas correctamente: {{numeroPregunta}}</p>
+                {{/mensaje}}
                     <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'">Continuar</button>
                 </div>
             </div>

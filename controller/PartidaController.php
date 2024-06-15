@@ -52,6 +52,13 @@ class PartidaController
         }
     }
 
+    public function reportarPregunta()
+    {
+        $this->model->reportarPregunta($_GET['idPregunta']);
+        $mensaje = "Revisaremos la pregunta cuanto antes, disculpe las molestias";
+        $this->presenter->render("view/resultadoPartidaView.mustache", ["reporte" =>$mensaje]);
+    }
+
     public function getRespuestaCorrectaEnTexto($respuesta, $numeroRespuesta)
     {
         switch ($numeroRespuesta){
@@ -74,7 +81,7 @@ class PartidaController
     public function asignarColorACategoria($categoria)
     {
         $colores = [
-            "Geografía" => "blue",
+            "Geografia" => "blue",
             "Historia" => "red",
             "Deportes" => "green",
             "Cultura" => "orange",

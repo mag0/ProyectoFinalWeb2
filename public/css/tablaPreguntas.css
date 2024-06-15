@@ -28,7 +28,7 @@
 }
 
 .preguntas-table th, .preguntas-table td {
-    border: 1px solid #ddd;
+    border: 2px solid #6A5ACD;
     padding: 12px;
     text-align: left;
 }
@@ -52,7 +52,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-top: 20px;
+    margin: 4px 0;
     border-radius: 10px;
     transition: background 0.3s ease;
 }
