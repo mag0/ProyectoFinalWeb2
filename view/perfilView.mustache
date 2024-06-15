@@ -4,13 +4,12 @@
 <body>
 <div class="container">
     <div class="register-box">
-        <h1>Perfil</h1>
 {{#esUsuarioSesion}}
         {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
-             <div class="form-row-imagen">
-              <img class="imagen" src="./public/uploads/{{foto}}" class="w-100">
-                </div>
+            <div class="form-row-imagen">
+                <img class="imagen" src="./public/uploads/{{foto}}">
+            </div>
             <div class="form-row">
                 <div class="textbox">
                      <label for="nombreCompleto" class="form-label">Nombre completo:</label>
@@ -69,9 +68,12 @@
 {{^esUsuarioSesion}}
     {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=verRanking" method="post">
+            <div class="form-row-imagen">
+                 <img class="imagen" src="./public/uploads/{{foto}}">
+            </div>
             <div class="form-row">
                 <div class="textbox">
-                    <label for="nombreCompleto">Nombre completo</label>
+                    <label for="nombreCompleto" style="margin-bottom: 2em;">Nombre completo</label>
                     <input type="text" value="{{nombreCompleto}}" name="nombreCompleto" disabled>
                 </div>
                 <div class="textbox">

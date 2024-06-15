@@ -38,17 +38,14 @@
 }
 
 .form-row-imagen {
-    display: flex;
-    direction: initial;
-    position: relative;
-    bottom: 30px;
 
 }
 
 .imagen {
+    width: 10em;
+    height: 10em;
     border-radius: 50%;
-    max-height: 25%;
-    max-width: 25%;
+    margin-bottom: 2em;
 }
 
 .textbox{
