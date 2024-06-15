@@ -1,4 +1,5 @@
  <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+ <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
     <script>
         let map;
@@ -141,7 +142,18 @@
             </div>
              <p id="map-container" style="width: 100%; height: 180px;  margin-top: -20px;"></p>
 
-            <button type="submit" class="btn">Ver partidas realizadas</button>
+            <div class="game-list">
+                <label>Partidas jugadas</label>
+                <ul style="height:100px">
+                    {{#partidas}}
+                    <li><a href="/ProyectoFinal/index.php/partida/ver/{{IDPartida}}">Partida: {{numeroDePartida}} - Puntaje: {{puntaje_obtenido}} - Fecha: {{fecha}}</a></li>
+                    {{/partidas}}
+
+                    {{^partidas}}
+                    <p>No hay partidas disponibles.</p>
+                    {{/partidas}}
+                </ul>
+            </div>
             <button type="submit" class="btn">Mostrar QR</button>
             <button type="submit" class="btn">Volver</button>
         </form>

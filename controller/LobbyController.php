@@ -50,15 +50,22 @@ class LobbyController
 
     public function verPerfil()
     {
-        $esUsuarioSesion = false;
         if (isset($_GET['usuarioBuscado'])) {
             $usuario = $this->model->getUsuario($_GET['usuarioBuscado'])[0];
+            $partidas = $this->model->getPartidas($usuario['id']);
+
+            foreach ($partidas as $indice => $partida) {
+                $partidas[$indice]['numeroDePartida'] = $indice + 1;
+            }
+            $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
+            $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
+            $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => false,
+                "partidas" => $partidas]);
         } else {
             $usuario = $_SESSION['usuarioActivo'];
-            $esUsuarioSesion = true;
+            $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
+            $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
+            $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => true]);
         }
-        $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
-        $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
-        $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => $esUsuarioSesion]);
     }
 }
