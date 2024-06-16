@@ -63,4 +63,22 @@ class EditorModel
     {
         return $this->database->execute("UPDATE pregunta SET reportada = false WHERE id = '$idPregunta'");
     }
+
+    public function actualizarPregunta($pregunta)
+    {
+        $idPregunta = $pregunta['idPregunta'];
+        $categoria = $pregunta['categoria'];
+        $texto_pregunta = $pregunta['texto_pregunta'];
+        $respuesta_correcta = $pregunta['respuesta_correcta'];
+        $respuesta_1 = $pregunta['respuesta_1'];
+        $respuesta_2 = $pregunta['respuesta_2'];
+        $respuesta_3 = $pregunta['respuesta_3'];
+        $respuesta_4 = $pregunta['respuesta_4'];
+        $dificultad = $pregunta['dificultad'];
+
+        return $this->database->execute("UPDATE pregunta SET categoria = '$categoria', texto_pregunta = '$texto_pregunta', respuesta_correcta = '$respuesta_correcta',
+                                            respuesta_1 = '$respuesta_1', respuesta_2 = '$respuesta_2', respuesta_3 = '$respuesta_3', respuesta_4 = '$respuesta_4', dificultad = '$dificultad'
+                                                WHERE id = '$idPregunta';");
+    }
+
 }

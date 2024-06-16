@@ -71,7 +71,7 @@
     <div class="register-box">
         <h1>Modificar pregunta</h1>
         {{#pregunta}}
-        <form action="/ProyectoFinal/index.php?controller=editor&action=modificarPregunta" method="post" enctype="multipart/form-data">
+        <form action="/ProyectoFinal/index.php?controller=editor&action=modificarPregunta&modificacion" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="textbox">
                 <label class="form-label">Categoria</label>
@@ -135,10 +135,8 @@
                 </div>
                 <div class="textbox"></div>
             </div>
-            {{#error}}
-            <p style="color:red">{{error}}</p>
-            {{/error}}
-            <button type="submit" class="btn">Crear Pregunta</button>
+            <input type="hidden" name="id" value="{{id}}">
+            <button type="submit" class="btn">Modificar Pregunta</button>
         </form>
         <button onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=getPreguntas'" class="btn" style="margin-top: .5em">Volver</button>
         {{/pregunta}}

@@ -95,9 +95,9 @@ class UsuarioController
         }
     }
 
-    public function enviarEmailRegistro($email, $nombre)
+    public function enviarEmailRegistro($email, $nombre, $token)
     {
-        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php';
+        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php?controller=usuario&action=verificarUsuario&token=' . $token . '&email=' . $email;
 
         $mailer = new PHPMailer(true);
         try {
@@ -105,8 +105,7 @@ class UsuarioController
             $mailer->Host = 'smtp.gmail.com';
             $mailer->SMTPAuth = true;
             $mailer->Username = 'angeldnk25@gmail.com';
-            $mailer->Password = 'squxouuwbamxirry
-';
+            $mailer->Password = 'squxouuwbamxirry';
             $mailer->Port = 587;
 
             $mailer->setFrom('angeldnk25@gmail.com', 'Preguntovich');
@@ -134,7 +133,7 @@ class UsuarioController
         } else {
             $usuarioVerificado = $this->model->verificarUsuario($token, $email);
             if ($usuarioVerificado) {
-                header('Location: /login?EXITO=1');
+                header('location:/ProyectoFinal/index.php');
             } else {
                 header('Location:/error?codError=333');
             }
@@ -151,19 +150,26 @@ class UsuarioController
         if ($existeUsuario['usuario_existe'] == 0) {
             $error = "Datos invalidos";
             $this->presenter->render("view/inicioDeSesionView.mustache", ["error" => $error]);
-        } else {
-            session_start();
-            $_SESSION['usuarioActivo'] = $this->model->getUsuario($nombreUsuario)[0];
-            $_SESSION['nombreUsuario'] = $_SESSION['usuarioActivo']['nombreUsuario'];
-
-            if($_SESSION['usuarioActivo']['editor']){
-                header('location:/ProyectoFinal/index.php?controller=editor&action=get');
-            }else if($_SESSION['usuarioActivo']['admin']){
-            header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+        }else {
+            $usuario = $this->model->getUsuario($nombreUsuario)[0];
+            if($usuario['cuenta_validada']==0){
+                $error = "Cuenta no validada";
+                $this->presenter->render("view/inicioDeSesionView.mustache", ["error" => $error]);
             }else{
-                header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+                session_start();
+                $_SESSION['usuarioActivo'] = $usuario;
+                $_SESSION['nombreUsuario'] = $_SESSION['usuarioActivo']['nombreUsuario'];
+
+                if($usuario['editor']){
+                    header('location:/ProyectoFinal/index.php?controller=editor&action=get');
+                }else if($usuario['admin']){
+                    header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+                }else{
+                    header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+                }
+                exit();
             }
-            exit();
+
         }
     }
 

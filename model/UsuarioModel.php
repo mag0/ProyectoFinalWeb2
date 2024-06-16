@@ -26,12 +26,6 @@ class UsuarioModel
                                                    nombreUsuario = '$nombreUsuario' AND password = '$password'");
     }
 
-    public function signIn($email, $password)
-    {
-        $sql = "SELECT * FROM usuario WHERE email = '$email' AND password = '$password' AND cuenta_validada = 1";
-        return $this->database->query($sql);
-    }
-
     public function verificarUsuario($token, $email)
     {
         $tokenDB = $this->database->query("SELECT token FROM usuario WHERE email = '$email'");

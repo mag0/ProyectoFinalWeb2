@@ -86,11 +86,28 @@ class EditorController
 
     public function modificarPregunta()
     {
-        $pregunta = $this->model->buscarPregunta($_GET['idPregunta'])[0];
-        $pregunta = $this->mostrarCategoria($pregunta);
-        $pregunta = $this->mostrarDificultad($pregunta);
-        $pregunta = $this->mostrarRespuestaCorrecta($pregunta);
-        $this->presenter->render("view/formularioPregunta.mustache", ["modificar"=>true, "pregunta"=>$pregunta]);
+        if(isset($_GET['modificacion'])){
+            $pregunta = array(
+                "idPregunta" => htmlspecialchars($_POST['id']),
+                "categoria" => htmlspecialchars($_POST['categoria']),
+                "texto_pregunta" => htmlspecialchars($_POST['texto_pregunta']),
+                "respuesta_correcta" => htmlspecialchars($_POST['respuesta_correcta']),
+                "respuesta_1" => htmlspecialchars($_POST['respuesta_1']),
+                "respuesta_2" => htmlspecialchars($_POST['respuesta_2']),
+                "respuesta_3" => htmlspecialchars($_POST['respuesta_3']),
+                "respuesta_4" => htmlspecialchars($_POST['respuesta_4']),
+                "dificultad" => htmlspecialchars($_POST['dificultad'])
+            );
+            $this->model->actualizarPregunta($pregunta);
+            $this->getPreguntas();
+        }else{
+            $pregunta = $this->model->buscarPregunta($_GET['idPregunta'])[0];
+            $pregunta = $this->mostrarCategoria($pregunta);
+            $pregunta = $this->mostrarDificultad($pregunta);
+            $pregunta = $this->mostrarRespuestaCorrecta($pregunta);
+            $this->presenter->render("view/formularioPregunta.mustache", ["modificar"=>true, "pregunta"=>$pregunta]);
+        }
+
     }
 
     private function mostrarCategoria($pregunta)
