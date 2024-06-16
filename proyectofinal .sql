@@ -202,7 +202,7 @@ CREATE TABLE `preguntas_sugeridas` (
 
 INSERT INTO `preguntas_sugeridas` (`id`, `categoria`, `texto_pregunta`, `respuesta_correcta`, `respuesta_1`, `respuesta_2`, `respuesta_3`, `respuesta_4`, `dificultad`) VALUES
 (1, 'Matematica', '¿Cuál es la raiz cuadrada de 49?', 2, '1', '7', '4', '10', 'facil'),
-(2, 'Matematica', '¿Cuál es la raiz cuadrada de 144?', 1, '12', '7', '4', '10', 'facil').
+(2, 'Matematica', '¿Cuál es la raiz cuadrada de 144?', 1, '12', '7', '4', '10', 'facil'),
 (3, 'Matematica', '¿Cuál es la raiz cuadrada de 100?', 4, '12', '7', '4', '10', 'facil');
 
 --
