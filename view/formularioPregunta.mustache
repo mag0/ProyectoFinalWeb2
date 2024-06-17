@@ -9,18 +9,16 @@
             <div class="form-row">
                 <div class="textbox">
                     <select name="categoria" required>
-                        <option value="">Selecciona una categoría</option>
-                        <option value="Geografia">Geografia</option>
-                        <option value="Matematica">Matematica</option>
-                        <option value="Arte">Arte</option>
-                        <option value="Cultura">Cultura</option>
-                        <option value="Ciencia">Ciencia</option>
-                    </select>
-                </div>
+                          <option value="">Selecciona una categoría</option>
+                          {{#categorias}}
+                          <option value="{{id}}" {{selected}}>{{nombre}}</option>
+                          {{/categorias}}
+                          </select>
+                    </div>
                 <div class="textbox">
                     <select name="dificultad" required>
                          <option value="">Selecciona una dificultad</option>
-                         <option value="geografia">Facil</option>
+                         <option value="facil">Facil</option>
                          <option value="normal">Normal</option>
                          <option value="dificil">Dificil</option>
                     </select>
@@ -74,16 +72,12 @@
         <form action="/ProyectoFinal/index.php?controller=editor&action=modificarPregunta&modificacion" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="textbox">
-                <label class="form-label">Categoria</label>
+                    <label class="form-label">Categoría</label>
                     <select name="categoria" required>
                         <option value="">Selecciona una categoría</option>
-                        <option value="Geografia" {{#isGeografia}}selected{{/isGeografia}}>Geografia</option>
-                        <option value="Matematica" {{#isMatematica}}selected{{/isMatematica}}>Matematica</option>
-                        <option value="Arte" {{#isArte}}selected{{/isArte}}>Arte</option>
-                        <option value="Cultura" {{#isCultura}}selected{{/isCultura}}>Cultura</option>
-                        <option value="Ciencia" {{#isCiencia}}selected{{/isCiencia}}>Ciencia</option>
-                        <option value="Historia" {{#isHistoria}}selected{{/isHistoria}}>Historia</option>
-                        <option value="Deportes" {{#isDeportes}}selected{{/isDeportes}}>Deportes</option>
+                        {{#categorias}}
+                        <option value="{{id}}" {{selected}}>{{nombre}}</option>
+                        {{/categorias}}
                     </select>
                 </div>
                 <div class="textbox">
@@ -147,17 +141,15 @@
 {{#sugerir}}
 <div class="container">
     <div class="register-box">
-        <h1>Crear pregunta</h1>
+        <h1>Sugerir pregunta</h1>
         <form action="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta&sugerir" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="textbox">
                     <select name="categoria" required>
                         <option value="">Selecciona una categoría</option>
-                        <option value="Geografia">Geografia</option>
-                        <option value="Matematica">Matematica</option>
-                        <option value="Arte">Arte</option>
-                        <option value="Cultura">Cultura</option>
-                        <option value="Ciencia">Ciencia</option>
+                        {{#categorias}}
+                        <option value="{{id}}" {{selected}}>{{nombre}}</option>
+                        {{/categorias}}
                     </select>
                 </div>
                 <div class="textbox">

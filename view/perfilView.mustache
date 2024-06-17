@@ -1,6 +1,7 @@
  <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
  <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
+ <script src="/ProyectoFinal/public/js/mapaPerfil.js"></script>
     <script>
         let map;
         let geocoder;
@@ -67,7 +68,7 @@
         {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=get" method="post">
             <div class="form-row-imagen">
-                <img class="imagen" src="./public/uploads/{{foto}}">
+                <img class="imagen" src="./public/imagenes/perfiles/{{foto}}">
             </div>
             <div class="form-row">
                 <div class="textbox">
@@ -123,7 +124,7 @@
     {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=verRanking" method="post">
             <div class="form-row-imagen">
-                 <img class="imagen" src="./public/uploads/{{foto}}">
+                 <img class="imagen" src="./public/imagenes/perfiles/{{foto}}">
                  <p class="puntaje"> Puntaje final: {{puntaje_total}} </p>
             </div>
             <div class="form-row">

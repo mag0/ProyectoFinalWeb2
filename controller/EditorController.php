@@ -70,7 +70,8 @@ class EditorController
             $this->model->crearPregunta($pregunta);
             $this->getPreguntas();
         }else {
-            $this->presenter->render("view/formularioPregunta.mustache", ["crear" => true]);
+            $categorias = $this->model->getCategorias();
+            $this->presenter->render("view/formularioPregunta.mustache", ["crear" => true, "categorias"=>$categorias]);
         }
     }
 
@@ -102,24 +103,25 @@ class EditorController
             $this->getPreguntas();
         }else{
             $pregunta = $this->model->buscarPregunta($_GET['idPregunta'])[0];
-            $pregunta = $this->mostrarCategoria($pregunta);
+            $categorias = $this->model->getCategorias();
+
+            //marco la categoria de la pregunta en categorias para que se muestre en el select
+            foreach ($categorias as &$categoria) {
+                if ($categoria['id'] == $pregunta['id_categoria']) {
+                    $categoria['selected'] = 'selected';
+                } else {
+                    $categoria['selected'] = '';
+                }
+            }
+            //marco la Dificultad de la pregunta para que se muestre en el select
             $pregunta = $this->mostrarDificultad($pregunta);
+
+            //marco la RespuestaCorrecta de la pregunta para que se muestre en el select
             $pregunta = $this->mostrarRespuestaCorrecta($pregunta);
-            $this->presenter->render("view/formularioPregunta.mustache", ["modificar"=>true, "pregunta"=>$pregunta]);
+
+            $this->presenter->render("view/formularioPregunta.mustache", ["modificar"=>true, "pregunta"=>$pregunta, "categorias"=>$categorias]);
         }
 
-    }
-
-    private function mostrarCategoria($pregunta)
-    {
-        $pregunta['isGeografia'] = $pregunta['categoria'] === 'Geografia';
-        $pregunta['isCultura'] = $pregunta['categoria'] === 'Cultura';
-        $pregunta['isMatematica'] = $pregunta['categoria'] === 'Matematica';
-        $pregunta['isArte'] = $pregunta['categoria'] === 'Arte';
-        $pregunta['isCiencia'] = $pregunta['categoria'] === 'Ciencia';
-        $pregunta['isHistoria'] = $pregunta['categoria'] === 'Historia';
-        $pregunta['isDeportes'] = $pregunta['categoria'] === 'Deportes';
-        return $pregunta;
     }
 
     private function mostrarDificultad($pregunta)

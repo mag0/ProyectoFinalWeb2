@@ -17,12 +17,11 @@ class PartidaController
         $this->pregunta = $this->model->getPregunta($dificultadActual, $_SESSION['usuarioActivo']['id'])[0];
         $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
         $_SESSION['pregunta'] = $this->pregunta;
-        $color = $this->asignarColorACategoria($_SESSION['pregunta']);
         $colorDificultad = $this->asignarColorADificultad($_SESSION['pregunta']);
         $this->model->marcarPregunta($_SESSION['pregunta']['id'],$_SESSION['usuarioActivo']['id']);
 
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
-            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "color" => $color, "colorDificultad" => $colorDificultad]);
+            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
     }
     public function verificarRespuesta()
     {
@@ -76,24 +75,6 @@ class PartidaController
                 break;
         }
         return $respuestaCorrecta;
-    }
-
-    public function asignarColorACategoria($categoria)
-    {
-        $colores = [
-            "Geografia" => "blue",
-            "Historia" => "red",
-            "Deportes" => "green",
-            "Cultura" => "orange",
-            "Ciencia" => "purple",
-            "Literatura" => "goldenrod",
-            "Matemáticas" => "cyan",
-            "Música" => "magenta",
-            "Arte" => "crimson",
-            "Cine" => "salmon"
-        ];
-
-        return $colores[$categoria['categoria']] ?? "grey";
     }
 
     public function asignarColorADificultad($dificultad)

@@ -29,6 +29,11 @@ class LobbyModel
         return $this->database->query("SELECT * FROM usuario ORDER BY puntaje_total DESC");
     }
 
+    public function getCategorias()
+    {
+        return $this->database->query("SELECT * FROM categoria");
+    }
+
     public function crearPreguntaSugerida($pregunta)
     {
         $categoria = $pregunta['categoria'];
@@ -40,7 +45,7 @@ class LobbyModel
         $respuesta_4 = $pregunta['respuesta_4'];
         $dificultad = $pregunta['dificultad'];
 
-        $this->database->execute("INSERT INTO preguntas_sugeridas (categoria, texto_pregunta, respuesta_correcta, respuesta_1, respuesta_2, respuesta_3, respuesta_4, dificultad) 
+        $this->database->execute("INSERT INTO pregunta_sugerida (id_categoria, texto_pregunta, respuesta_correcta, respuesta_1, respuesta_2, respuesta_3, respuesta_4, dificultad) 
                               VALUES ('$categoria', '$texto_pregunta', '$respuesta_correcta', '$respuesta_1', '$respuesta_2', '$respuesta_3', '$respuesta_4', '$dificultad')");
     }
 

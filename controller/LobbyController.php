@@ -85,7 +85,8 @@ class LobbyController
             $this->model->crearPreguntaSugerida($pregunta);
             $this->presenter->render("view/resultadoPartidaView.mustache", ["sugerir" => "Pregunta enviada correctamente!"]);
         }else {
-            $this->presenter->render("view/formularioPregunta.mustache", ["sugerir" => true]);
+            $categorias = $this->model->getCategorias();
+            $this->presenter->render("view/formularioPregunta.mustache", ["sugerir" => true, "categorias" => $categorias]);
         }
     }
 }
