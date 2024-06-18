@@ -107,7 +107,7 @@ class PartidaController
     private function asignarDificultadPorCantidadDeVecesRespondidas()
     {
         if($_SESSION['pregunta']['respondidas']==0){
-            $porcentaje = 100;
+            $porcentaje = 0;
         }else{
             $porcentaje = ($_SESSION['pregunta']['respondidas_correctamente']*100)/$_SESSION['pregunta']['respondidas'];
         }
