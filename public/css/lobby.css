@@ -55,14 +55,15 @@
 
 .game-list {
     text-align: center;
+    margin: 3px;
 }
 
 .game-list ul {
     list-style-type: none;
-    padding: .2em 0;
-    max-height: 200px; /* Altura máxima de la caja */
+    max-height: 50px; /* Altura máxima de la caja */
     overflow-y: auto; /* Habilitar el scroll vertical */
     border: 1px solid #ccc;
+    margin: -1px;
 }
 
 .game-list li {
