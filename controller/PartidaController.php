@@ -20,11 +20,15 @@ class PartidaController
         $colorDificultad = $this->asignarColorADificultad($_SESSION['pregunta']);
         $this->model->marcarPregunta($_SESSION['pregunta']['id'],$_SESSION['usuarioActivo']['id']);
 
+        $this->model->cambiarDificultad($_SESSION['pregunta']['id'], $this->asignarDificultadPorCantidadDeVecesRespondidas());
+        var_dump($this->asignarDificultadPorCantidadDeVecesRespondidas());
+
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
             "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
     }
     public function verificarRespuesta()
     {
+        $this->model->sumarPregunta($_SESSION['pregunta']['id']);
         if(isset($_GET['tiempo']) || $_POST['respuesta'] != $_SESSION['respuestaCorrecta']){
                 if(isset($_GET['tiempo'])){
                     $mensaje = 'Tiempo agotado';
@@ -46,6 +50,7 @@ class PartidaController
             $_SESSION['puntaje'] += 1;
             $_SESSION['puntajeActual'] += 1;
             $_SESSION['numeroPregunta'] += 1;
+            $this->model->sumarPreguntaBienRespondida($_SESSION['pregunta']['id']);
             header('location:/ProyectoFinal/index.php?controller=partida&action=get');
             exit();
         }
@@ -97,6 +102,24 @@ class PartidaController
             $dificultadActual = 'dificil';
         }
         return $dificultadActual;
+    }
+
+    private function asignarDificultadPorCantidadDeVecesRespondidas()
+    {
+        if($_SESSION['pregunta']['respondidas']==0){
+            $porcentaje = 100;
+        }else{
+            $porcentaje = ($_SESSION['pregunta']['respondidas_correctamente']*100)/$_SESSION['pregunta']['respondidas'];
+        }
+
+        if($porcentaje>70){
+            $dificultad = 'facil';
+        }else if($porcentaje<30){
+            $dificultad = 'dificil';
+        }else{
+            $dificultad = 'normal';
+        }
+        return $dificultad;
     }
 
 }

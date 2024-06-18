@@ -64,4 +64,19 @@ class PartidaModel
         return $this->database->execute("UPDATE pregunta SET reportada = true WHERE id = '$idPregunta'");
     }
 
+    public function sumarPregunta($idPregunta)
+    {
+        $this->database->execute("UPDATE pregunta SET respondidas = respondidas + 1 WHERE id = '$idPregunta'");
+    }
+
+    public function sumarPreguntaBienRespondida($idPregunta)
+    {
+        $this->database->execute("UPDATE pregunta SET respondidas_correctamente = respondidas_correctamente + 1 WHERE id = '$idPregunta'");
+    }
+
+    public function cambiarDificultad($idPregunta, $dificultad)
+    {
+        $this->database->execute("UPDATE pregunta SET dificultad = '$dificultad'  WHERE id = '$idPregunta'");
+    }
+
 }
