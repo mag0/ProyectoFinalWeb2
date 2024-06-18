@@ -1,66 +1,52 @@
- <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
- <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
-    <script>
-        let map;
-        let geocoder;
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map-container'), {
-                center: { lat: 0, lng: 0 },
-                zoom: 2
-            });
-
-            geocoder = new google.maps.Geocoder();
-
-            // Obtener valores de ciudad y país del HTML
-            const city = document.getElementById('ciudad').value;
-            const country = document.getElementById('pais').value;
-
-            if (city && country) {
-                geocodeAddress(city, country);
-            }
-
-            map.addListener('click', function (event) {
-                const latLng = event.latLng;
-
-                geocoder.geocode({ location: latLng }, function (results, status) {
-                    if (status === 'OK') {
-                        if (results[0]) {
-                            const countryComponent = results[0].address_components.find(component => component.types.includes('country'));
-                            const cityComponent = results[0].address_components.find(component => component.types.includes('locality'));
-
-                            document.getElementById('pais').value = countryComponent ? countryComponent.long_name : '';
-                            document.getElementById('ciudad').value = cityComponent ? cityComponent.long_name : '';
-                        } else {
-                            window.alert('No se encontraron resultados.');
-                        }
-                    } else {
-                        window.alert('La geocodificación inversa falló debido a: ' + status);
-                    }
-                });
-            });
-        }
-
-        function geocodeAddress(city, country) {
-            const address = `${city}, ${country}`;
-            geocoder.geocode({ address: address }, function (results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    map.setZoom(10); // Ajusta el nivel de zoom según tus necesidades
-
-                    new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    console.error('La geocodificación falló debido a: ' + status);
-                }
-            });
-        }
-    </script>
+<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+<link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
+<script src="/ProyectoFinal/public/js/mapaPerfil.js"></script>
 </head>
 <body>
+<style>
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
 <div class="container">
     <div class="register-box">
         {{#esUsuarioSesion}}
@@ -117,10 +103,10 @@
             </div>
         </form>
         {{/usuario}}
-{{/esUsuarioSesion}}
+        {{/esUsuarioSesion}}
 
-{{^esUsuarioSesion}}
-    {{#usuario}}
+        {{^esUsuarioSesion}}
+        {{#usuario}}
         <form action="/ProyectoFinal/index.php?controller=lobby&action=verRanking" method="post">
             <div class="form-row-imagen">
                  <img class="imagen" src="./public/imagenes/perfiles/{{foto}}">
@@ -154,68 +140,24 @@
                     {{/partidas}}
                 </ul>
             </div>
-              <div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
-                             <div class="modal-dialog" role="document">
-                                 <div class="modal-content">
-                                        <div class="modal-body text-center">
-                                         <div id="qr-container"></div> <!-- Contenedor para el código QR -->
-                                     </div>
 
-                                 </div>
-                             </div>
-                         </div>
-                         <button type="button" class="btn" id="toggleQRButton">Mostrar QR</button> <!-- Botón para abrir/cerrar el modal -->
-                         <button type="submit" class="btn">Volver</button>
-                     </form>
-                 {{/usuario}}
-             {{/esUsuarioSesion}}
+            <button type="button" class="btn" id="toggleQRButton">Mostrar QR</button> <!-- Botón para abrir/cerrar el modal -->
+            <button type="submit" class="btn">Volver</button>
+        </form>
+        {{/usuario}}
+        {{/esUsuarioSesion}}
+    </div>
+</div>
+
+<!-- Modal para mostrar el QR -->
+<div id="qrModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Código QR</h2>
+        <div id="qr-container"></div> <!-- Contenedor para el código QR -->
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Incluye la biblioteca para generar el código QR -->
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-
-<script>
-    var qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
-
-    function generateQR() {
-        // Obtén los datos necesarios para el QR
-        var nombreUsuario = "{{nombreUsuario}}"; // Asegúrate de que Handlebars haya reemplazado correctamente esta variable
-
-        // URL del perfil del usuario para el QR (puedes modificar según sea necesario)
-        var userProfileUrl = "http://127.0.0.1/usuario/perfil?nombreUsuario=" + nombreUsuario;
-
-        // Genera el código QR en el contenedor especificado
-        var qrcode = new QRCode(document.getElementById("qr-container"), {
-            text: userProfileUrl,
-            width: 128,
-            height: 128,
-        });
-
-        // Muestra el modal
-        qrModal.show();
-    }
-
-    document.getElementById('toggleQRButton').addEventListener('click', function () {
-        // Verificar si el modal ya está visible
-        if ($('#qrModal').hasClass('show')) {
-            qrModal.hide();
-        } else {
-            // Limpiar el contenido del QR antes de generar uno nuevo
-            document.getElementById('qr-container').innerHTML = '';
-            generateQR();
-        }
-    });
-
-    document.getElementById('closeQRButton').addEventListener('click', function () {
-        qrModal.hide();
-    });
-
-    // Limpia el contenido del QR al cerrar el modal
-    $('#qrModal').on('hidden.bs.modal', function () {
-        document.getElementById('qr-container').innerHTML = '';
-    });
-</script>
+<script src="/ProyectoFinal/public/js/qr.js"></script>
