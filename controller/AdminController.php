@@ -12,6 +12,6 @@ class AdminController
 
     public function get()
     {
-        $this->presenter->render("view/lobbyView.mustache");
+        $this->presenter->render("view/adminView.mustache", ["jugadores" =>  $this->model->cantidadJugadores()]);
     }
 }

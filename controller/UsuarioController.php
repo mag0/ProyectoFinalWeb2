@@ -163,7 +163,7 @@ class UsuarioController
                 if($usuario['editor']){
                     header('location:/ProyectoFinal/index.php?controller=editor&action=get');
                 }else if($usuario['admin']){
-                    header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+                    header('location:/ProyectoFinal/index.php?controller=admin&action=get');
                 }else{
                     header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
                 }
