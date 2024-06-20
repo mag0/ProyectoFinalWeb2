@@ -49,9 +49,14 @@ class PartidaModel
                                 VALUES ('$id_usuario', '$puntaje_obtenido', '$fecha')");
     }
 
-    public function sumarPuntaje($puntaje, $nombreUsuario)
+    public function getPuntajeMasAlto($idUsuario)
     {
-        $this->database->execute("UPDATE usuario SET puntaje_total = puntaje_total + '$puntaje' WHERE nombreUsuario = '$nombreUsuario'");
+        return $this->database->execute("SELECT puntaje_total from usuario where id = '$idUsuario'");
+    }
+
+    public function reemplazarPuntajeMaximo($puntaje, $idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET puntaje_total = '$puntaje' WHERE id = '$idUsuario'");
     }
 
     public function marcarPregunta($idPregunta, $idUsuario)

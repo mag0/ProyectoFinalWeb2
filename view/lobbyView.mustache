@@ -5,7 +5,7 @@
     <div class="container">
             <div class="lobby-box">
                 <h1>Bienvenido {{nombreUsuario}}</h1>
-                <p>Puntaje total: {{puntaje_total}}</p>
+                <p>Puntaje mas alto: {{puntaje}}</p>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get'">Crear Nueva
                     Partida</button>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=verRanking'">Ver Ranking</button>
@@ -15,7 +15,7 @@
                     <h2>Partidas Jugadas</h2>
                     <ul>
                         {{#partidas}}
-                            <li><a href="/ProyectoFinal/index.php/partida/ver/{{IDPartida}}">Partida: {{numeroDePartida}} - Puntaje: {{puntaje_obtenido}} - Fecha: {{fecha}}</a></li>
+                            <li><a>Partida: {{numeroDePartida}} - Puntaje: {{puntaje_obtenido}} - Fecha: {{fecha}}</a></li>
                         {{/partidas}}
                         {{^partidas}}
                             <p>No hay partidas disponibles.</p>

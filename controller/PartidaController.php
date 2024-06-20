@@ -21,7 +21,6 @@ class PartidaController
         $this->model->marcarPregunta($_SESSION['pregunta']['id'],$_SESSION['usuarioActivo']['id']);
 
         $this->model->cambiarDificultad($_SESSION['pregunta']['id'], $this->asignarDificultadPorCantidadDeVecesRespondidas());
-        var_dump($this->asignarDificultadPorCantidadDeVecesRespondidas());
 
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
             "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
@@ -42,7 +41,9 @@ class PartidaController
                     "fecha" => date("Y-m-d")
                 );
                 $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
-                $this->model->sumarPuntaje($_SESSION['puntajeActual'], $_SESSION['nombreUsuario']);
+                if( $this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])<$_SESSION['puntajeActual']){
+                    $this->model->reemplazarPuntajeMaximo($_SESSION['puntajeActual'], $_SESSION['usuarioActivo']['id']);
+                }
                 $this->model->guardarPartida($partida);
                 $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
                     "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta, "mensaje" =>$mensaje]);

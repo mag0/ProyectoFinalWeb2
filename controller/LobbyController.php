@@ -27,14 +27,11 @@ class LobbyController
             $partidas[$indice]['numeroDePartida'] = $indice + 1;
         }
 
-
-        if (!isset($_SESSION['puntaje'])) {
-            $_SESSION['puntaje'] = 0;
-        }
+        $puntajeMaximo = $this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])[0]['puntaje_total'];
 
         $this->presenter->render("view/lobbyView.mustache", [
             "usuarioActivo" => $_SESSION['usuarioActivo'],
-            "puntaje" => $_SESSION['puntaje'],
+            "puntaje" => $puntajeMaximo,
             "partidas" => $partidas
         ]);
     }

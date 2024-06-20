@@ -26,7 +26,7 @@ class LobbyModel
 
     public function getUsuarios()
     {
-        return $this->database->query("SELECT * FROM usuario ORDER BY puntaje_total DESC");
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario NOT IN ('admin', 'editor') ORDER BY puntaje_total DESC");
     }
 
     public function getCategorias()
@@ -47,6 +47,11 @@ class LobbyModel
 
         $this->database->execute("INSERT INTO pregunta_sugerida (id_categoria, texto_pregunta, respuesta_correcta, respuesta_1, respuesta_2, respuesta_3, respuesta_4, dificultad) 
                               VALUES ('$categoria', '$texto_pregunta', '$respuesta_correcta', '$respuesta_1', '$respuesta_2', '$respuesta_3', '$respuesta_4', '$dificultad')");
+    }
+
+    public function getPuntajeMasAlto($idUsuario)
+    {
+        return $this->database->query("SELECT puntaje_total from usuario where id = '$idUsuario'");
     }
 
 }

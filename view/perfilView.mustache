@@ -1,52 +1,10 @@
 <link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
 <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+<link rel="stylesheet" href="/ProyectoFinal/public/css/modalPerfil.css">
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
 <script src="/ProyectoFinal/public/js/mapaPerfil.js"></script>
 </head>
 <body>
-<style>
-/* Estilos para el modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-</style>
 <div class="container">
     <div class="register-box">
         {{#esUsuarioSesion}}
