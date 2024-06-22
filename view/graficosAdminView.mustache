@@ -1,0 +1,70 @@
+   <title>Gráfico JpGraph</title>
+    <!-- Incluye los estilos CSS de ApexCharts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.28.0/dist/apexcharts.min.css">
+    <!-- Incluye el script de ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Incluye el script para descargar pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+</head>
+<body>
+           <div class="container">
+                <div class="lobby-box">
+                    <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
+                    <select>
+                      option value="dia">Dia</option>
+                      option value="mes">Mes</option>
+                      option value="anio">Año</option>
+                    </select>
+                </div>
+           </div>
+
+
+
+
+<style>
+        #chart {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+
+    <div style="display:flex;flex-direction:column">
+        <div id="chart"></div>
+        <button id="download-pdf">Descargar como PDF</button>
+    </div>
+    {{#jugadores}}
+    <p style="display:none" class="jugadores">{{cantidad_usuarios}}</p>
+    <p style="display:none" class="fecha">{{fecha}}</p>
+    {{/jugadores}}
+
+
+
+
+<script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
+<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+
+<style>
+        #chart {
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+
+    <div style="display:flex;flex-direction:column">
+        <div id="chart"></div>
+        <button id="download-pdf">Descargar como PDF</button>
+    </div>
+    {{#jugadores}}
+    <p style="display:none" class="jugadores">{{cantidad_Partidas_Jugadas}}</p>
+    <p style="display:none" class="fecha">{{fecha}}</p>
+    {{/jugadores}}
+
+
+
+
+<script src="/ProyectoFinal/public/js/graficos/cantidadPartidasJugadas.js"></script>
+<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+
+</body>
+</html>

@@ -17,3 +17,12 @@ class AdminModel
             ORDER BY fecha");
     }
 }
+    /*public function cantidadDePartidasJugadas()
+    {
+        return $this->database->query("SELECT DATE(fecha) AS fecha, COUNT(*) AS cantidad_Partidas_Jugadas
+            FROM partida
+            GROUP BY DATE(fecha)
+            ORDER BY fecha");
+    }
+
+}*/

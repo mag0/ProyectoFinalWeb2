@@ -1,4 +1,4 @@
-<html>
+ <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
 <head>
     <title>Gráfico JpGraph</title>
     <!-- Incluye los estilos CSS de ApexCharts -->
@@ -7,24 +7,21 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Incluye el script para descargar pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
 </head>
-<style>
-        #chart {
-            max-width: 600px;
-            margin: auto;
-        }
-    </style>
 <body>
-    <div style="display:flex;flex-direction:column">
-        <div id="chart"></div>
-        <button id="download-pdf">Descargar como PDF</button>
-    </div>
-    {{#jugadores}}
-    <p style="display:none" class="jugadores">{{cantidad_usuarios}}</p>
-    <p style="display:none" class="fecha">{{fecha}}</p>
-    {{/jugadores}}
-<script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
-<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{#usuarioActivo}}
+<div class="container">
+            <div class="lobby-box">
+                <h1>Bienvenido {{nombreUsuario}}</h1>
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getTablas'">Ver tabla</button>
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Ver graficos</button>
+                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar Sesión</button>
+            </div>
+        </div>
+        {{/usuarioActivo}}
+
+
+
+
 </body>
 </html>

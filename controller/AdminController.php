@@ -12,6 +12,18 @@ class AdminController
 
     public function get()
     {
-        $this->presenter->render("view/adminView.mustache", ["jugadores" =>  $this->model->cantidadJugadores()]);
+        $this->presenter->render("view/adminView.mustache", ["usuarioActivo"=>$_SESSION['usuarioActivo']]);
     }
+
+    public function getGraficos()
+    {
+        $this->presenter->render("view/graficosAdminView.mustache", ["jugadores" =>  $this->model->cantidadJugadores()]);
+    }
+
+   /* public function getCantidadPartidasJugadas()
+    {
+        $cantidadDePartidasJugadas = $this->model->getCantidadPartidasJugadas();
+        $this->presenter->render("view/graficosAdminView.mustache", ["jugadores" =>  $cantidadDePartidasJugadas , "partidas" => true]);
+    }
+*/
 }
