@@ -10,18 +10,35 @@
 </head>
 <body>
 {{#usuarioActivo}}
-<div class="container">
+    <div class="container">
+
+        {{#menu}}
+         <div class="lobby-box">
+              <h1>Bienvenido {{nombreUsuario}}</h1>
+              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Ver tablas</button>
+              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Ver graficos</button>
+              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar Sesión</button>
+         </div>
+         {{/menu}}
+
+         {{#menuTabla}}
             <div class="lobby-box">
-                <h1>Bienvenido {{nombreUsuario}}</h1>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getTablas'">Ver tabla</button>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Ver graficos</button>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar Sesión</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getEstadisticas'">Estadisticas generales</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPorcentaje'">Preguntas bien respondidas por usuario</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorPais'">Usuarios por pais</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorGenero'">Usuarios por genero</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorEdad'">Usuarios por edad</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=get'">Volver</button>
             </div>
-        </div>
-        {{/usuarioActivo}}
+         {{/menuTabla}}
 
+         {{#menuGrafico}}
+            <div class="lobby-box">
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficoUsuarios'">Grafico usuarios</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPorcentaje'">Grafico preguntas</button>
+               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=get'">Volver</button>
+            </div>
+         {{/menuGrafico}}
 
-
-
-</body>
-</html>
+    </div>
+{{/usuarioActivo}}

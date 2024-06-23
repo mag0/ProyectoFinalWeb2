@@ -34,6 +34,7 @@ class PartidaController
                 }else{
                     $mensaje = 'Respuesta Incorrecta';
                 }
+                $this->model->sumarPreguntaAlUsuario($_SESSION['usuarioActivo']['id']);
                 $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_SESSION['respuestaCorrecta']);
                 $partida = array(
                     "id_usuario" => htmlspecialchars($_SESSION['usuarioActivo']['id']),
@@ -51,6 +52,8 @@ class PartidaController
             $_SESSION['puntaje'] += 1;
             $_SESSION['puntajeActual'] += 1;
             $_SESSION['numeroPregunta'] += 1;
+            $this->model->sumarPreguntaAlUsuario($_SESSION['usuarioActivo']['id']);
+            $this->model->sumarPreguntaBienRespondidaAlUsuario($_SESSION['usuarioActivo']['id']);
             $this->model->sumarPreguntaBienRespondida($_SESSION['pregunta']['id']);
             header('location:/ProyectoFinal/index.php?controller=partida&action=get');
             exit();

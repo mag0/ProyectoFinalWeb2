@@ -54,4 +54,19 @@ class LobbyModel
         return $this->database->query("SELECT puntaje_total from usuario where id = '$idUsuario'");
     }
 
+    public function actualizarUsuario($idUsuario, $datos_usuario)
+    {
+        $nombreCompleto = $datos_usuario['nombreCompleto'];
+        $anioDeNacimiento = $datos_usuario['anioDeNacimiento'];
+        $genero = $datos_usuario['genero'];
+        $pais = $datos_usuario['pais'];
+        $ciudad = $datos_usuario['ciudad'];
+        $password = $datos_usuario['password'];
+        //$foto = isset($datos_usuario['foto']) ? $datos_usuario['foto'] : null;
+
+        return $this->database->execute("UPDATE usuario SET nombreCompleto = '$nombreCompleto', anioDeNacimiento = '$anioDeNacimiento', 
+            genero = '$genero', pais = '$pais', ciudad = '$ciudad', password = '$password'
+            WHERE id = '$idUsuario'");
+    }
+
 }

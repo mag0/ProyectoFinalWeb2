@@ -74,6 +74,16 @@ class PartidaModel
         $this->database->execute("UPDATE pregunta SET respondidas = respondidas + 1 WHERE id = '$idPregunta'");
     }
 
+    public function sumarPreguntaAlUsuario($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET preguntas_respondidas = preguntas_respondidas + 1 WHERE id = $idUsuario;");
+    }
+
+    public function sumarPreguntaBienRespondidaAlUsuario($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET preguntas_bien_respondidas = preguntas_bien_respondidas + 1 WHERE id = $idUsuario;");
+    }
+
     public function sumarPreguntaBienRespondida($idPregunta)
     {
         $this->database->execute("UPDATE pregunta SET respondidas_correctamente = respondidas_correctamente + 1 WHERE id = '$idPregunta'");

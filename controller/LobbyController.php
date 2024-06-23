@@ -59,11 +59,29 @@ class LobbyController
             $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => false,
                 "partidas" => $partidas]);
         } else {
-            $usuario = $_SESSION['usuarioActivo'];
+            $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0];
             $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
             $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
             $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => true]);
         }
+    }
+
+    public function actualizarUsuario()
+    {
+        $datos_usuario = array(
+            "nombreCompleto" => htmlspecialchars($_POST['nombreCompleto']),
+            "anioDeNacimiento" => htmlspecialchars($_POST['anioDeNacimiento']),
+            "genero" => htmlspecialchars($_POST['genero']),
+            "pais" => htmlspecialchars($_POST['pais']),
+            "ciudad" => htmlspecialchars($_POST['ciudad']),
+            "password" => $_POST['password']
+        );
+        $this->model->actualizarUsuario($_SESSION['usuarioActivo']['id'], $datos_usuario);
+        $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0];
+        $usuario['esMasculino'] = $usuario['genero'] === 'masculino';
+        $usuario['esFemenino'] = $usuario['genero'] === 'femenino';
+
+        $this->presenter->render("view/perfilView.mustache", ["usuario" => $usuario, "esUsuarioSesion" => true, "mensaje" => "usuario modificado"]);
     }
 
     public function sugerirPregunta()

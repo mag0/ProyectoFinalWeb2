@@ -59,7 +59,7 @@ class UsuarioController
             if (isset($_FILES["foto"]) && $_FILES["foto"]["error"] == 0) {
                 $nuevoNombre = time();
                 $extension = pathinfo($_FILES["foto"]["name"], PATHINFO_EXTENSION);
-                $destino = "./public/perfiles/" . $nuevoNombre . "." . $extension;
+                $destino = "./public/imagenes/perfiles/" . $nuevoNombre . "." . $extension;
                 if (move_uploaded_file($_FILES["foto"]["tmp_name"], $destino)) {
                     $img = "$nuevoNombre.$extension";
                     $datos_usuario['foto'] = $img;

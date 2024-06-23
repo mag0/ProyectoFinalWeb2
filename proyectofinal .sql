@@ -152,26 +152,29 @@ CREATE TABLE `usuario` (
   `token` varchar(13) DEFAULT NULL,
   `cuenta_validada` tinyint(1) NOT NULL DEFAULT 0,
   `admin` boolean DEFAULT false,
-  `editor` boolean DEFAULT false
+  `editor` boolean DEFAULT false,
+  `preguntas_respondidas` INT DEFAULT 0,
+  `preguntas_bien_respondidas` INT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `puntaje_total`, `token`, `cuenta_validada`) VALUES
-(1, 'Maria Gonzalez', '1992-08-25', 'femenino', 'Argentina', 'Posadas', 'maria@example.com', 'pikachu12', 'Maria', '1699279835.png', '2024-06-03', 120, '666508e4e84ed', 0),
-(2, 'Juan Perez', '1988-05-14', 'masculino', 'Argentina', 'Rosario', 'juan@example.com', 'password123', 'JuanP', 'Preguntados.png', '2024-06-03', 150, '666508e4e84ed', 0),
-(3, 'Luis Lopez', '1990-12-12', 'masculino', 'Argentina', 'Mar del Plata', 'luis@example.com', 'pass456', 'LuisL', '1699296978.jpg', '2024-06-03', 95, '666508e4e84ed', 0),
-(4, 'Ana Martinez', '1995-03-22', 'femenino', 'Argentina', 'Parana', 'ana@example.com', 'qwerty', 'AnaM', '1699566454.jpg', '2024-06-03', 200, '666508e4e84ed', 0),
-(5, 'Carlos Sanchez', '1985-11-30', 'masculino', 'España', 'Madrid', 'carlos@example.com', 'password789', 'CarlosS', '1699404120.webp', '2024-06-03', 180, '666508e4e84ed', 0),
-(6, 'Elena Ramirez', '1993-07-18', 'masculino', 'Inglaterra', 'Londres', 'elena@example.com', 'pass987', 'ElenaR', '1699399349.jpg', '2024-06-03', 110, '666508e4e84ed', 0),
-(7, 'Pedro Gomez', '1991-09-09', 'masculino', 'Peru', 'Lima', 'pedro@example.com', 'asd123', 'PedroG', '1699919393.jpg', '2024-06-03', 75, '666508e4e84ed', 0),
-(8, 'Lucia Diaz', '1989-04-05', 'femenino', 'Argentina', 'Moreno', 'lucia@example.com', 'pass456', 'LuciaD', '1699758606.jpg', '2024-06-03', 140, '666508e4e84ed', 0),
-(9, 'Miguel Torres', '1987-01-15', 'masculino', 'Argentina', 'Moreno', 'miguel@example.com', '123456', 'MiguelT', '1697154413.jpeg', '2024-06-03', 130, '666508e4e84ed', 0),
-(10, 'Sofia Herrera', '1994-06-27', 'femenino', 'Argentina', 'Moreno', 'sofia@example.com', 'qwe789', 'SofiaH', '1699621422.jpg', '2024-06-03', 160, '666508e4e84ed', 0),
-(11, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '1699109847.jpg', '2024-06-01', 0, '666508e4e84ed', 1),
-(12, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'Liniers', 'angelleyesdk@gmail.com', '12', 'AngelDNK', '1718320800.jpeg', '2024-06-14', 7, '666b7ea0d705f', 1);
+INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `puntaje_total`,
+                       `token`, `cuenta_validada`, `preguntas_respondidas`, `preguntas_bien_respondidas`) VALUES
+(1, 'Maria Gonzalez', '1992-08-25', 'femenino', 'Argentina', 'Posadas', 'maria@example.com', 'pikachu12', 'Maria', '1699279835.png', '2024-06-03', 120, '666508e4e84ed', 0, 203, 140),
+(2, 'Juan Perez', '1988-05-14', 'masculino', 'Argentina', 'Rosario', 'juan@example.com', 'password123', 'JuanP', 'Preguntados.png', '2024-06-03', 150, '666508e4e84ed', 0, 203, 140),
+(3, 'Luis Lopez', '1990-12-12', 'masculino', 'Argentina', 'Mar del Plata', 'luis@example.com', 'pass456', 'LuisL', '1699296978.jpg', '2024-06-03', 95, '666508e4e84ed', 0, 203, 140),
+(4, 'Ana Martinez', '1995-03-22', 'femenino', 'Argentina', 'Parana', 'ana@example.com', 'qwerty', 'AnaM', '1699566454.jpg', '2024-06-03', 200, '666508e4e84ed', 0, 203, 140),
+(5, 'Carlos Sanchez', '1985-11-30', 'masculino', 'España', 'Madrid', 'carlos@example.com', 'password789', 'CarlosS', '1699404120.webp', '2024-06-03', 180, '666508e4e84ed', 0, 203, 140),
+(6, 'Elena Ramirez', '1993-07-18', 'masculino', 'Inglaterra', 'Londres', 'elena@example.com', 'pass987', 'ElenaR', '1699399349.jpg', '2024-06-03', 110, '666508e4e84ed', 0, 203, 140),
+(7, 'Pedro Gomez', '1991-09-09', 'masculino', 'Peru', 'Lima', 'pedro@example.com', 'asd123', 'PedroG', '1699919393.jpg', '2024-06-03', 75, '666508e4e84ed', 0, 203, 140),
+(8, 'Lucia Diaz', '1989-04-05', 'femenino', 'Argentina', 'Moreno', 'lucia@example.com', 'pass456', 'LuciaD', '1699758606.jpg', '2024-06-03', 140, '666508e4e84ed', 0, 203, 140),
+(9, 'Miguel Torres', '1987-01-15', 'masculino', 'Argentina', 'Moreno', 'miguel@example.com', '123456', 'MiguelT', '1697154413.jpeg', '2024-06-03', 130, '666508e4e84ed', 0, 54, 23),
+(10, 'Sofia Herrera', '1994-06-27', 'femenino', 'Argentina', 'Moreno', 'sofia@example.com', 'qwe789', 'SofiaH', '1699621422.jpg', '2024-06-03', 160, '666508e4e84ed', 0, 54, 14),
+(11, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '1699109847.jpg', '2024-06-01', 0, '666508e4e84ed', 1, 75, 23),
+(12, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'Liniers', 'angelleyesdk@gmail.com', '12', 'AngelDNK', '1718320800.jpeg', '2024-06-14', 7, '666b7ea0d705f', 1, 203, 140);
 
 INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `token`, `cuenta_validada`, `admin`, `editor`) VALUES
 (13, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE),
