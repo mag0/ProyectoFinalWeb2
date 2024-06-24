@@ -24,6 +24,16 @@ class AdminModel
         return $this->database->query("SELECT COUNT(*) AS cantidad_preguntas FROM pregunta");
     }
 
+    public function cantidadPreguntasCreadas()
+    {
+        return $this->database->query("SELECT COUNT(*) AS cantidad_preguntas_creadas FROM pregunta_sugerida");
+    }
+
+    public function cantidadUsuariosPorPais()
+    {
+        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_pais FROM usuario");
+    }
+
     public function porcentajePreguntasBienRespondidas()
     {
         return $this->database->query("SELECT FLOOR(COUNT(CASE WHEN respondidas_correctamente > 0 THEN 1 END) * 100.0 / COUNT(*)) AS porcentaje_respondidas_correctamente FROM pregunta");

@@ -23,8 +23,33 @@ class AdminController
     public function getGraficoUsuarios()
     {
         $usuarios = $this->model->cantidadJugadores();
-        $this->presenter->render("view/graficosAdminView.mustache", ["jugadores" =>  $usuarios]);
+        $this->presenter->render("view/graficosAdminView.mustache", ["cantJugadores" =>  $usuarios]);
     }
+
+    public function getGrafiocsPartidas()
+    {
+        $usuarios = $this->model->cantidadPartidas();
+        $this->presenter->render("view/graficosAdminView.mustache", ["cantPartidas" =>  $usuarios]);
+    }
+
+    public function getGraficosPreguntas()
+    {
+        $usuarios = $this->model->cantidadPreguntas();
+        $this->presenter->render("view/graficosAdminView.mustache", ["cantPreguntas" =>  $usuarios]);
+    }
+
+    public function getGraficosPreguntascreadas()
+    {
+        $usuarios = $this->model->cantidadPreguntasCreadas();
+        $this->presenter->render("view/graficosAdminView.mustache", ["cantPreguntasCreadas" =>  $usuarios]);
+    }
+
+    public function getGraficosPais()
+    {
+        $usuarios = $this->model->cantidadUsuariosPorPais();
+        $this->presenter->render("view/graficosAdminView.mustache", ["cantPais" =>  $usuarios]);
+    }
+
 
     public function getMenuTablas()
     {

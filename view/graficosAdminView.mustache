@@ -6,14 +6,12 @@
     <!-- Incluye el script para descargar pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
-    <style>
-            #chart {
-                max-width: 600px;
-                margin: auto;
-            }
-        </style>
+
+
+
 </head>
 <body>
+    {{#cantJugadores}}
     <div class="container">
         <div class="lobby-box">
             <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
@@ -25,29 +23,127 @@
             <div style="display:flex;flex-direction:column">
                  <div id="chart"></div>
                  <button class="btn" id="download-pdf">Descargar como PDF</button>
-                 {{#jugadores}}
+                 {{#cantJugadores}}
                  <p style="display:none" class="jugadores">{{cantidad_usuarios}}</p>
                  <p style="display:none" class="fecha">{{fecha}}</p>
-                 {{/jugadores}}
+                 {{/cantJugadores}}
             </div>
+
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
         </div>
     </div>
 
+
 <script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
 <script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{/cantJugadores}}
 
 
 
-    <div style="display:flex;flex-direction:column">
-        <div id="chart"></div>
-        <button id="download-pdf">Descargar como PDF</button>
+{{#cantPartidas}}
+ <div class="container">
+        <div class="lobby-box">
+            <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
+            <select>
+                <option value="dia">Dia</option>
+                <option value="mes">Mes</option>
+                <option value="anio">Año</option>
+            </select>
+            <div style="display:flex;flex-direction:column">
+                 <div id="chart"></div>
+                 <button class="btn" id="download-pdf">Descargar como PDF</button>
+                 {{#cantPartidas}}
+                 <p style="display:none" class="partidas">{{cantidad_partidas}}</p>
+                 <p style="display:none" class="fecha">{{fecha}}</p>
+                 {{/cantPartidas}}
+            </div>
+
+            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
+        </div>
     </div>
-    {{#jugadores}}
-    <p style="display:none" class="jugadores">{{cantidad_Partidas_Jugadas}}</p>
-    <p style="display:none" class="fecha">{{fecha}}</p>
-    {{/jugadores}}
 
-
-<script src="/ProyectoFinal/public/js/graficos/cantidadPartidasJugadas.js"></script>
+<script src="/ProyectoFinal/public/js/graficos/cantidadDePartidas.js"></script>
 <script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{/cantPartidas}}
+
+{{#cantPreguntas}}
+ <div class="container">
+        <div class="lobby-box">
+            <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
+            <select>
+                <option value="dia">Dia</option>
+                <option value="mes">Mes</option>
+                <option value="anio">Año</option>
+            </select>
+            <div style="display:flex;flex-direction:column">
+                 <div id="chart"></div>
+                 <button class="btn" id="download-pdf">Descargar como PDF</button>
+                 {{#cantPreguntas}}
+                 <p style="display:none" class="preguntas">{{cantidad_preguntas}}</p>
+                 <p style="display:none" class="fecha">{{fecha}}</p>
+                 {{/cantPreguntas}}
+            </div>
+
+            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
+        </div>
+    </div>
+
+<script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
+<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{/cantPreguntas}}
+
+
+{{#cantPreguntasCreadas}}
+ <div class="container">
+        <div class="lobby-box">
+            <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
+            <select>
+                <option value="dia">Dia</option>
+                <option value="mes">Mes</option>
+                <option value="anio">Año</option>
+            </select>
+            <div style="display:flex;flex-direction:column">
+                 <div id="chart"></div>
+                 <button class="btn" id="download-pdf">Descargar como PDF</button>
+                 {{#cantPreguntasCreadas}}
+                 <p style="display:none" class="preguntasCreadas">{{cantidad_preguntas_creadas}}</p>
+                 <p style="display:none" class="fecha">{{fecha}}</p>
+                 {{/cantPreguntasCreadas}}
+            </div>
+
+            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
+        </div>
+    </div>
+
+<script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntasCreadas.js"></script>
+<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{/cantPreguntasCreadas}}
+
+{{#cantPais}}
+ <div class="container">
+        <div class="lobby-box">
+            <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
+            <select>
+                <option value="dia">Dia</option>
+                <option value="mes">Mes</option>
+                <option value="anio">Año</option>
+            </select>
+            <div style="display:flex;flex-direction:column">
+                 <div id="chart"></div>
+                 <button class="btn" id="download-pdf">Descargar como PDF</button>
+                 {{#cantPais}}
+                 <p style="display:none" class="pais">{{cantidad_pais}}</p>
+                 <p style="display:none" class="fecha">{{fecha}}</p>
+                 {{/cantPais}}
+            </div>
+
+            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
+        </div>
+    </div>
+
+<script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadoresPorPais.js"></script>
+<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+{{/cantPais}}
+
+
+
