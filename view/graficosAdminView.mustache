@@ -7,47 +7,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
     <style>
-            #chart {
-                max-width: 600px;
-                margin: auto;
-            }
-        </style>
+        #chart {
+           max-width: 600px;
+           margin: auto;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="lobby-box">
             <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
-            <select>
-                <option value="dia">Dia</option>
-                <option value="mes">Mes</option>
-                <option value="anio">Año</option>
-            </select>
+            {{#usuarios}}
+            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getUsuariosRegistrados" method="POST">
+            {{/usuarios}}
+            {{#partidas}}
+            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPartidasRegistrados" method="POST">
+            {{/partidas}}
+                <select id="filtroSelect" name="filtro">
+                    <option>Selecciona un filtro</option>
+                    <option value="dia">Ultimo dia</option>
+                    <option value="semana">Ultima semana</option>
+                    <option value="mes">Ultimo mes</option>
+                    <option value="anio">Ultimo año</option>
+                </select>
+            </form>
+            {{#usuarios}}
             <div style="display:flex;flex-direction:column">
                  <div id="chart"></div>
                  <button class="btn" id="download-pdf">Descargar como PDF</button>
-                 {{#jugadores}}
+                 {{#usuariosFiltro}}
                  <p style="display:none" class="jugadores">{{cantidad_usuarios}}</p>
-                 <p style="display:none" class="fecha">{{fecha}}</p>
-                 {{/jugadores}}
+                 <p style="display:none" class="fecha">{{dia}}</p>
+                 {{/usuariosFiltro}}
             </div>
+            {{/usuarios}}
+            {{#partidas}}
+                        <div style="display:flex;flex-direction:column">
+                             <div id="chart"></div>
+                             <button class="btn" id="download-pdf">Descargar como PDF</button>
+                             {{#partidasFiltro}}
+                             <p style="display:none" class="jugadores">{{cantidad_partidas}}</p>
+                             <p style="display:none" class="fecha">{{dia}}</p>
+                             {{/partidasFiltro}}
+                 </div>
+            {{/partidas}}
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
         </div>
     </div>
 
+<script src="/ProyectoFinal/public/js/graficos/filtro.js"></script>
 <script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
-<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
-
-
-
-    <div style="display:flex;flex-direction:column">
-        <div id="chart"></div>
-        <button id="download-pdf">Descargar como PDF</button>
-    </div>
-    {{#jugadores}}
-    <p style="display:none" class="jugadores">{{cantidad_Partidas_Jugadas}}</p>
-    <p style="display:none" class="fecha">{{fecha}}</p>
-    {{/jugadores}}
-
-
-<script src="/ProyectoFinal/public/js/graficos/cantidadPartidasJugadas.js"></script>
 <script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>

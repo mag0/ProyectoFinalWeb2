@@ -69,7 +69,45 @@ class AdminController
             ["edad" =>true,"usuariosEdad" =>$usuarios]);
     }
 
+    public function getUsuariosRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $usuarios = $this->model->getUsuariosRegistradosDia();
+            }else if ($_POST['filtro']=="semana") {
+                $usuarios = $this->model->getUsuariosRegistradosSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $usuarios = $this->model->getUsuariosRegistradosMes();
+            } else {
+                $usuarios = $this->model->getUsuariosRegistradosAnio();
+            }
+        }else{
+            $usuarios = $this->model->getUsuariosRegistradosDia();
+        }
 
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["usuariosFiltro" =>$usuarios, "usuarios"=>true]);
+    }
+
+    public function getPartidasRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $partidas = $this->model->getPartidasDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $partidas = $this->model->getPartidasDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $partidas = $this->model->getPartidasDelMes();
+            } else {
+                $partidas = $this->model->getPartidasDelAnio();
+            }
+        }else{
+            $partidas = $this->model->getPartidasDelDia();
+        }
+
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["partidasFiltro" =>$partidas, "partidas"=>true]);
+    }
 
    /* public function getCantidadPartidasJugadas()
     {

@@ -51,6 +51,63 @@ class AdminModel
                                         WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'medio' ELSE 'jubilados' END AS grupo_edad,
                                         COUNT(*) AS cantidad_usuarios FROM usuario GROUP BY grupo_edad;");
     }
+
+    public function getUsuariosRegistradosDia()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%m/%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
+                                        usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getUsuariosRegistradosSemana()
+    {
+            return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%m/%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
+                                            usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 7 DAY GROUP BY dia ORDER BY dia");
+    }
+    public function getUsuariosRegistradosMes()
+    {
+            return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%m/%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
+                                            usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getUsuariosRegistradosAnio()
+    {
+        return $this->database->query("SELECT MONTHNAME(u.fechaRegistro) AS dia,COUNT(u.id) AS cantidad_usuarios FROM 
+                                        usuario u WHERE u.fechaRegistro >= CURDATE() - INTERVAL 1 YEAR GROUP BY  DATE(u.fechaRegistro) 
+                                                                                                       ORDER BY DATE(u.fechaRegistro);");
+    }
+
+    public function getPartidasDelDia()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
+                                        partida WHERE fecha >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getPartidasDeLaSemana()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
+                                            partida WHERE fecha >= CURDATE() - INTERVAL 7 DAY GROUP BY dia ORDER BY dia");
+    }
+    public function getPartidasDelMes()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
+                                            partida WHERE fecha >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getPartidasDelAnio()
+    {
+        return $this->database->query("SELECT 
+                                    YEAR(fecha) AS anio, 
+                                    MONTHNAME(fecha) AS dia, 
+                                    COUNT(*) AS cantidad_partidas 
+                                FROM 
+                                    partida 
+                                WHERE 
+                                    fecha >= CURDATE() - INTERVAL 365 DAY 
+                                GROUP BY 
+                                    anio, dia 
+                                ORDER BY 
+                                    anio, MONTH(fecha)");
+    }
 }
 
 
