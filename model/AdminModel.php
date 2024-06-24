@@ -105,18 +105,8 @@ class AdminModel
 
     public function getPartidasDelAnio()
     {
-        return $this->database->query("SELECT 
-                                    YEAR(fecha) AS anio, 
-                                    MONTHNAME(fecha) AS dia, 
-                                    COUNT(*) AS cantidad_partidas 
-                                FROM 
-                                    partida 
-                                WHERE 
-                                    fecha >= CURDATE() - INTERVAL 365 DAY 
-                                GROUP BY 
-                                    anio, dia 
-                                ORDER BY 
-                                    anio, MONTH(fecha)");
+        return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_partidas 
+                                FROM partida WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY anio, MONTH(fecha)");
     }
 
     public function getPreguntasDelDia()
@@ -138,18 +128,8 @@ class AdminModel
 
     public function getPreguntasDelAnio()
     {
-        return $this->database->query("SELECT 
-                                    YEAR(fecha) AS anio, 
-                                    MONTHNAME(fecha) AS dia, 
-                                    COUNT(*) AS cantidad_preguntas 
-                                FROM 
-                                    pregunta 
-                                WHERE 
-                                    fecha >= CURDATE() - INTERVAL 365 DAY 
-                                GROUP BY 
-                                    anio, dia 
-                                ORDER BY 
-                                    anio, MONTH(fecha)");
+        return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_preguntas FROM 
+                                    pregunta WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fecha)");
     }
 }
 

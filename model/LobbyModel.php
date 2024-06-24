@@ -24,6 +24,16 @@ class LobbyModel
         return $this->database->query("SELECT COUNT(*) FROM partida WHERE id_usuario = '$idUsuario'");
     }
 
+    public function usarMoneda($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET monedas = monedas - 1 WHERE id = '$idUsuario'");
+    }
+
+    public function sumarTrampa($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET trampas = trampas + 1 WHERE id = '$idUsuario'");
+    }
+
     public function getUsuarios()
     {
         return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario NOT IN ('admin', 'editor') ORDER BY puntaje_total DESC");

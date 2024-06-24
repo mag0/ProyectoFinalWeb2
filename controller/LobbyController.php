@@ -16,24 +16,48 @@ class LobbyController
         $_SESSION['numeroPregunta'] = 1;
         $_SESSION['puntajeActual'] = 0;
 
-       
-        if (!isset($_SESSION['usuarioActivo']['id'])) {
-            $_SESSION['usuarioActivo']['id'] = 0;
-        }
+        $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario']);
 
-        $partidas = $this->model->getPartidas($_SESSION['usuarioActivo']['id']);
+        $partidas = $this->model->getPartidas($usuario[0]['id']);
 
         foreach ($partidas as $indice => $partida) {
             $partidas[$indice]['numeroDePartida'] = $indice + 1;
         }
 
-        $puntajeMaximo = $this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])[0]['puntaje_total'];
-
         $this->presenter->render("view/lobbyView.mustache", [
-            "usuarioActivo" => $_SESSION['usuarioActivo'],
-            "puntaje" => $puntajeMaximo,
+            "usuarioActivo" => $usuario,
             "partidas" => $partidas
         ]);
+    }
+
+    public function comprarTrampa()
+    {
+        $_SESSION['numeroPregunta'] = 1;
+        $_SESSION['puntajeActual'] = 0;
+
+        $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario']);
+
+        $partidas = $this->model->getPartidas($usuario[0]['id']);
+
+        foreach ($partidas as $indice => $partida) {
+            $partidas[$indice]['numeroDePartida'] = $indice + 1;
+        }
+
+        if($this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0]['monedas'] == 0){
+            $this->presenter->render("view/lobbyView.mustache", [
+                "usuarioActivo" => $usuario,
+                "partidas" => $partidas,
+                "sinMonedas" => "No tenes monedas capo"
+            ]);
+        }else{
+            $this->model->usarMoneda($_SESSION['usuarioActivo']['id']);
+            $this->model->sumarTrampa($_SESSION['usuarioActivo']['id']);
+            $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario']);
+            $this->presenter->render("view/lobbyView.mustache", [
+                "usuarioActivo" => $usuario,
+                "partidas" => $partidas
+            ]);
+        }
     }
 
     public function verRanking()

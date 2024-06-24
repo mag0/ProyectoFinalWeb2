@@ -3,7 +3,6 @@ class PartidaController
 {
     private $model;
     private $presenter;
-    private $pregunta;
 
     public function __construct($model, $presenter)
     {
@@ -14,26 +13,29 @@ class PartidaController
     public function get()
     {
         $dificultadActual = $this->asignarDificultad();
-        $this->pregunta = $this->model->getPregunta($dificultadActual, $_SESSION['usuarioActivo']['id'])[0];
-        $_SESSION['respuestaCorrecta'] = $this->pregunta['respuesta_correcta'];
-        $_SESSION['pregunta'] = $this->pregunta;
+        $pregunta = $this->model->getPregunta($dificultadActual, $_SESSION['usuarioActivo']['id'])[0];
+        $_SESSION['respuestaCorrecta'] = $pregunta['respuesta_correcta'];
+        $_SESSION['pregunta'] = $pregunta;
         $colorDificultad = $this->asignarColorADificultad($_SESSION['pregunta']);
         $this->model->marcarPregunta($_SESSION['pregunta']['id'],$_SESSION['usuarioActivo']['id']);
 
         $this->model->cambiarDificultad($_SESSION['pregunta']['id'], $this->asignarDificultadPorCantidadDeVecesRespondidas());
 
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
-            "pregunta" =>$this->pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
+            "pregunta" => $pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
     }
     public function verificarRespuesta()
     {
         $this->model->sumarPregunta($_SESSION['pregunta']['id']);
+
         if(isset($_GET['tiempo']) || $_POST['respuesta'] != $_SESSION['respuestaCorrecta']){
+
                 if(isset($_GET['tiempo'])){
                     $mensaje = 'Tiempo agotado';
                 }else{
                     $mensaje = 'Respuesta Incorrecta';
                 }
+
                 $this->model->sumarPreguntaAlUsuario($_SESSION['usuarioActivo']['id']);
                 $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_SESSION['respuestaCorrecta']);
                 $partida = array(
@@ -48,6 +50,7 @@ class PartidaController
                 $this->model->guardarPartida($partida);
                 $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
                     "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta, "mensaje" =>$mensaje]);
+
         }else{
             $_SESSION['puntaje'] += 1;
             $_SESSION['puntajeActual'] += 1;
@@ -65,6 +68,22 @@ class PartidaController
         $this->model->reportarPregunta($_GET['idPregunta']);
         $mensaje = "Revisaremos la pregunta cuanto antes, disculpe las molestias";
         $this->presenter->render("view/resultadoPartidaView.mustache", ["reporte" =>$mensaje]);
+    }
+
+    public function usarTrampa()
+    {
+        if($this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0]['trampas'] == 0){
+            $mensaje = "No tenes trampas capo";
+            $this->presenter->render("view/resultadoPartidaView.mustache", ["sinTrampas" =>$mensaje]);
+        }else{
+            $this->model->usarTrampa($_SESSION['usuarioActivo']['id']);
+            $this->model->sumarPregunta($_SESSION['pregunta']['id']);
+            $_SESSION['puntaje'] += 1;
+            $_SESSION['puntajeActual'] += 1;
+            $_SESSION['numeroPregunta'] += 1;
+            header('location:/ProyectoFinal/index.php?controller=partida&action=get');
+            exit();
+        }
     }
 
     public function getRespuestaCorrectaEnTexto($respuesta, $numeroRespuesta)
@@ -86,7 +105,7 @@ class PartidaController
         return $respuestaCorrecta;
     }
 
-    public function asignarColorADificultad($dificultad)
+    public function asignarColorADificultad($dificultad): string
     {
         $colores = [
             "facil" => "lightgreen",
@@ -96,7 +115,7 @@ class PartidaController
 
         return $colores[$dificultad['dificultad']] ?? "grey";
     }
-    private function asignarDificultad()
+    private function asignarDificultad(): string
     {
         if($_SESSION['numeroPregunta'] <= 10){
             $dificultadActual = 'facil';
@@ -108,7 +127,7 @@ class PartidaController
         return $dificultadActual;
     }
 
-    private function asignarDificultadPorCantidadDeVecesRespondidas()
+    private function asignarDificultadPorCantidadDeVecesRespondidas(): string
     {
         if($_SESSION['pregunta']['respondidas']==0){
             $porcentaje = 0;

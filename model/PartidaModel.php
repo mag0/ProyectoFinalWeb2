@@ -9,6 +9,11 @@ class PartidaModel
         $this->database = $database;
     }
 
+    public function getUsuario($nombreUsuario)
+    {
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario = '$nombreUsuario'");
+    }
+
     public function getPregunta($dificultadActual, $idUsuario)
     {
         $resultado = $this->database->query("SELECT p.*, c.nombre AS categoria_nombre, c.color AS categoria_color 
@@ -57,6 +62,11 @@ class PartidaModel
     public function reemplazarPuntajeMaximo($puntaje, $idUsuario)
     {
         $this->database->execute("UPDATE usuario SET puntaje_total = '$puntaje' WHERE id = '$idUsuario'");
+    }
+
+    public function usarTrampa($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET trampas = trampas - 1 WHERE id = '$idUsuario'");
     }
 
     public function marcarPregunta($idPregunta, $idUsuario)

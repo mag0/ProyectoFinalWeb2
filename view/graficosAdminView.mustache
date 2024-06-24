@@ -28,12 +28,14 @@
              <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPreguntasRegistradas" method="POST">
             {{/preguntas}}
                 <select id="filtroSelect" name="filtro">
+                    <option>Seleccione un filtro</option>
                     <option value="dia">Ultimo dia</option>
                     <option value="semana">Ultima semana</option>
                     <option value="mes">Ultimo mes</option>
                     <option value="anio">Ultimo año</option>
                 </select>
             </form>
+
             {{#usuarios}}
             <div style="display:flex;flex-direction:column">
                  <div id="chart"></div>
@@ -41,32 +43,33 @@
                  {{#usuariosFiltro}}
                  <p style="display:none" class="jugadores">{{cantidad_usuarios}}</p>
                  <p style="display:none" class="fecha">{{dia}}</p>
-
                  {{/usuariosFiltro}}
             </div>
             <script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
             {{/usuarios}}
+
             {{#partidas}}
-                        <div style="display:flex;flex-direction:column">
-                             <div id="chart"></div>
-                             <button class="btn" id="download-pdf">Descargar como PDF</button>
-                             {{#partidasFiltro}}
-                             <p style="display:none" class="partidas">{{cantidad_partidas}}</p>
-                             <p style="display:none" class="fecha">{{dia}}</p>
-                             {{/partidasFiltro}}
-                        </div>
-                        <script src="/ProyectoFinal/public/js/graficos/cantidadDePartidas.js"></script>
+            <div style="display:flex;flex-direction:column">
+                 <div id="chart"></div>
+                 <button class="btn" id="download-pdf">Descargar como PDF</button>
+                 {{#partidasFiltro}}
+                 <p style="display:none" class="partidas">{{cantidad_partidas}}</p>
+                 <p style="display:none" class="fecha">{{dia}}</p>
+            {{/partidasFiltro}}
+            </div>
+            <script src="/ProyectoFinal/public/js/graficos/cantidadDePartidas.js"></script>
             {{/partidas}}
+
              {{#preguntas}}
-                                    <div style="display:flex;flex-direction:column">
-                                         <div id="chart"></div>
-                                         <button class="btn" id="download-pdf">Descargar como PDF</button>
-                                         {{#preguntasFiltro}}
-                                         <p style="display:none" class="preguntas">{{cantidad_preguntas}}</p>
-                                         <p style="display:none" class="fecha">{{dia}}</p>
-                                         {{/preguntasFiltro}}
-                                    </div>
-                                    <script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
+             <div style="display:flex;flex-direction:column">
+                  <div id="chart"></div>
+                  <button class="btn" id="download-pdf">Descargar como PDF</button>
+                  {{#preguntasFiltro}}
+                  <p style="display:none" class="preguntas">{{cantidad_preguntas}}</p>
+                  <p style="display:none" class="fecha">{{dia}}</p>
+                  {{/preguntasFiltro}}
+             </div>
+             <script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
              {{/preguntas}}
 
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>

@@ -31,21 +31,22 @@ CREATE TABLE `partida` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `puntaje_obtenido` int(11) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `resultado`  boolean NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `partida`
 --
 
-INSERT INTO `partida` (`id`, `id_usuario`, `puntaje_obtenido`, `fecha`) VALUES
-(1, 1, 85, '2024-06-01'),
-(2, 1, 90, '2024-05-02'),
-(3, 1, 75, '2024-01-03'),
-(4, 1, 75, '2024-02-03'),
-(5, 1, 75, '2024-03-03'),
-(6, 1, 73, '2024-04-03'),
-(7, 12, 7, '2024-06-14');
+INSERT INTO `partida` (`id`, `id_usuario`, `puntaje_obtenido`, `fecha`, `resultado`) VALUES
+(1, 1, 85, '2024-06-01', true),
+(2, 1, 90, '2024-05-02', false),
+(3, 1, 75, '2024-01-03', false),
+(4, 1, 75, '2024-02-03', true),
+(5, 1, 75, '2024-03-03', true),
+(6, 1, 73, '2024-04-03', true),
+(7, 12, 7, '2024-06-14', true);
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,9 @@ CREATE TABLE `usuario` (
   `admin` boolean DEFAULT false,
   `editor` boolean DEFAULT false,
   `preguntas_respondidas` INT DEFAULT 0,
-  `preguntas_bien_respondidas` INT DEFAULT 0
+  `preguntas_bien_respondidas` INT DEFAULT 0,
+  `monedas` INT DEFAULT 5,
+  `trampas` INT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

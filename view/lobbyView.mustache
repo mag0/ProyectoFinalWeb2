@@ -5,7 +5,8 @@
     <div class="container">
             <div class="lobby-box">
                 <h1>Bienvenido {{nombreUsuario}}</h1>
-                <p>Puntaje mas alto: {{puntaje}}</p>
+                <p>Puntaje mas alto conseguido: {{puntaje_total}}</p>
+                <p>Trampas: {{trampas}} - Monedas: {{monedas}}</p>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=partida&action=get'">Crear Nueva
                     Partida</button>
                 <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=verRanking'">Ver Ranking</button>
@@ -22,7 +23,11 @@
                         {{/partidas}}
                     </ul>
                 </div>
-                <a href="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta"><h3>Sugerir pregunta</h3></a>
+                <a href="/ProyectoFinal/index.php?controller=lobby&action=comprarTrampa"><h3>Comprar trampa</h3></a>
+                {{#sinMonedas}}
+                    <p style="color:red">{{sinMonedas}}</p>
+                {{/sinMonedas}}
+                <a href="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta">Sugerir pregunta</a>
             </div>
         </div>
         {{/usuarioActivo}}

@@ -13,7 +13,6 @@
 
                     <div class="countdown">
                             <div id="countdown">30</div>
-                            <span>segundos</span>
                         </div>
                     <p>{{texto_pregunta}}</p>
                     <form action="/ProyectoFinal/index.php?controller=partida&action=verificarRespuesta" method="post">
@@ -23,6 +22,7 @@
                         <button class="btn" name="respuesta" value="3">{{respuesta_3}}</button>
                         <button class="btn" name="respuesta" value="4">{{respuesta_4}}</button>
                     </form>
+                    <a href="/ProyectoFinal/index.php?controller=partida&action=usarTrampa">Usar trampa</a>
                     <a href="/ProyectoFinal/index.php?controller=partida&action=reportarPregunta&idPregunta={{id}}">Reportar</a>
                 </div>
             </div>
