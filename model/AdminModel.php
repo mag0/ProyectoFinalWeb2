@@ -118,15 +118,39 @@ class AdminModel
                                 ORDER BY 
                                     anio, MONTH(fecha)");
     }
+
+    public function getPreguntasDelDia()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_preguntas FROM 
+                                        pregunta WHERE fecha >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getPreguntasDeLaSemana()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_preguntas FROM 
+                                            pregunta WHERE fecha >= CURDATE() - INTERVAL 7 DAY GROUP BY dia ORDER BY dia");
+    }
+    public function getPreguntasDelMes()
+    {
+        return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_preguntas FROM 
+                                            pregunta WHERE fecha >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
+    }
+
+    public function getPreguntasDelAnio()
+    {
+        return $this->database->query("SELECT 
+                                    YEAR(fecha) AS anio, 
+                                    MONTHNAME(fecha) AS dia, 
+                                    COUNT(*) AS cantidad_preguntas 
+                                FROM 
+                                    pregunta 
+                                WHERE 
+                                    fecha >= CURDATE() - INTERVAL 365 DAY 
+                                GROUP BY 
+                                    anio, dia 
+                                ORDER BY 
+                                    anio, MONTH(fecha)");
+    }
 }
 
 
-    /*public function cantidadDePartidasJugadas()
-    {
-        return $this->database->query("SELECT DATE(fecha) AS fecha, COUNT(*) AS cantidad_Partidas_Jugadas
-            FROM partida
-            GROUP BY DATE(fecha)
-            ORDER BY fecha");
-    }
-
-}*/

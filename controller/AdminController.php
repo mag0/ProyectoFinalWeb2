@@ -134,10 +134,24 @@ class AdminController
             ["partidasFiltro" =>$partidas, "partidas"=>true]);
     }
 
-   /* public function getCantidadPartidasJugadas()
+    public function getPreguntasRegistradas()
     {
-        $cantidadDePartidasJugadas = $this->model->getCantidadPartidasJugadas();
-        $this->presenter->render("view/graficosAdminView.mustache", ["jugadores" =>  $cantidadDePartidasJugadas , "partidas" => true]);
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $partidas = $this->model->getPreguntasDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $partidas = $this->model->getPreguntasDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $partidas = $this->model->getPreguntasDelMes();
+            } else {
+                $partidas = $this->model->getPreguntasDelAnio();
+            }
+        }else{
+            $partidas = $this->model->getPreguntasDelDia();
+        }
+
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["preguntasFiltro" =>$partidas, "preguntas"=>true]);
     }
-*/
+
 }

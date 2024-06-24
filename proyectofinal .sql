@@ -65,44 +65,45 @@ CREATE TABLE `pregunta` (
   `dificultad` text NOT NULL,
   `reportada` boolean DEFAULT false,
   `respondidas` int(11) DEFAULT 0,
-  `respondidas_correctamente` int(11) DEFAULT 0
+  `respondidas_correctamente` int(11) DEFAULT 0,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pregunta`
 --
 
-INSERT INTO `pregunta` (`id`, `id_categoria`, `texto_pregunta`, `respuesta_correcta`, `respuesta_1`, `respuesta_2`, `respuesta_3`, `respuesta_4`, `dificultad`, `reportada`, `respondidas`,`respondidas_correctamente`) VALUES
-(1, 2, '¿En qué año llegó Cristóbal Colón a América?', 3, '1500', '1498', '1492', '1482', 'facil', false, 10, 8),
-(2, 3, '¿Cuántos jugadores hay en un equipo de fútbol?', 2, '10', '11', '12', '9', 'facil', false, 10, 5),
-(3, 4, '¿Cuál es la capital de Francia?', 4, 'Madrid', 'Roma', 'Londres', 'París', 'facil', false, 10, 1),
-(4, 1, '¿Cuál es el río más largo del mundo?', 4, 'Nilo', 'Mississippi', 'Yangtsé', 'Amazonas', 'facil', false, 0, 0),
-(5, 5, '¿Qué planeta es conocido como el planeta rojo?', 4, 'Júpiter', 'Saturno', 'Venus', 'Marte', 'facil', true, 0, 0),
-(6, 9, '¿Quién pintó la Mona Lisa?', 4, 'Pablo Picasso', 'Vincent van Gogh', 'Claude Monet', 'Leonardo da Vinci', 'facil', false, 0, 0),
-(7, 2, '¿Qué evento inició la Segunda Guerra Mundial?', 4, 'Invasión de Francia', 'Ataque a Pearl Harbor', 'Batalla de Stalingrado', 'Invasión de Polonia', 'facil', false, 0, 0),
-(8, 4, '¿Quién escribió "Don Quijote de la Mancha"?', 4, 'Gabriel García Márquez', 'Federico García Lorca', 'Jorge Luis Borges', 'Miguel de Cervantes', 'facil', false, 0, 0),
-(9, 3, '¿En qué año se celebraron los primeros Juegos Olímpicos modernos?', 3, '1900', '1888', '1896', '1904', 'facil', false, 0, 0),
-(10, 5, '¿Cuál es el elemento químico con símbolo O?', 4, 'Osmio', 'Oro', 'Oganesón', 'Oxígeno', 'facil', false, 0, 0),
-(11, 1, '¿Cuál es el país más grande del mundo?', 4, 'Canadá', 'China', 'Estados Unidos', 'Rusia', 'normal', true, 0, 0),
-(12, 2, '¿Quién fue el primer presidente de Estados Unidos?', 4, 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams', 'George Washington', 'normal', false, 0, 0),
-(13, 3, '¿Qué equipo ha ganado más veces la Champions League?', 4, 'Barcelona', 'Manchester United', 'AC Milan', 'Real Madrid', 'normal', false, 0, 0),
-(14, 4, '¿Quién es el autor de "Cien años de soledad"?', 4, 'Mario Vargas Llosa', 'Isabel Allende', 'Julio Cortázar', 'Gabriel García Márquez', 'normal', false, 0, 0),
-(15, 5, '¿Qué gas es más abundante en la atmósfera terrestre?', 4, 'Oxígeno', 'Dióxido de carbono', 'Argón', 'Nitrógeno', 'normal', false, 0, 0),
-(16, 9, '¿En qué museo se encuentra la pintura "La noche estrellada"?', 4, 'Museo del Louvre', 'Museo del Prado', 'Galería Nacional de Arte', 'Museo de Arte Moderno', 'normal', false, 0, 0),
-(17, 2, '¿En qué año cayó el Muro de Berlín?', 4, '1985', '1991', '1987', '1989', 'normal', false, 0, 0),
-(18, 4, '¿Quién escribió "La Odisea"?', 4, 'Sófocles', 'Virgilio', 'Eurípides', 'Homero', 'normal', true, 0, 0),
-(19, 3, '¿En qué deporte se utiliza una raqueta y una pelota amarilla?', 4, 'Bádminton', 'Squash', 'Racquetball', 'Tenis', 'normal', false, 0, 0),
-(20, 5, '¿Cuál es el órgano más grande del cuerpo humano?', 4, 'Hígado', 'Corazón', 'Pulmones', 'Piel', 'normal', false, 0, 0),
-(21, 2, '¿Quién lideró la independencia de India?', 4, 'Jawaharlal Nehru', 'Indira Gandhi', 'Subhas Chandra Bose', 'Mahatma Gandhi', 'dificil', false, 0, 0),
-(22, 1, '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'dificil', false, 0, 0),
-(23, 4, '¿Cuál es el idioma más hablado en el mundo?', 4, 'Español', 'Inglés', 'Hindú', 'Mandarín', 'dificil', false, 0, 0),
-(24, 5, '¿Qué teoría científica fue propuesta por Albert Einstein en 1905?', 4, 'Teoría del Big Bang', 'Teoría de la Evolución', 'Teoría de la Deriva Continental', 'Teoría de la Relatividad', 'dificil', false, 0, 0),
-(25, 9, '¿Quién pintó "El grito"?', 4, 'Salvador Dalí', 'Pablo Picasso', 'Henri Matisse', 'Edvard Munch', 'dificil', false, 0, 0),
-(26, 2, '¿Qué faraón egipcio fue enterrado en la tumba KV62?', 4, 'Ramsés II', 'Cleopatra', 'Akhenatón', 'Tutankamón', 'dificil', false, 0, 0),
-(27, 4, '¿En qué año comenzó la Revolución Francesa?', 4, '1792', '1804', '1776', '1789', 'dificil', false, 0, 0),
-(28, 3, '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'dificil', false, 0, 0),
-(29, 5, '¿Cuál es la fórmula química del ozono?', 4, 'O2', 'O4', 'H2O', 'O3', 'dificil', false, 0, 0),
-(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true, 0, 0);
+INSERT INTO `pregunta` (`id`, `id_categoria`, `texto_pregunta`, `respuesta_correcta`, `respuesta_1`, `respuesta_2`, `respuesta_3`, `respuesta_4`, `dificultad`, `reportada`, `respondidas`,`respondidas_correctamente`,`fecha`) VALUES
+(1, 2, '¿En qué año llegó Cristóbal Colón a América?', 3, '1500', '1498', '1492', '1482', 'facil', false, 10, 8,'2024-06-01'),
+(2, 3, '¿Cuántos jugadores hay en un equipo de fútbol?', 2, '10', '11', '12', '9', 'facil', false, 10, 5,'2024-06-01'),
+(3, 4, '¿Cuál es la capital de Francia?', 4, 'Madrid', 'Roma', 'Londres', 'París', 'facil', false, 10, 1,'2024-06-01'),
+(4, 1, '¿Cuál es el río más largo del mundo?', 4, 'Nilo', 'Mississippi', 'Yangtsé', 'Amazonas', 'facil', false, 0, 0,'2024-06-01'),
+(5, 5, '¿Qué planeta es conocido como el planeta rojo?', 4, 'Júpiter', 'Saturno', 'Venus', 'Marte', 'facil', true, 0, 0,'2024-06-01'),
+(6, 9, '¿Quién pintó la Mona Lisa?', 4, 'Pablo Picasso', 'Vincent van Gogh', 'Claude Monet', 'Leonardo da Vinci', 'facil', false, 0, 0,'2024-06-01'),
+(7, 2, '¿Qué evento inició la Segunda Guerra Mundial?', 4, 'Invasión de Francia', 'Ataque a Pearl Harbor', 'Batalla de Stalingrado', 'Invasión de Polonia', 'facil', false, 0, 0,'2024-06-01'),
+(8, 4, '¿Quién escribió "Don Quijote de la Mancha"?', 4, 'Gabriel García Márquez', 'Federico García Lorca', 'Jorge Luis Borges', 'Miguel de Cervantes', 'facil', false, 0, 0,'2024-06-01'),
+(9, 3, '¿En qué año se celebraron los primeros Juegos Olímpicos modernos?', 3, '1900', '1888', '1896', '1904', 'facil', false, 0, 0,'2024-06-01'),
+(10, 5, '¿Cuál es el elemento químico con símbolo O?', 4, 'Osmio', 'Oro', 'Oganesón', 'Oxígeno', 'facil', false, 0, 0,'2024-06-01'),
+(11, 1, '¿Cuál es el país más grande del mundo?', 4, 'Canadá', 'China', 'Estados Unidos', 'Rusia', 'normal', true, 0, 0,'2024-06-01'),
+(12, 2, '¿Quién fue el primer presidente de Estados Unidos?', 4, 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams', 'George Washington', 'normal', false, 0, 0,'2024-06-01'),
+(13, 3, '¿Qué equipo ha ganado más veces la Champions League?', 4, 'Barcelona', 'Manchester United', 'AC Milan', 'Real Madrid', 'normal', false, 0, 0,'2024-06-01'),
+(14, 4, '¿Quién es el autor de "Cien años de soledad"?', 4, 'Mario Vargas Llosa', 'Isabel Allende', 'Julio Cortázar', 'Gabriel García Márquez', 'normal', false, 0, 0,'2024-06-01'),
+(15, 5, '¿Qué gas es más abundante en la atmósfera terrestre?', 4, 'Oxígeno', 'Dióxido de carbono', 'Argón', 'Nitrógeno', 'normal', false, 0, 0,'2024-06-01'),
+(16, 9, '¿En qué museo se encuentra la pintura "La noche estrellada"?', 4, 'Museo del Louvre', 'Museo del Prado', 'Galería Nacional de Arte', 'Museo de Arte Moderno', 'normal', false, 0, 0,'2024-06-01'),
+(17, 2, '¿En qué año cayó el Muro de Berlín?', 4, '1985', '1991', '1987', '1989', 'normal', false, 0, 0,'2024-06-01'),
+(18, 4, '¿Quién escribió "La Odisea"?', 4, 'Sófocles', 'Virgilio', 'Eurípides', 'Homero', 'normal', true, 0, 0,'2024-06-01'),
+(19, 3, '¿En qué deporte se utiliza una raqueta y una pelota amarilla?', 4, 'Bádminton', 'Squash', 'Racquetball', 'Tenis', 'normal', false, 0, 0,'2024-06-01'),
+(20, 5, '¿Cuál es el órgano más grande del cuerpo humano?', 4, 'Hígado', 'Corazón', 'Pulmones', 'Piel', 'normal', false, 0, 0,'2024-06-01'),
+(21, 2, '¿Quién lideró la independencia de India?', 4, 'Jawaharlal Nehru', 'Indira Gandhi', 'Subhas Chandra Bose', 'Mahatma Gandhi', 'dificil', false, 0, 0,'2024-06-01'),
+(22, 1, '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'dificil', false, 0, 0,'2024-06-01'),
+(23, 4, '¿Cuál es el idioma más hablado en el mundo?', 4, 'Español', 'Inglés', 'Hindú', 'Mandarín', 'dificil', false, 0, 0,'2024-04-01'),
+(24, 5, '¿Qué teoría científica fue propuesta por Albert Einstein en 1905?', 4, 'Teoría del Big Bang', 'Teoría de la Evolución', 'Teoría de la Deriva Continental', 'Teoría de la Relatividad', 'dificil', false, 0, 0,'2024-06-01'),
+(25, 9, '¿Quién pintó "El grito"?', 4, 'Salvador Dalí', 'Pablo Picasso', 'Henri Matisse', 'Edvard Munch', 'dificil', false, 0, 0,'2024-06-02'),
+(26, 2, '¿Qué faraón egipcio fue enterrado en la tumba KV62?', 4, 'Ramsés II', 'Cleopatra', 'Akhenatón', 'Tutankamón', 'dificil', false, 0, 0,'2024-06-02'),
+(27, 4, '¿En qué año comenzó la Revolución Francesa?', 4, '1792', '1804', '1776', '1789', 'dificil', false, 0, 0,'2024-06-02'),
+(28, 3, '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'dificil', false, 0, 0,'2024-04-02'),
+(29, 5, '¿Cuál es la fórmula química del ozono?', 4, 'O2', 'O4', 'H2O', 'O3', 'dificil', false, 0, 0,'2024-04-02'),
+(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true, 0, 0,'2024-04-02');
 
 -- --------------------------------------------------------
 
