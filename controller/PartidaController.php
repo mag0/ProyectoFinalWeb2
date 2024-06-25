@@ -21,8 +21,14 @@ class PartidaController
 
         $this->model->cambiarDificultad($_SESSION['pregunta']['id'], $this->asignarDificultadPorCantidadDeVecesRespondidas());
 
+        if($this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0]['trampas']){
+            $trampas = true;
+        }else{
+            $trampas = false;
+        }
         $this->presenter->render("view/partidaView.mustache", ["nombreUsuario" =>$_SESSION['nombreUsuario'],
-            "pregunta" => $pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'], "colorDificultad" => $colorDificultad]);
+            "pregunta" => $pregunta, "numeroPregunta" =>$_SESSION['numeroPregunta'],
+            "colorDificultad" => $colorDificultad, "trampas" => $trampas]);
     }
     public function verificarRespuesta()
     {
@@ -44,7 +50,7 @@ class PartidaController
                     "fecha" => date("Y-m-d")
                 );
                 $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
-                if( $this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])<$_SESSION['puntajeActual']){
+                if($this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])<$_SESSION['puntajeActual']){
                     $this->model->reemplazarPuntajeMaximo($_SESSION['puntajeActual'], $_SESSION['usuarioActivo']['id']);
                 }
                 $this->model->guardarPartida($partida);

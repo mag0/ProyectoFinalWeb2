@@ -5,8 +5,6 @@
 {{#pregunta}}
     <div class="container">
                 <div class="lobby-box">
-
-
                     <h1>Pregunta {{numeroPregunta}}</h1>
                     <p>Categoria: <span style="color:white;background-color:{{categoria_color}};padding:5px;border-radius:10px;font-weight:900">{{categoria_nombre}}</span></p>
                     <p>Dificultad: <span style="color:white;background-color:{{colorDificultad}};padding:5px;border-radius:10px;font-weight:900">{{dificultad}}</span></p>
@@ -22,7 +20,9 @@
                         <button class="btn" name="respuesta" value="3">{{respuesta_3}}</button>
                         <button class="btn" name="respuesta" value="4">{{respuesta_4}}</button>
                     </form>
-                    <a href="/ProyectoFinal/index.php?controller=partida&action=usarTrampa">Usar trampa</a>
+                    {{#trampas}}
+                    <a href="/ProyectoFinal/index.php?controller=partida&action=usarTrampa">Usar trampa</a><br>
+                    {{/trampas}}
                     <a href="/ProyectoFinal/index.php?controller=partida&action=reportarPregunta&idPregunta={{id}}">Reportar</a>
                 </div>
             </div>

@@ -104,7 +104,17 @@ INSERT INTO `pregunta` (`id`, `id_categoria`, `texto_pregunta`, `respuesta_corre
 (27, 4, '¿En qué año comenzó la Revolución Francesa?', 4, '1792', '1804', '1776', '1789', 'dificil', false, 0, 0,'2024-06-02'),
 (28, 3, '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'dificil', false, 0, 0,'2024-04-02'),
 (29, 5, '¿Cuál es la fórmula química del ozono?', 4, 'O2', 'O4', 'H2O', 'O3', 'dificil', false, 0, 0,'2024-04-02'),
-(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true, 0, 0,'2024-04-02');
+(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true, 0, 0,'2024-04-02'),
+(31, 1, '¿Cuál es el color del cielo en un día despejado?', 3, 'Verde', 'Rojo', 'Amarillo', 'Azul', 'facil', 0, 0, 0, '2024-02-24'),
+(32, 1, '¿Cuántas patas tiene un perro?', 3, '2', '3', '4', '5', 'facil', 0, 0, 0, '2024-06-24'),
+(33, 2, '¿Qué número viene después del 2?', 3, '4', '5', '3', '1', 'facil', 0, 0, 0, '2024-06-24'),
+(34, 2, '¿Qué animal es conocido como el rey de la selva?', 3, 'Elefante', 'Tigre', 'León', 'Jirafa', 'facil', 0, 0, 0, '2024-03-24'),
+(35, 3, '¿Cuál es el primer mes del año?', 3, 'Marzo', 'Abril', 'Mayo', 'Enero', 'facil', 0, 0, 0, '2024-06-24'),
+(36, 3, '¿Qué planeta es conocido como el planeta rojo?', 3, 'Venus', 'Saturno', 'Marte', 'Júpiter', 'facil', 0, 0, 0, '2024-01-24'),
+(37, 4, '¿Cómo se llama el ratón más famoso de Disney?', 3, 'Jerry', 'Minnie Mouse', 'Mickey Mouse', 'Speedy', 'facil', 0, 0, 0, '2024-06-25'),
+(38, 4, '¿Cuál es el nombre del presidente de Estados Unidos?', 3, 'Donald Trump', 'Barack Obama', 'Joe Biden', 'George Bush', 'facil', 0, 0, 0, '2024-06-24'),
+(39, 5, '¿Cuál es la capital de Francia?', 3, 'Madrid', 'Londres', 'París', 'Berlín', 'facil', 0, 0, 0, '2024-06-24'),
+(40, 5, '¿Cuántas letras tiene el alfabeto?', 3, '25', '24', '26', '27', 'facil', 0, 0, 0, '2024-06-24');
 
 -- --------------------------------------------------------
 
@@ -298,7 +308,7 @@ ALTER TABLE `partida`
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas_vistas`
