@@ -131,6 +131,65 @@ class AdminModel
         return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_preguntas FROM 
                                     pregunta WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fecha)");
     }
+
+    public function getPaisesDelDia()
+    {
+        return $this->database->query("
+        SELECT 
+            pais, 
+            COUNT(*) AS cantidad_usuarios 
+        FROM 
+            usuario 
+        WHERE 
+            fechaRegistro >= CURDATE() - INTERVAL 1 DAY 
+        GROUP BY 
+            pais 
+        ORDER BY 
+            pais
+    ");
+    }
+
+    public function getPaisesDeLaSemana()
+    {
+        return $this->database->query("
+         SELECT 
+            pais, 
+            COUNT(*) AS cantidad_usuarios 
+        FROM 
+            usuario 
+        WHERE 
+            fechaRegistro >= CURDATE() - INTERVAL 7 DAY 
+        GROUP BY 
+            pais 
+        ORDER BY 
+            pais
+    ");
+    }
+    public function getPaisesDelMes()
+    {
+        return $this->database->query("
+         SELECT 
+            pais, 
+            COUNT(*) AS cantidad_usuarios
+        FROM 
+            usuario 
+        WHERE 
+            fechaRegistro >= CURDATE() - INTERVAL 30 DAY 
+        GROUP BY 
+            pais 
+        ORDER BY 
+            pais
+    ");
+    }
+
+    public function getPaisesDelAnio()
+    {
+        return $this->database->query("SELECT u.pais AS pais, COUNT(*) AS cantidad_usuarios
+FROM usuario u
+WHERE u.fechaRegistro >= CURDATE() - INTERVAL 1 YEAR
+GROUP BY u.pais
+ORDER BY cantidad_usuarios DESC;");
+    }
 }
 
 

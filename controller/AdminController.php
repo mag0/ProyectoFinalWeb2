@@ -138,20 +138,42 @@ class AdminController
     {
         if(isset($_POST['filtro'])) {
             if ($_POST['filtro']=="dia") {
-                $partidas = $this->model->getPreguntasDelDia();
+                $preguntas = $this->model->getPreguntasDelDia();
             }else if ($_POST['filtro']=="semana") {
-                $partidas = $this->model->getPreguntasDeLaSemana();
+                $preguntas = $this->model->getPreguntasDeLaSemana();
             }else if ($_POST['filtro']=="mes") {
-                $partidas = $this->model->getPreguntasDelMes();
+                $preguntas = $this->model->getPreguntasDelMes();
             } else {
-                $partidas = $this->model->getPreguntasDelAnio();
+                $preguntas = $this->model->getPreguntasDelAnio();
             }
         }else{
-            $partidas = $this->model->getPreguntasDelDia();
+            $preguntas = $this->model->getPreguntasDelDia();
         }
 
         $this->presenter->render("view/graficosAdminView.mustache",
-            ["preguntasFiltro" =>$partidas, "preguntas"=>true]);
+            ["preguntasFiltro" =>$preguntas, "preguntas"=>true]);
     }
+
+    public function getPaisesRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $paises = $this->model->getPaisesDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $paises = $this->model->getPaisesDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $paises = $this->model->getPaisesDelMes();
+            } else {
+                $paises = $this->model->getPaisesDelAnio();
+            }
+        }else{
+            $paises = $this->model->getPaisesDelDia();
+        }
+
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["paisesFiltro" =>$paises, "paises"=>true]);
+    }
+
+
 
 }

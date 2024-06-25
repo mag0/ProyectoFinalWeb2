@@ -72,6 +72,18 @@
              <script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
              {{/preguntas}}
 
+                        {{#cantPais}}
+                          <div style="display:flex;flex-direction:column">
+                               <div id="chart"></div>
+                               <button class="btn" id="download-pdf">Descargar como PDF</button>
+                                {{#cantPais}}
+                               <p style="display:none" class="paises">{{cantidad_pais}}</p>
+                               <p style="display:none" class="pais">{{pais}}</p>
+                               {{/cantPais}}
+                          </div>
+                          <script src="/ProyectoFinal/public/js/graficos/cantidadDePaises.js"></script>
+                        {{/cantPais}}
+
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
         </div>
     </div>
