@@ -27,7 +27,12 @@
                 {{#sinMonedas}}
                     <p style="color:red">{{sinMonedas}}</p>
                 {{/sinMonedas}}
-                <a href="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta">Sugerir pregunta</a>
+                <a href="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta">Sugerir pregunta</a><br>
+                <div class="audio-container">
+                    <audio style="color:red" id="background-music" controls loop>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
             </div>
         </div>
         {{/usuarioActivo}}

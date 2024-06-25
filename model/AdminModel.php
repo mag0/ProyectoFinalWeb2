@@ -67,7 +67,7 @@ class AdminModel
     public function getUsuariosRegistradosDia()
     {
         return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%m/%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
-                                        usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+                                        usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 0 DAY GROUP BY dia ORDER BY dia");
     }
 
     public function getUsuariosRegistradosSemana()
@@ -77,21 +77,20 @@ class AdminModel
     }
     public function getUsuariosRegistradosMes()
     {
-            return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%m/%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
+            return $this->database->query("SELECT DATE_FORMAT(fechaRegistro, '%d') AS dia, COUNT(*) AS cantidad_usuarios FROM 
                                             usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
     }
 
     public function getUsuariosRegistradosAnio()
     {
-        return $this->database->query("SELECT MONTHNAME(u.fechaRegistro) AS dia,COUNT(u.id) AS cantidad_usuarios FROM 
-                                        usuario u WHERE u.fechaRegistro >= CURDATE() - INTERVAL 1 YEAR GROUP BY  DATE(u.fechaRegistro) 
-                                        ORDER BY DATE(u.fechaRegistro)");
+        return $this->database->query("SELECT YEAR(fechaRegistro) AS anio, MONTHNAME(fechaRegistro) AS dia, COUNT(*) AS cantidad_usuarios FROM 
+                                        usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fechaRegistro)");
     }
 
     public function getPartidasDelDia()
     {
         return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
-                                        partida WHERE fecha >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+                                        partida WHERE fecha >= CURDATE() - INTERVAL 0 DAY GROUP BY dia ORDER BY dia");
     }
 
     public function getPartidasDeLaSemana()
@@ -114,7 +113,7 @@ class AdminModel
     public function getPreguntasDelDia()
     {
         return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_preguntas FROM 
-                                        pregunta WHERE fecha >= CURDATE() - INTERVAL 1 DAY GROUP BY dia ORDER BY dia");
+                                        pregunta WHERE fecha >= CURDATE() - INTERVAL 0 DAY GROUP BY dia ORDER BY dia");
     }
 
     public function getPreguntasDeLaSemana()
@@ -132,29 +131,6 @@ class AdminModel
     {
         return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_preguntas FROM 
                                         pregunta WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fecha)");
-    }
-
-    public function getPaisesDelDia()
-    {
-        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 1 DAY 
-                                        GROUP BY pais ORDER BY pais");
-    }
-
-    public function getPaisesDeLaSemana()
-    {
-        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 7 DAY 
-                                        GROUP BY pais ORDER BY pais");
-    }
-    public function getPaisesDelMes()
-    {
-        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 30 DAY 
-                                        GROUP BY pais ORDER BY pais");
-    }
-
-    public function getPaisesDelAnio()
-    {
-        return $this->database->query("SELECT u.pais AS pais, COUNT(*) AS cantidad_usuarios FROM usuario u WHERE u.fechaRegistro >= 
-                                        CURDATE() - INTERVAL 1 YEAR GROUP BY u.pais ORDER BY cantidad_usuarios DESC");
     }
 }
 

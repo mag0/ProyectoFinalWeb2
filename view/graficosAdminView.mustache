@@ -12,19 +12,20 @@
            margin: auto;
         }
     </style>
-
 </head>
 <body>
     <div class="container">
         <div class="lobby-box">
-            <label for="filter" class="form-label text-white text-center mb-0">Filtro:</label>
             {{#usuarios}}
+            <h2 style="margin-top:0">Usuarios</h2>
             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getUsuariosRegistrados" method="POST">
             {{/usuarios}}
             {{#partidas}}
+            <h2 style="margin-top:0">Partidas</h2>
             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPartidasRegistrados" method="POST">
             {{/partidas}}
              {{#preguntas}}
+             <h2 style="margin-top:0">Pregunta</h2>
              <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPreguntasRegistradas" method="POST">
             {{/preguntas}}
                 <select id="filtroSelect" name="filtro">
@@ -71,18 +72,6 @@
              </div>
              <script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
              {{/preguntas}}
-
-                        {{#cantPais}}
-                          <div style="display:flex;flex-direction:column">
-                               <div id="chart"></div>
-                               <button class="btn" id="download-pdf">Descargar como PDF</button>
-                                {{#cantPais}}
-                               <p style="display:none" class="paises">{{cantidad_pais}}</p>
-                               <p style="display:none" class="pais">{{pais}}</p>
-                               {{/cantPais}}
-                          </div>
-                          <script src="/ProyectoFinal/public/js/graficos/cantidadDePaises.js"></script>
-                        {{/cantPais}}
 
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
         </div>

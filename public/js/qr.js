@@ -1,12 +1,10 @@
 var modal = document.getElementById("qrModal");
 var span = document.getElementsByClassName("close")[0];
+let n = document.getElementById("n").textContent;
 
 function generateQR() {
-    // Obtén los datos necesarios para el QR
-    var nombreUsuario = "{{nombreUsuario}}"; // Asegúrate de que Handlebars haya reemplazado correctamente esta variable
-
     // URL del perfil del usuario para el QR (puedes modificar según sea necesario)
-    var userProfileUrl = "http://127.0.0.1/usuario/perfil?nombreUsuario=" + nombreUsuario;
+    var userProfileUrl = "http://localhost/ProyectoFinal/index.php?controller=lobby&action=verPerfil&usuarioBuscado=" + n;
 
     // Genera el código QR en el contenedor especificado
     var qrcode = new QRCode(document.getElementById("qr-container"), {

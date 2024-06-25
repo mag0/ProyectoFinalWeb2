@@ -49,7 +49,7 @@ class EditorModel
 
     public function crearPregunta($pregunta)
     {
-        $categoria = $pregunta['categoria'];$texto_pregunta = $pregunta['texto_pregunta'];$respuesta_correcta = $pregunta['respuesta_correcta'];
+        $categoria = $pregunta['id_categoria'];$texto_pregunta = $pregunta['texto_pregunta'];$respuesta_correcta = $pregunta['respuesta_correcta'];
         $respuesta_1 = $pregunta['respuesta_1'];$respuesta_2 = $pregunta['respuesta_2'];$respuesta_3 = $pregunta['respuesta_3'];$respuesta_4 = $pregunta['respuesta_4'];
         $dificultad = $pregunta['dificultad'];
 

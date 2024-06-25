@@ -7,6 +7,3 @@ $action = isset($_GET["action"]) ? $_GET["action"] : "" ;
 
 $router->route($controller, $action);
 
-// index.php?controller=tours&action=get
-// tours/get 
-
