@@ -36,12 +36,14 @@ class AdminModel
 
     public function porcentajePreguntasBienRespondidas()
     {
-        return $this->database->query("SELECT FLOOR(COUNT(CASE WHEN respondidas_correctamente > 0 THEN 1 END) * 100.0 / COUNT(*)) AS porcentaje_respondidas_correctamente FROM pregunta");
+        return $this->database->query("SELECT FLOOR(COUNT(CASE WHEN respondidas_correctamente > 0 THEN 1 END) * 100.0 / COUNT(*)) 
+                                        AS porcentaje_respondidas_correctamente FROM pregunta");
     }
 
     public function getPorcentajesDePreguntasBienRespondidas()
     {
-        return $this->database->query("SELECT nombreUsuario, CASE WHEN preguntas_respondidas = 0 THEN 0 ELSE ROUND((preguntas_bien_respondidas / preguntas_respondidas) * 100)
+        return $this->database->query("SELECT nombreUsuario, CASE WHEN preguntas_respondidas = 0 THEN 0 ELSE 
+                                        ROUND((preguntas_bien_respondidas / preguntas_respondidas) * 100)
                                             END AS porcentaje_preguntas_correctas FROM usuario");
     }
 
@@ -57,9 +59,9 @@ class AdminModel
 
     public function getUsuariosPorEdad()
     {
-        return $this->database->query("SELECT CASE WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'menores'
-                                        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'medio' ELSE 'jubilados' END AS grupo_edad,
-                                        COUNT(*) AS cantidad_usuarios FROM usuario GROUP BY grupo_edad;");
+        return $this->database->query("SELECT CASE WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'menores' WHEN 
+                                        TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'medio' ELSE 'jubilados' 
+                                        END AS grupo_edad, COUNT(*) AS cantidad_usuarios FROM usuario GROUP BY grupo_edad");
     }
 
     public function getUsuariosRegistradosDia()
@@ -83,7 +85,7 @@ class AdminModel
     {
         return $this->database->query("SELECT MONTHNAME(u.fechaRegistro) AS dia,COUNT(u.id) AS cantidad_usuarios FROM 
                                         usuario u WHERE u.fechaRegistro >= CURDATE() - INTERVAL 1 YEAR GROUP BY  DATE(u.fechaRegistro) 
-                                                                                                       ORDER BY DATE(u.fechaRegistro);");
+                                        ORDER BY DATE(u.fechaRegistro)");
     }
 
     public function getPartidasDelDia()
@@ -95,18 +97,18 @@ class AdminModel
     public function getPartidasDeLaSemana()
     {
         return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
-                                            partida WHERE fecha >= CURDATE() - INTERVAL 7 DAY GROUP BY dia ORDER BY dia");
+                                        partida WHERE fecha >= CURDATE() - INTERVAL 7 DAY GROUP BY dia ORDER BY dia");
     }
     public function getPartidasDelMes()
     {
         return $this->database->query("SELECT DATE_FORMAT(fecha, '%m/%d') AS dia, COUNT(*) AS cantidad_partidas FROM 
-                                            partida WHERE fecha >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
+                                        partida WHERE fecha >= CURDATE() - INTERVAL 30 DAY GROUP BY dia ORDER BY dia");
     }
 
     public function getPartidasDelAnio()
     {
         return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_partidas 
-                                FROM partida WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY anio, MONTH(fecha)");
+                                        FROM partida WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY anio, MONTH(fecha)");
     }
 
     public function getPreguntasDelDia()
@@ -129,66 +131,30 @@ class AdminModel
     public function getPreguntasDelAnio()
     {
         return $this->database->query("SELECT YEAR(fecha) AS anio, MONTHNAME(fecha) AS dia, COUNT(*) AS cantidad_preguntas FROM 
-                                    pregunta WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fecha)");
+                                        pregunta WHERE fecha >= CURDATE() - INTERVAL 365 DAY GROUP BY anio, dia ORDER BY  anio, MONTH(fecha)");
     }
 
     public function getPaisesDelDia()
     {
-        return $this->database->query("
-        SELECT 
-            pais, 
-            COUNT(*) AS cantidad_usuarios 
-        FROM 
-            usuario 
-        WHERE 
-            fechaRegistro >= CURDATE() - INTERVAL 1 DAY 
-        GROUP BY 
-            pais 
-        ORDER BY 
-            pais
-    ");
+        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 1 DAY 
+                                        GROUP BY pais ORDER BY pais");
     }
 
     public function getPaisesDeLaSemana()
     {
-        return $this->database->query("
-         SELECT 
-            pais, 
-            COUNT(*) AS cantidad_usuarios 
-        FROM 
-            usuario 
-        WHERE 
-            fechaRegistro >= CURDATE() - INTERVAL 7 DAY 
-        GROUP BY 
-            pais 
-        ORDER BY 
-            pais
-    ");
+        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 7 DAY 
+                                        GROUP BY pais ORDER BY pais");
     }
     public function getPaisesDelMes()
     {
-        return $this->database->query("
-         SELECT 
-            pais, 
-            COUNT(*) AS cantidad_usuarios
-        FROM 
-            usuario 
-        WHERE 
-            fechaRegistro >= CURDATE() - INTERVAL 30 DAY 
-        GROUP BY 
-            pais 
-        ORDER BY 
-            pais
-    ");
+        return $this->database->query("SELECT pais, COUNT(*) AS cantidad_usuarios FROM usuario WHERE fechaRegistro >= CURDATE() - INTERVAL 30 DAY 
+                                        GROUP BY pais ORDER BY pais");
     }
 
     public function getPaisesDelAnio()
     {
-        return $this->database->query("SELECT u.pais AS pais, COUNT(*) AS cantidad_usuarios
-FROM usuario u
-WHERE u.fechaRegistro >= CURDATE() - INTERVAL 1 YEAR
-GROUP BY u.pais
-ORDER BY cantidad_usuarios DESC;");
+        return $this->database->query("SELECT u.pais AS pais, COUNT(*) AS cantidad_usuarios FROM usuario u WHERE u.fechaRegistro >= 
+                                        CURDATE() - INTERVAL 1 YEAR GROUP BY u.pais ORDER BY cantidad_usuarios DESC");
     }
 }
 

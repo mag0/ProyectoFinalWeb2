@@ -40,20 +40,14 @@ class UsuarioModel
 
     public function agregarUsuario($datos_usuario)
     {
-        $nombreCompleto = $datos_usuario['nombreCompleto'];
-        $anioDeNacimiento = $datos_usuario['anioDeNacimiento'];
-        $genero = $datos_usuario['genero'];
-        $pais = $datos_usuario['pais'];
-        $ciudad = $datos_usuario['ciudad'];
-        $email = $datos_usuario['email'];
-        $password = $datos_usuario['password'];
-        $nombreUsuario = $datos_usuario['nombreUsuario'];
-        $foto = isset($datos_usuario['foto']) ? $datos_usuario['foto'] : null;
-        $fechaRegistro = $datos_usuario['fechaRegistro'];
-        $token = $datos_usuario['token'];
+        $nombreCompleto = $datos_usuario['nombreCompleto'];$anioDeNacimiento = $datos_usuario['anioDeNacimiento'];$genero = $datos_usuario['genero'];
+        $pais = $datos_usuario['pais'];$ciudad = $datos_usuario['ciudad'];$email = $datos_usuario['email'];
+        $password = $datos_usuario['password'];$nombreUsuario = $datos_usuario['nombreUsuario'];$foto = isset($datos_usuario['foto']) ? $datos_usuario['foto'] : null;
+        $fechaRegistro = $datos_usuario['fechaRegistro'];$token = $datos_usuario['token'];
 
-        $sql = "INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, foto, fechaRegistro, puntaje_total, token) 
-            VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', '$pais', '$ciudad', '$email', '$password', '$nombreUsuario', '$foto', '$fechaRegistro', 0, '$token')";
+        $sql = "INSERT INTO usuario (nombreCompleto, anioDeNacimiento, genero, pais, ciudad, email, password, nombreUsuario, foto, 
+                                        fechaRegistro, puntaje_total, token) VALUES ('$nombreCompleto', '$anioDeNacimiento', '$genero', 
+                                        '$pais', '$ciudad', '$email', '$password', '$nombreUsuario', '$foto', '$fechaRegistro', 0, '$token')";
 
         try {
             $this->database->execute($sql);
