@@ -9,6 +9,16 @@ class AdminModel
         $this->database = $database;
     }
 
+    public function getUsuarios()
+    {
+        return $this->database->query("SELECT * FROM usuario WHERE nombreUsuario NOT IN ('admin', 'editor') ORDER BY puntaje_total DESC");
+    }
+
+    public function getTrampasTotal()
+    {
+        return $this->database->query("SELECT SUM(trampas) AS total_trampas FROM usuario");
+    }
+
     public function cantidadJugadores()
     {
         return $this->database->query("SELECT COUNT(*) AS cantidad_usuarios FROM usuario");

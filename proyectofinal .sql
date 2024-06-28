@@ -87,24 +87,24 @@ INSERT INTO `pregunta` (`id`, `id_categoria`, `texto_pregunta`, `respuesta_corre
 (10, 5, '¿Cuál es el elemento químico con símbolo O?', 4, 'Osmio', 'Oro', 'Oganesón', 'Oxígeno', 'facil', false, 0, 0,'2024-06-01'),
 (11, 1, '¿Cuál es el país más grande del mundo?', 4, 'Canadá', 'China', 'Estados Unidos', 'Rusia', 'normal', true, 0, 0,'2024-06-01'),
 (12, 2, '¿Quién fue el primer presidente de Estados Unidos?', 4, 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams', 'George Washington', 'normal', false, 0, 0,'2024-06-01'),
-(13, 3, '¿Qué equipo ha ganado más veces la Champions League?', 4, 'Barcelona', 'Manchester United', 'AC Milan', 'Real Madrid', 'normal', false, 0, 0,'2024-06-01'),
+(13, 3, '¿Qué equipo ha ganado más veces la Champions League?', 4, 'Barcelona', 'Manchester United', 'AC Milan', 'Real Madrid', 'facil', false, 0, 0,'2024-06-01'),
 (14, 4, '¿Quién es el autor de "Cien años de soledad"?', 4, 'Mario Vargas Llosa', 'Isabel Allende', 'Julio Cortázar', 'Gabriel García Márquez', 'normal', false, 0, 0,'2024-06-01'),
-(15, 5, '¿Qué gas es más abundante en la atmósfera terrestre?', 4, 'Oxígeno', 'Dióxido de carbono', 'Argón', 'Nitrógeno', 'normal', false, 0, 0,'2024-06-01'),
+(15, 5, '¿Qué gas es más abundante en la atmósfera terrestre?', 4, 'Oxígeno', 'Dióxido de carbono', 'Argón', 'Nitrógeno', 'facil', false, 0, 0,'2024-06-01'),
 (16, 9, '¿En qué museo se encuentra la pintura "La noche estrellada"?', 4, 'Museo del Louvre', 'Museo del Prado', 'Galería Nacional de Arte', 'Museo de Arte Moderno', 'normal', false, 0, 0,'2024-06-01'),
 (17, 2, '¿En qué año cayó el Muro de Berlín?', 4, '1985', '1991', '1987', '1989', 'normal', false, 0, 0,'2024-06-01'),
 (18, 4, '¿Quién escribió "La Odisea"?', 4, 'Sófocles', 'Virgilio', 'Eurípides', 'Homero', 'normal', true, 0, 0,'2024-06-01'),
-(19, 3, '¿En qué deporte se utiliza una raqueta y una pelota amarilla?', 4, 'Bádminton', 'Squash', 'Racquetball', 'Tenis', 'normal', false, 0, 0,'2024-06-01'),
+(19, 3, '¿En qué deporte se utiliza una raqueta y una pelota amarilla?', 4, 'Bádminton', 'Squash', 'Racquetball', 'Tenis', 'facil', false, 0, 0,'2024-06-01'),
 (20, 5, '¿Cuál es el órgano más grande del cuerpo humano?', 4, 'Hígado', 'Corazón', 'Pulmones', 'Piel', 'normal', false, 0, 0,'2024-06-01'),
 (21, 2, '¿Quién lideró la independencia de India?', 4, 'Jawaharlal Nehru', 'Indira Gandhi', 'Subhas Chandra Bose', 'Mahatma Gandhi', 'dificil', false, 0, 0,'2024-06-01'),
-(22, 1, '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'dificil', false, 0, 0,'2024-06-01'),
-(23, 4, '¿Cuál es el idioma más hablado en el mundo?', 4, 'Español', 'Inglés', 'Hindú', 'Mandarín', 'dificil', false, 0, 0,'2024-04-01'),
+(22, 1, '¿Cuál es el punto más alto de África?', 4, 'Monte Kenia', 'Monte Elbrus', 'Monte Rwenzori', 'Monte Kilimanjaro', 'facil', false, 0, 0,'2024-06-01'),
+(23, 4, '¿Cuál es el idioma más hablado en el mundo?', 4, 'Español', 'Inglés', 'Hindú', 'Mandarín', 'facil', false, 0, 0,'2024-04-01'),
 (24, 5, '¿Qué teoría científica fue propuesta por Albert Einstein en 1905?', 4, 'Teoría del Big Bang', 'Teoría de la Evolución', 'Teoría de la Deriva Continental', 'Teoría de la Relatividad', 'dificil', false, 0, 0,'2024-06-01'),
-(25, 9, '¿Quién pintó "El grito"?', 4, 'Salvador Dalí', 'Pablo Picasso', 'Henri Matisse', 'Edvard Munch', 'dificil', false, 0, 0,'2024-06-02'),
+(25, 9, '¿Quién pintó "El grito"?', 4, 'Salvador Dalí', 'Pablo Picasso', 'Henri Matisse', 'Edvard Munch', 'facil', false, 0, 0,'2024-06-02'),
 (26, 2, '¿Qué faraón egipcio fue enterrado en la tumba KV62?', 4, 'Ramsés II', 'Cleopatra', 'Akhenatón', 'Tutankamón', 'dificil', false, 0, 0,'2024-06-02'),
 (27, 4, '¿En qué año comenzó la Revolución Francesa?', 4, '1792', '1804', '1776', '1789', 'dificil', false, 0, 0,'2024-06-02'),
-(28, 3, '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'dificil', false, 0, 0,'2024-04-02'),
+(28, 3, '¿Cuántos puntos vale un touchdown en el fútbol americano?', 1, '3', '7', '8', '6', 'facil', false, 0, 0,'2024-04-02'),
 (29, 5, '¿Cuál es la fórmula química del ozono?', 4, 'O2', 'O4', 'H2O', 'O3', 'dificil', false, 0, 0,'2024-04-02'),
-(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'dificil', true, 0, 0,'2024-04-02'),
+(30, 1, '¿Cuál es la capital de Mongolia?', 4, 'Astana', 'Bishkek', 'Taskent', 'Ulán Bator', 'facil', true, 0, 0,'2024-04-02'),
 (31, 1, '¿Cuál es el color del cielo en un día despejado?', 4, 'Verde', 'Rojo', 'Amarillo', 'Azul', 'facil', 0, 0, 0, '2024-02-24'),
 (32, 1, '¿Cuántas patas tiene un perro?', 3, '2', '3', '4', '5', 'facil', 0, 0, 0, '2024-06-24'),
 (33, 2, '¿Qué número viene después del 2?', 3, '4', '5', '3', '1', 'facil', 0, 0, 0, '2024-06-24'),
@@ -188,11 +188,22 @@ INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pa
 (9, 'Miguel Torres', '1987-01-15', 'masculino', 'Argentina', 'Moreno', 'miguel@example.com', '123456', 'MiguelT', '1697154413.jpeg', '2024-06-03', 130, '666508e4e84ed', 0, 54, 23),
 (10, 'Sofia Herrera', '1994-06-27', 'femenino', 'Argentina', 'Moreno', 'sofia@example.com', 'qwe789', 'SofiaH', '1699621422.jpg', '2024-06-03', 160, '666508e4e84ed', 0, 54, 14),
 (11, 'Martin Guerreiro', '1999-02-01', 'masculino', 'Argentina', 'Moreno', 'guerreiromartin@gmail.com', '12', 'mag', '1699109847.jpg', '2024-06-01', 0, '666508e4e84ed', 1, 75, 23),
-(12, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'Liniers', 'angelleyesdk@gmail.com', '12', 'AngelDNK', '1718320800.jpeg', '2024-06-14', 7, '666b7ea0d705f', 1, 203, 140);
+(12, 'Angel Leyes', '1999-10-25', 'masculino', 'Argentina', 'Liniers', 'angelleyesdk@gmail.com', '12', 'AngelDNK', '1718320800.jpeg', '2024-06-14', 7, '666b7ea0d705f', 1, 203, 140),
+(13, 'Juan Perez', '1990-01-15', 'masculino', 'Argentina', 'Buenos Aires', 'juanp@example.com', 'password123', 'JuansP', '1718320800.jpeg', '2024-06-05', 150, 'token1', 1, 220, 160),
+(14, 'Ana Lopez', '1985-03-22', 'femenino', 'Chile', 'Santiago', 'analopez@example.com', 'password456', 'AnaL', '1718320800.jpeg', '2024-06-06', 200, 'token2', 1, 230, 170),
+(15, 'Carlos Martinez', '1995-07-10', 'masculino', 'Uruguay', 'Montevideo', 'carlosm@example.com', 'password789', 'CarlosM', '1718320800.jpeg', '2024-06-07', 180, 'token3', 1, 210, 150),
+(16, 'Lucia Fernandez', '1988-11-30', 'femenino', 'Peru', 'Lima', 'luciaf@example.com', 'password101', 'LuciaF', '1718320800.jpeg', '2024-06-08', 170, 'token4', 1, 240, 180),
+(17, 'Pedro Sanchez', '1992-06-18', 'masculino', 'Mexico', 'Ciudad de Mexico', 'pedros@example.com', 'password202', 'PedroS', '1718320800.jpeg', '2024-06-09', 160, 'token5', 1, 250, 190),
+(18, 'Marta Diaz', '1983-04-12', 'femenino', 'Colombia', 'Bogota', 'martad@example.com', 'password303', 'MartaD', '1718320800.jpeg', '2024-06-10', 140, 'token6', 1, 260, 200),
+(19, 'Jose Ramirez', '1998-09-25', 'masculino', 'Paraguay', 'Asuncion', 'joser@example.com', 'password404', 'JoseR', '1718320800.jpeg', '2024-06-11', 130, 'token7', 1, 270, 210),
+(20, 'Sofia Gutierrez', '1993-12-05', 'femenino', 'Bolivia', 'La Paz', 'sofiag@example.com', 'password505', 'SofiaG', '1718320800.jpeg', '2024-06-12', 190, 'token8', 1, 280, 220),
+(21, 'Diego Torres', '1987-05-09', 'masculino', 'Ecuador', 'Quito', 'diegot@example.com', 'password606', 'DiegoT', '1718320800.jpeg', '2024-06-13', 210, 'token9', 1, 290, 230),
+(22, 'Laura Ruiz', '1991-02-18', 'femenino', 'Venezuela', 'Caracas', 'laurar@example.com', 'password707', 'LauraR', '1718320800.jpeg', '2024-06-14', 220, 'token10', 1, 300, 240);
 
-INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `token`, `cuenta_validada`, `admin`, `editor`) VALUES
-(13, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE),
-(14, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editor', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE);
+INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `token`, `cuenta_validada`,
+                       `admin`, `editor`, `monedas`) VALUES
+(23, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE, 0),
+(24, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editor', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE, 0);
 
 -- --------------------------------------------------------
 
@@ -320,7 +331,7 @@ ALTER TABLE `pregunta_vista`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas_sugeridas`

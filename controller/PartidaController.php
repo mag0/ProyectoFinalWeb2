@@ -42,20 +42,37 @@ class PartidaController
                     $mensaje = 'Respuesta Incorrecta';
                 }
 
+                $puntajeBot = rand(0, 30);
+
+                if($puntajeBot>$_SESSION['puntajeActual']){
+                    $resultado = "El bot hizo " . $puntajeBot . ", por lo tanto perdiste F";
+                    $victoria = false;
+                }else if($puntajeBot==$_SESSION['puntajeActual']){
+                    $resultado = "El bot hizo " . $puntajeBot . ", es empate, por lo tanto cuenta como perdida F";
+                    $victoria = false;
+                }else{
+                    $resultado = "El bot hizo " . $puntajeBot . ", por lo tanto ganaste!";
+                    $victoria = true;
+                }
+
                 $this->model->sumarPreguntaAlUsuario($_SESSION['usuarioActivo']['id']);
                 $respuestaCorrecta = $this->getRespuestaCorrectaEnTexto($_SESSION['pregunta'],$_SESSION['respuestaCorrecta']);
                 $partida = array(
                     "id_usuario" => htmlspecialchars($_SESSION['usuarioActivo']['id']),
                     "puntaje_obtenido" => htmlspecialchars($_SESSION['puntajeActual']),
-                    "fecha" => date("Y-m-d")
+                    "fecha" => date("Y-m-d"),
+                    "resultado" => $victoria
                 );
                 $_SESSION['usuarioActivo']['puntaje_total'] += $_SESSION['puntajeActual'];
                 if($this->model->getPuntajeMasAlto($_SESSION['usuarioActivo']['id'])<$_SESSION['puntajeActual']){
                     $this->model->reemplazarPuntajeMaximo($_SESSION['puntajeActual'], $_SESSION['usuarioActivo']['id']);
                 }
+
                 $this->model->guardarPartida($partida);
+
                 $this->presenter->render("view/resultadoPartidaView.mustache", ["puntaje" =>$_SESSION['puntajeActual'],
-                    "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta, "mensaje" =>$mensaje]);
+                    "numeroPregunta" =>$_SESSION['numeroPregunta']-1, "respuestaCorrecta" =>$respuestaCorrecta, "mensaje" =>$mensaje ,
+                    "resultado"=>$resultado]);
 
         }else{
             $_SESSION['puntaje'] += 1;

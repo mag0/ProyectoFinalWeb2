@@ -60,6 +60,7 @@ class AdminController
     {
         $this->presenter->render("view/tablaAdminView.mustache",
             ["cantidad_usuarios" =>  $this->model->cantidadJugadores()[0]['cantidad_usuarios'],
+                "total_trampas" =>  $this->model->getTrampasTotal()[0]['total_trampas'],
                 "cantidad_partidas" =>  $this->model->cantidadPartidas()[0]['cantidad_partidas'],
                 "cantidad_preguntas" =>  $this->model->cantidadPreguntas()[0]['cantidad_preguntas'],
                 "porcentaje_respondidas_correctamente" =>  $this->model->porcentajePreguntasBienRespondidas()[0]['porcentaje_respondidas_correctamente'],
@@ -92,6 +93,14 @@ class AdminController
         $usuarios = $this->model->getUsuariosPorEdad();
         $this->presenter->render("view/tablaAdminView.mustache",
             ["edad" =>true,"usuariosEdad" =>$usuarios]);
+    }
+
+    public function getTrampasDeUsuarios()
+    {
+        $usuarios = $this->model->getUsuarios();
+
+        $this->presenter->render("view/tablaAdminView.mustache",
+            ["usuariosT" =>$usuarios, "trampas" =>true]);
     }
 
     public function getUsuariosRegistrados()

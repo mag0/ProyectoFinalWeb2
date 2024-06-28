@@ -51,6 +51,7 @@ class LobbyController
             ]);
         }else{
             $this->model->usarMoneda($_SESSION['usuarioActivo']['id']);
+            $this->model->sumarMonedaAlAdmin('admin');
             $this->model->sumarTrampa($_SESSION['usuarioActivo']['id']);
             $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario']);
             $this->presenter->render("view/lobbyView.mustache", [

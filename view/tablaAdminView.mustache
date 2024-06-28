@@ -26,12 +26,17 @@
                     <input type="text" value="{{cantidad_preguntas}}" name="nombreUsuario" readonly>
                 </div>
             </div>
-
+            <div class="form-row">
+                <div class="textbox">
+                    <label for="total_trampas" class="form-label">Plata ganada:</label>
+                    <input type="text" value="{{total_trampas}}" name="total_trampas" readonly>
+                </div>
+                <div class="textbox">
+                </div>
+            </div>
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
     </div>
 </div>
-
-
 {{/estadisticas}}
 
 
@@ -166,5 +171,38 @@
         </div>
 </div>
 {{/edad}}
+
+{{#trampas}}
+<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+</head>
+<body>
+<div class="container" style="max-width: 700px;">
+        <div class="lobby-box">
+                <h2 style="margin-top:0">Trampas de los usuarios</h2>
+            <div class="game-list">
+                <table class="preguntas-table" id="tablaPorcentajes">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>cantidad de trampas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {{#usuariosT}}
+                        <tr>
+                            <td>{{nombreUsuario}}</td>
+                            <td>{{trampas}}</td>
+                        </tr>
+                    {{/usuariosT}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="display:flex;justify-content:end;gap:1em">
+            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button class="btn" id="download-pdf">Descargar como PDF</button>
+        </div>
+</div>
+{{/trampas}}
 
 <script src="/ProyectoFinal/public/js/descargarTablaPdf.js"></script>

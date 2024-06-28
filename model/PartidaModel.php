@@ -60,8 +60,9 @@ class PartidaModel
         $id_usuario = $partida['id_usuario'];
         $puntaje_obtenido = $partida['puntaje_obtenido'];
         $fecha= $partida['fecha'];
+        $resultado= $partida['resultado'];
 
-        $this->database->execute("INSERT INTO partida (id_usuario, puntaje_obtenido, fecha) VALUES ('$id_usuario', '$puntaje_obtenido', '$fecha')");
+        $this->database->execute("INSERT INTO partida (id_usuario, puntaje_obtenido, fecha, resultado) VALUES ('$id_usuario', '$puntaje_obtenido', '$fecha', '$resultado')");
     }
 
     public function getPuntajeMasAlto($idUsuario)

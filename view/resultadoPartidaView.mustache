@@ -3,19 +3,26 @@
 <body>
 
     <div class="container">
-                <div class="lobby-box">
-                {{#sugerir}}
-                 <h1 style="color:green">{{sugerir}}</h1>
-                {{/sugerir}}
-                {{#reporte}}
-                <h1 style="color:green">{{reporte}}</h1>
-                {{/reporte}}
-                {{#mensaje}}
-                    <h1 style="color:red">{{mensaje}} ):</h1>
-                    <h1>La respuesta era: {{respuestaCorrecta}}</h1>
-                    <p>Puntaje conseguido: {{puntaje}}</p>
-                    <p>Preguntas respondidas correctamente: {{numeroPregunta}}</p>
-                {{/mensaje}}
-                    <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'">Continuar</button>
-                </div>
-            </div>
+       <div class="lobby-box">
+
+          {{#sugerir}}
+            <h1 style="color:green">{{sugerir}}</h1>
+          {{/sugerir}}
+
+          {{#reporte}}
+            <h1 style="color:green">{{reporte}}</h1>
+          {{/reporte}}
+
+          {{#mensaje}}
+              <h1 style="color:red">{{mensaje}} ):</h1>
+              <h1>La respuesta era: {{respuestaCorrecta}}</h1>
+              {{#resultado}}
+              <h1 style="color:blue">{{resultado}}</h1>
+              {{/resultado}}
+              <p>Puntaje conseguido: {{puntaje}}</p>
+              <p>Preguntas respondidas correctamente: {{numeroPregunta}}</p>
+          {{/mensaje}}
+
+          <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'">Continuar</button>
+       </div>
+    </div>

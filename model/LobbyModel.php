@@ -16,7 +16,8 @@ class LobbyModel
 
     public function getPartidas($idUsuario)
     {
-        return $this->database->query("SELECT * FROM partida WHERE id_usuario = '$idUsuario'");
+        return $this->database->query("SELECT *,CASE WHEN resultado = 0 THEN 'Derrota' ELSE 'Victoria'
+                                        END AS resultado_texto FROM partida WHERE id_usuario = '$idUsuario'");
     }
 
     public function getCantidadDePartidas($idUsuario)
@@ -27,6 +28,11 @@ class LobbyModel
     public function usarMoneda($idUsuario)
     {
         $this->database->execute("UPDATE usuario SET monedas = monedas - 1 WHERE id = '$idUsuario'");
+    }
+
+    public function sumarMonedaAlAdmin($nombreUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET monedas = monedas + 1 WHERE nombreUsuario = '$nombreUsuario'");
     }
 
     public function sumarTrampa($idUsuario)
