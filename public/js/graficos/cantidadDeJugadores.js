@@ -43,4 +43,3 @@ var options = {
 
 var chart = new ApexCharts(document.getElementById('chart'), options);
 chart.render();
-

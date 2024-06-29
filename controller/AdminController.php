@@ -183,6 +183,63 @@ class AdminController
             ["paisesFiltro" =>$paises, "paises"=>true]);
     }
 
+    public function getSexoRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $paises = $this->model->getSexoDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $paises = $this->model->getSexoDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $paises = $this->model->getSexoDelMes();
+            } else {
+                $paises = $this->model->getSexoDelAnio();
+            }
+        }else{
+            $paises = $this->model->getSexoDelDia();
+        }
 
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["sexoFiltro" =>$paises, "sexo"=>true]);
+    }
+
+    public function getEdadRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $paises = $this->model->getEdadDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $paises = $this->model->getEdadDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $paises = $this->model->getEdadDelMes();
+            } else {
+                $paises = $this->model->getEdadDelAnio();
+            }
+        }else{
+            $paises = $this->model->getEdadDelDia();
+        }
+
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["edadFiltro" =>$paises, "edad"=>true]);
+    }
+    public function getPorcentajesDePreguntasBienRespondidasRegistrados()
+    {
+        if(isset($_POST['filtro'])) {
+            if ($_POST['filtro']=="dia") {
+                $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDelDia();
+            }else if ($_POST['filtro']=="semana") {
+                $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDeLaSemana();
+            }else if ($_POST['filtro']=="mes") {
+                $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDelMes();
+            } else {
+                $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDelAnio();
+            }
+        }else{
+            $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDelDia();
+        }
+
+        $this->presenter->render("view/graficosAdminView.mustache",
+            ["porcentajesDePreguntasBienRespondidasFiltro" =>$paises, "porcentajesDePreguntasBienRespondidas"=>true]);
+    }
 
 }

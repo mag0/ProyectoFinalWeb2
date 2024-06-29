@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
     let cantidades = document.getElementsByClassName('cantidad');
-    let paises = document.getElementsByClassName('pais');
+    let edades = document.getElementsByClassName('edad');
     let cantidadData = [];
-    let paisData = [];
+    let edadData = [];
 
     for (let i = 0; i < cantidades.length; i++) {
         cantidadData.push(parseInt(cantidades[i].textContent));
     }
-    for (let i = 0; i < paises.length; i++) {
-        paisData.push(paises[i].textContent);
+    for (let i = 0; i < edades.length; i++) {
+        edadData.push(edades[i].textContent);
     }
 
     var options = {
@@ -30,7 +30,15 @@ document.addEventListener("DOMContentLoaded", function() {
             enabled: false
         },
         xaxis: {
-            categories: paisData
+            categories: edadData,
+            title: {
+                text: 'Categoría de Edad'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Cantidad de Usuarios'
+            }
         },
         series: [{
             name: 'Cantidad de Usuarios',

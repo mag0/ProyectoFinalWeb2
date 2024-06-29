@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let cantidades = document.getElementsByClassName('cantidad');
-    let paises = document.getElementsByClassName('pais');
-    let cantidadData = [];
-    let paisData = [];
+    let porcentaje = document.getElementsByClassName('porcentaje');
+    let usuario = document.getElementsByClassName('usuario');
+    let porcentajeData = [];
+    let usuarioData = [];
 
-    for (let i = 0; i < cantidades.length; i++) {
-        cantidadData.push(parseInt(cantidades[i].textContent));
+    for (let i = 0; i < porcentaje.length; i++) {
+        porcentajeData.push(parseInt(porcentaje[i].textContent));
     }
-    for (let i = 0; i < paises.length; i++) {
-        paisData.push(paises[i].textContent);
+    for (let i = 0; i < usuario.length; i++) {
+        usuario.push(usuario[i].textContent);
     }
 
     var options = {
@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
             enabled: false
         },
         xaxis: {
-            categories: paisData
+            categories: usuarioData
         },
         series: [{
             name: 'Cantidad de Usuarios',
-            data: cantidadData
+            data: porcentajeData
         }],
         fill: {
             colors: ['#6A5ACD']
