@@ -30,7 +30,15 @@ document.addEventListener("DOMContentLoaded", function() {
             enabled: false
         },
         xaxis: {
-            categories: paisData
+            categories: paisData,
+            title: {
+                text: 'Categoría de Paises'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Cantidad de Usuarios'
+            }
         },
         series: [{
             name: 'Cantidad de Usuarios',

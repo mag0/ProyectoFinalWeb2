@@ -30,7 +30,15 @@ var options = {
         enabled: false
     },
     xaxis: {
-        categories: fecha
+        categories: fecha,
+        title: {
+            text: 'Categoría de fecha'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Cantidad de preguntas creadas'
+        }
     },
     series: [{
         name: 'Cantidad de preguntas creadas',

@@ -218,8 +218,8 @@ ORDER BY año");
         return $this->database->query("SELECT 
     CASE 
         WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'Menor'
-        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 40 THEN 'Medio'
-        ELSE 'Mayor'
+        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'Medio'
+        ELSE 'Jubilado'
     END AS categoria_edad,
     COUNT(*) AS cantidad_usuarios
 FROM usuario
@@ -233,8 +233,8 @@ ORDER BY cantidad_usuarios DESC");
         return $this->database->query("SELECT 
     CASE 
         WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'Menor'
-        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 40 THEN 'Medio'
-        ELSE 'Mayor'
+        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'Medio'
+        ELSE 'Jubilado'
     END AS categoria_edad,
     COUNT(*) AS cantidad_usuarios
 FROM usuario
@@ -247,8 +247,8 @@ ORDER BY cantidad_usuarios DESC");
         return $this->database->query("SELECT 
     CASE 
         WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'Menor'
-        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 40 THEN 'Medio'
-        ELSE 'Mayor'
+        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'Medio'
+        ELSE 'Jubilado'
     END AS categoria_edad,
     COUNT(*) AS cantidad_usuarios
 FROM usuario
@@ -263,8 +263,8 @@ ORDER BY cantidad_usuarios DESC");
         return $this->database->query("SELECT 
     CASE 
         WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) < 18 THEN 'Menor'
-        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 40 THEN 'Medio'
-        ELSE 'Mayor'
+        WHEN TIMESTAMPDIFF(YEAR, anioDeNacimiento, CURDATE()) BETWEEN 18 AND 60 THEN 'Medio'
+        ELSE 'Jubilado'
     END AS categoria_edad,
     COUNT(*) AS cantidad_usuarios
 FROM usuario

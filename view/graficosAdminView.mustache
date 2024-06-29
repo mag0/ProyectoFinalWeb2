@@ -37,11 +37,11 @@
             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getSexoRegistrados" method="POST">
             {{/sexo}}
             {{#edad}}
-            <h2 style="margin-top:0">Genero</h2>
+            <h2 style="margin-top:0">Edad</h2>
             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getEdadRegistrados" method="POST">
             {{/edad}}
             {{#porcentajesDePreguntasBienRespondidas}}
-            <h2 style="margin-top:0">Genero</h2>
+            <h2 style="margin-top:0">Preguntas bien respondidas</h2>
             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPorcentajesDePreguntasBienRespondidasRegistrados" method="POST">
             {{/porcentajesDePreguntasBienRespondidas}}
                 <select id="filtroSelect" name="filtro">
@@ -122,10 +122,10 @@
                      <p style="display:none" class="edad">{{categoria_edad}}</p>
                  {{/edadFiltro}}
              </div>
-             <script src="/ProyectoFinal/public/js/graficos/cantidadDeGenero.js"></script>
+             <script src="/ProyectoFinal/public/js/graficos/cantidadDeEdad.js"></script>
          {{/edad}}
 
-         {{#porcentajesDePreguntasBienRespondidas}}
+         {{#porcentajesDePreguntasBienRespondidasFiltro}}
                       <div style="display:flex;flex-direction:column">
                           <div id="chart"></div>
                           <button class="btn" id="download-pdf">Descargar como PDF</button>
@@ -135,7 +135,7 @@
                           {{/porcentajesDePreguntasBienRespondidasFiltro}}
                       </div>
                       <script src="/ProyectoFinal/public/js/graficos/porcentajesDePreguntasBienRespondidas.js"></script>
-                  {{/porcentajesDePreguntasBienRespondidas}}
+                  {{/porcentajesDePreguntasBienRespondidasFiltro}}
 
             <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
         </div>

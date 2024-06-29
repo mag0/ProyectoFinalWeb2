@@ -187,40 +187,41 @@ class AdminController
     {
         if(isset($_POST['filtro'])) {
             if ($_POST['filtro']=="dia") {
-                $paises = $this->model->getSexoDelDia();
+                $genero = $this->model->getSexoDelDia();
             }else if ($_POST['filtro']=="semana") {
-                $paises = $this->model->getSexoDeLaSemana();
+                $genero = $this->model->getSexoDeLaSemana();
             }else if ($_POST['filtro']=="mes") {
-                $paises = $this->model->getSexoDelMes();
+                $genero = $this->model->getSexoDelMes();
             } else {
-                $paises = $this->model->getSexoDelAnio();
+                $genero = $this->model->getSexoDelAnio();
             }
         }else{
-            $paises = $this->model->getSexoDelDia();
+            $genero = $this->model->getSexoDelDia();
         }
-
+        $genero[0]['genero'] = 'masculino';
+        $genero[1]['genero'] = 'femenino';
         $this->presenter->render("view/graficosAdminView.mustache",
-            ["sexoFiltro" =>$paises, "sexo"=>true]);
+            ["sexoFiltro" =>$genero, "sexo"=>true]);
     }
 
     public function getEdadRegistrados()
     {
         if(isset($_POST['filtro'])) {
             if ($_POST['filtro']=="dia") {
-                $paises = $this->model->getEdadDelDia();
+                $edad = $this->model->getEdadDelDia();
             }else if ($_POST['filtro']=="semana") {
-                $paises = $this->model->getEdadDeLaSemana();
+                $edad = $this->model->getEdadDeLaSemana();
             }else if ($_POST['filtro']=="mes") {
-                $paises = $this->model->getEdadDelMes();
+                $edad = $this->model->getEdadDelMes();
             } else {
-                $paises = $this->model->getEdadDelAnio();
+                $edad = $this->model->getEdadDelAnio();
             }
         }else{
-            $paises = $this->model->getEdadDelDia();
+            $edad = $this->model->getEdadDelDia();
         }
 
         $this->presenter->render("view/graficosAdminView.mustache",
-            ["edadFiltro" =>$paises, "edad"=>true]);
+            ["edadFiltro" =>$edad, "edad"=>true]);
     }
     public function getPorcentajesDePreguntasBienRespondidasRegistrados()
     {
@@ -237,7 +238,7 @@ class AdminController
         }else{
             $paises = $this->model->getPorcentajesDePreguntasBienRespondidasDelDia();
         }
-
+var_dump($paises);
         $this->presenter->render("view/graficosAdminView.mustache",
             ["porcentajesDePreguntasBienRespondidasFiltro" =>$paises, "porcentajesDePreguntasBienRespondidas"=>true]);
     }

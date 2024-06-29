@@ -37,7 +37,15 @@ document.addEventListener("DOMContentLoaded", function() {
             enabled: false
         },
         xaxis: {
-            categories: generoData
+            categories: generoData,
+            title: {
+                text: 'Categoría de Genero'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Cantidad de Usuarios'
+            }
         },
         series: [{
             name: 'Cantidad de Usuarios',

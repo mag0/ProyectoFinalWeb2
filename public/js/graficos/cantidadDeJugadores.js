@@ -30,7 +30,15 @@ var options = {
         enabled: false
     },
     xaxis: {
-        categories: fecha
+        categories: fecha,
+        title: {
+            text: 'Categoria fecha'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Cantidad de Usuarios'
+        }
     },
     series: [{
         name: 'Cantidad de Jugadores',
