@@ -58,7 +58,7 @@ class EditorController
     {
         if(isset($_GET['crearPregunta'])){
             $pregunta = array(
-                "categoria" => htmlspecialchars($_POST['categoria']),
+                "id_categoria" => htmlspecialchars($_POST['categoria']),
                 "texto_pregunta" => htmlspecialchars($_POST['texto_pregunta']),
                 "respuesta_correcta" => htmlspecialchars($_POST['respuesta_correcta']),
                 "respuesta_1" => htmlspecialchars($_POST['respuesta_1']),
