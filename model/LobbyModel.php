@@ -35,6 +35,16 @@ class LobbyModel
         $this->database->execute("UPDATE usuario SET monedas = monedas + 1 WHERE nombreUsuario = '$nombreUsuario'");
     }
 
+    public function sumarTrampaAlAdmin($nombreUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET trampas = trampas + 1 WHERE nombreUsuario = '$nombreUsuario'");
+    }
+
+    public function sumarMoneda($idUsuario)
+    {
+        $this->database->execute("UPDATE usuario SET monedas = monedas + 1 WHERE id = '$idUsuario'");
+    }
+
     public function sumarTrampa($idUsuario)
     {
         $this->database->execute("UPDATE usuario SET trampas = trampas + 1 WHERE id = '$idUsuario'");

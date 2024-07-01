@@ -32,5 +32,12 @@
                 </div>
             </div>
             {{/pregunta}}
-            <link rel="stylesheet" href="">
+            <script>
+                    // Interceptar la tecla F5 y Ctrl+R (recarga del navegador)
+                    document.addEventListener('keydown', function(event) {
+                        if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
+                            event.preventDefault();
+                        }
+                    });
+                </script>
             <script src="/ProyectoFinal/public/js/reloj.js"></script>

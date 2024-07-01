@@ -23,11 +23,14 @@
                         {{/partidas}}
                     </ul>
                 </div>
-                <a href="/ProyectoFinal/index.php?controller=lobby&action=comprarTrampa"><h3>Comprar trampa</h3></a>
+                <div style="margin:1em 0">
+                <a href="/ProyectoFinal/index.php?controller=lobby&action=comprarTrampa">Comprar trampa</a>
+                <a href="/ProyectoFinal/index.php?controller=lobby&action=comprarMoneda">Comprar moneda</a>
                 {{#sinMonedas}}
                     <p style="color:red">{{sinMonedas}}</p>
                 {{/sinMonedas}}
                 <a href="/ProyectoFinal/index.php?controller=lobby&action=sugerirPregunta">Sugerir pregunta</a><br>
+                </div>
                 <div class="audio-container">
                     <audio style="color:red" id="background-music" controls loop>
                         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">

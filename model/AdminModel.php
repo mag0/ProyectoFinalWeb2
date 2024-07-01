@@ -16,7 +16,12 @@ class AdminModel
 
     public function getTrampasTotal()
     {
-        return $this->database->query("SELECT monedas AS total_trampas FROM usuario WHERE nombreUsuario = 'admin'");
+        return $this->database->query("SELECT trampas AS total_trampas FROM usuario WHERE nombreUsuario = 'admin'");
+    }
+
+    public function getMonedasTotal()
+    {
+        return $this->database->query("SELECT monedas AS total_monedas FROM usuario WHERE nombreUsuario = 'admin'");
     }
 
     public function cantidadJugadores()

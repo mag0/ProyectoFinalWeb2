@@ -201,9 +201,9 @@ INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pa
 (22, 'Laura Ruiz', '1991-02-18', 'femenino', 'Venezuela', 'Caracas', 'laurar@example.com', 'password707', 'LauraR', '1718320800.jpeg', '2024-06-14', 220, 'token10', 1, 300, 240);
 
 INSERT INTO `usuario` (`id`, `nombreCompleto`, `anioDeNacimiento`, `genero`, `pais`, `ciudad`, `email`, `password`, `nombreUsuario`, `foto`, `fechaRegistro`, `token`, `cuenta_validada`,
-                       `admin`, `editor`, `monedas`) VALUES
-(23, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE, 0),
-(24, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editor', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE, 0);
+                       `admin`, `editor`, `monedas`, `trampas`) VALUES
+(23, 'Admin User', '1980-01-01', 'masculino', 'Estados Unidos', 'Nueva York','admin@example.com', '12', 'admin', ' ', '2024-06-03', '666508e4e84ed', 1, TRUE, FALSE, 0, 0),
+(24, 'Editor User', '1990-01-01', 'femenino', 'Canadá', 'Toronto', 'editor@example.com', '12', 'editor', ' ', '2024-06-03', '666508e4e84ed', 1,  FALSE, TRUE, 0, 0);
 
 -- --------------------------------------------------------
 
