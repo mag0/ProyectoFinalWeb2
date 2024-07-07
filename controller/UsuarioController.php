@@ -97,7 +97,7 @@ class UsuarioController
 
     public function enviarEmailRegistro($email, $nombre, $token)
     {
-        $enlaceVerificacion = 'http://localhost/ProyectoFinal/index.php?controller=usuario&action=verificarUsuario&token=' . $token . '&email=' . $email;
+        $enlaceVerificacion = 'http://localhost/Usuario/inicioSesion';
 
         $mailer = new PHPMailer(true);
         try {
