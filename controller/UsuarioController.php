@@ -133,7 +133,7 @@ class UsuarioController
         } else {
             $usuarioVerificado = $this->model->verificarUsuario($token, $email);
             if ($usuarioVerificado) {
-                header('location:/ProyectoFinal/index.php');
+                header('location:/Usuario/inicioDeSesionView');
             } else {
                 header('Location:/error?codError=333');
             }
@@ -161,11 +161,11 @@ class UsuarioController
                 $_SESSION['nombreUsuario'] = $_SESSION['usuarioActivo']['nombreUsuario'];
 
                 if($usuario['editor']){
-                    header('location:/ProyectoFinal/index.php?controller=editor&action=get');
+                    header('location:/Editor/editorView');
                 }else if($usuario['admin']){
-                    header('location:/ProyectoFinal/index.php?controller=admin&action=get');
+                    header('location:/Admin/adminView');
                 }else{
-                    header('location:/ProyectoFinal/index.php?controller=lobby&action=get');
+                    header('location:/Lobby/lobbyView');
                 }
                 exit();
             }
@@ -177,7 +177,7 @@ class UsuarioController
     {
         session_start();
         session_destroy();
-        header("location:/ProyectoFinal/index.php?controller=usuario&action=get");
+        header("location:/Usuario/inicioDeSesionView");
         exit();
     }
 }

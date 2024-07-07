@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 {{#estadisticas}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
-<link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+<link rel="stylesheet" href="/public/css/inicioDeSesion.css">
+<link rel="stylesheet" href="/public/css/lobby.css">
 </head>
 <body>
 <div class="container" style="flex-direction:column">
@@ -34,14 +34,14 @@
                 <div class="textbox">
                 </div>
             </div>
-            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
     </div>
 </div>
 {{/estadisticas}}
 
 
 {{#tablaPorcentajes}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
 <div class="container" style="max-width: 700px;">
@@ -67,14 +67,14 @@
         </div>
     </div>
     <div style="display:flex;justify-content:end;gap:1em">
-        <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+        <button style="align-items:end" class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
         <button class="btn" id="download-pdf">Descargar como PDF</button>
     </div>
 </div>
 {{/tablaPorcentajes}}
 
 {{#paises}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
 <div class="container" style="max-width: 700px;">
@@ -100,14 +100,14 @@
             </div>
         </div>
         <div style="display:flex;justify-content:end;gap:1em">
-            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button style="align-items:end" class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
             <button class="btn" id="download-pdf">Descargar como PDF</button>
         </div>
 </div>
 {{/paises}}
 
 {{#genero}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
 <div class="container" style="max-width: 700px;">
@@ -133,14 +133,14 @@
             </div>
         </div>
         <div style="display:flex;justify-content:end;gap:1em">
-            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button style="align-items:end" class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
             <button class="btn" id="download-pdf">Descargar como PDF</button>
         </div>
 </div>
 {{/genero}}
 
 {{#edad}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
 <div class="container" style="max-width: 700px;">
@@ -166,14 +166,14 @@
             </div>
         </div>
         <div style="display:flex;justify-content:end;gap:1em">
-            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button style="align-items:end" class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
             <button class="btn" id="download-pdf">Descargar como PDF</button>
         </div>
 </div>
 {{/edad}}
 
 {{#trampas}}
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
 <div class="container" style="max-width: 700px;">
@@ -199,10 +199,10 @@
             </div>
         </div>
         <div style="display:flex;justify-content:end;gap:1em">
-            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Volver</button>
+            <button style="align-items:end" class="btn" onclick="location.href='/Admin/getMenuTablas'">Volver</button>
             <button class="btn" id="download-pdf">Descargar como PDF</button>
         </div>
 </div>
 {{/trampas}}
 
-<script src="/ProyectoFinal/public/js/descargarTablaPdf.js"></script>
+<script src="/public/js/descargarTablaPdf.js"></script>

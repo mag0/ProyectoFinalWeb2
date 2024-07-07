@@ -1,4 +1,4 @@
- <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+ <link rel="stylesheet" href="/public/css/lobby.css">
 <head>
     <title>Gráfico JpGraph</title>
     <!-- Incluye los estilos CSS de ApexCharts -->
@@ -15,41 +15,41 @@
         {{#menu}}
          <div class="lobby-box">
               <h1>Bienvenido {{nombreUsuario}}</h1>
-              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getMenuTablas'">Ver tablas</button>
-              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Ver graficos</button>
-              <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=usuario&action=cerrarSesion'">Cerrar Sesión</button>
+              <button class="btn" onclick="location.href='/Admin/getMenuTablas'">Ver tablas</button>
+              <button class="btn" onclick="location.href='/Admin/getGraficos'">Ver graficos</button>
+              <button class="btn" onclick="location.href='/Usuario/cerrarSesion'">Cerrar Sesión</button>
          </div>
          {{/menu}}
 
          {{#menuTabla}}
             <div class="lobby-box">
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getEstadisticas'">Estadisticas generales</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPorcentaje'">Preguntas bien respondidas por usuario</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorPais'">Usuarios por pais</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorGenero'">Usuarios por genero</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosPorEdad'">Usuarios por edad</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getTrampasDeUsuarios'">Trampas de los usuarios</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=get'">Volver</button>
+               <button class="btn" onclick="location.href='/Admin/getEstadisticas'">Estadisticas generales</button>
+               <button class="btn" onclick="location.href='/Admin/getPorcentaje'">Preguntas bien respondidas por usuario</button>
+               <button class="btn" onclick="location.href='/Admin/getUsuariosPorPais'">Usuarios por pais</button>
+               <button class="btn" onclick="location.href='/Admin/getUsuariosPorGenero'">Usuarios por genero</button>
+               <button class="btn" onclick="location.href='/Admin/getUsuariosPorEdad'">Usuarios por edad</button>
+               <button class="btn" onclick="location.href='/Admin/getTrampasDeUsuarios'">Trampas de los usuarios</button>
+               <button class="btn" onclick="location.href='/Admin/get'">Volver</button>
             </div>
          {{/menuTabla}}
 
          {{#menuGrafico}}
             <div class="lobby-box">
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getUsuariosRegistrados'">Cantidad de jugadores</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPartidasRegistrados'">Cantidad de partidas jugadas</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPreguntasRegistradas'">Cantidad de preguntas en el juego</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPreguntasRegistradas'">Cantidad de preguntas creadas</button>
-                 {{!--<button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPorcentajesDePreguntasBienRespondidasRegistrados'">Porcentaje de preguntas respondidas correctamente por usuario</button>--}}
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getPaisesRegistrados'">Cantidad de usuarios por pais</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getSexoRegistrados'">Cantidad de usuarios por sexo</button>
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getEdadRegistrados'">Cantidad de usuarios por edad</button>
+               <button class="btn" onclick="location.href='/Admin/getUsuariosRegistrados'">Cantidad de jugadores</button>
+               <button class="btn" onclick="location.href='/Admin/getPartidasRegistrados'">Cantidad de partidas jugadas</button>
+               <button class="btn" onclick="location.href='/Admin/getPreguntasRegistradas'">Cantidad de preguntas en el juego</button>
+               <button class="btn" onclick="location.href='/Admin/getPreguntasRegistradas'">Cantidad de preguntas creadas</button>
+                 {{!--<button class="btn" onclick="location.href='/Admin/getPorcentajesDePreguntasBienRespondidasRegistrados'">Porcentaje de preguntas respondidas correctamente por usuario</button>--}}
+               <button class="btn" onclick="location.href='/Admin/getPaisesRegistrados'">Cantidad de usuarios por pais</button>
+               <button class="btn" onclick="location.href='/Admin/getSexoRegistrados'">Cantidad de usuarios por sexo</button>
+               <button class="btn" onclick="location.href='/Admin/getEdadRegistrados'">Cantidad de usuarios por edad</button>
 
 
 
 
 
 
-               <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=get'">Volver</button>
+               <button class="btn" onclick="location.href='/Admin/get'">Volver</button>
             </div>
          {{/menuGrafico}}
 

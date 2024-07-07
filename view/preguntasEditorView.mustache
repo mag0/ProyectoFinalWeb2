@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/ProyectoFinal/public/css/tablaPreguntas.css">
+<link rel="stylesheet" href="/public/css/tablaPreguntas.css">
 </head>
 <body>
     <div class="container">
@@ -40,16 +40,16 @@
                             <td>{{dificultad}}</td>
                             <td>
                                 {{#preguntasTotales}}
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=modificarPregunta&idPregunta={{id}}'">Modificar</button>
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=eliminarPregunta&idPregunta={{id}}'">Eliminar</button>
+                                <button class="btn" onclick="location.href='/Editor/modificarPregunta&idPregunta={{id}}'">Modificar</button>
+                                <button class="btn" onclick="location.href='/Editor/eliminarPregunta&idPregunta={{id}}'">Eliminar</button>
                                 {{/preguntasTotales}}
                                 {{#preguntasReportadas}}
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=aprobarPreguntaReportada&idPregunta={{id}}'">Aprobar</button>
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=eliminarPregunta&idPregunta={{id}}&reporte'">Eliminar</button>
+                                <button class="btn" onclick="location.href='/Editor/aprobarPreguntaReportada&idPregunta={{id}}'">Aprobar</button>
+                                <button class="btn" onclick="location.href='/Editor/eliminarPregunta&idPregunta={{id}}&reporte'">Eliminar</button>
                                 {{/preguntasReportadas}}
                                 {{#preguntasSugeridas}}
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=validarPreguntaSugerida&idPregunta={{id}}&valida'">Aprobar</button>
-                                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=validarPreguntaSugerida&idPregunta={{id}}'">Rechazar</button>
+                                <button class="btn" onclick="location.href='/Editor/validarPreguntaSugerida&idPregunta={{id}}&valida'">Aprobar</button>
+                                <button class="btn" onclick="location.href='/Editor/validarPreguntaSugerida&idPregunta={{id}}'">Rechazar</button>
                                 {{/preguntasSugeridas}}
                             </td>
                         </tr>
@@ -73,9 +73,9 @@
         </div>
         <div style="display:flex;justify-content:end;gap:1em">
             {{#preguntasTotales}}
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=crearPregunta'">Crear pregunta</button>
+                <button class="btn" onclick="location.href='/Editor/crearPregunta'">Crear pregunta</button>
             {{/preguntasTotales}}
-            <button style="align-items:end" class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=editor&action=get'">Volver</button>
+            <button style="align-items:end" class="btn" onclick="location.href='/Editor/get'">Volver</button>
         </div>
     </div>
 

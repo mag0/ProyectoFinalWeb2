@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Incluye el script para descargar pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-    <link rel="stylesheet" href="/ProyectoFinal/public/css/lobby.css">
+    <link rel="stylesheet" href="/public/css/lobby.css">
     <style>
         #chart {
            max-width: 600px;
@@ -18,31 +18,31 @@
         <div class="lobby-box">
             {{#usuarios}}
             <h2 style="margin-top:0">Usuarios</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getUsuariosRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getUsuariosRegistrados" method="POST">
             {{/usuarios}}
             {{#partidas}}
             <h2 style="margin-top:0">Partidas</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPartidasRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getPartidasRegistrados" method="POST">
             {{/partidas}}
              {{#preguntas}}
              <h2 style="margin-top:0">Pregunta</h2>
-             <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPreguntasRegistradas" method="POST">
+             <form id="filtroForm" action="/Admin/getPreguntasRegistradas" method="POST">
             {{/preguntas}}
             {{#paises}}
             <h2 style="margin-top:0">Paises</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPaisesRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getPaisesRegistrados" method="POST">
             {{/paises}}
             {{#sexo}}
             <h2 style="margin-top:0">Genero</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getSexoRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getSexoRegistrados" method="POST">
             {{/sexo}}
             {{#edad}}
             <h2 style="margin-top:0">Edad</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getEdadRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getEdadRegistrados" method="POST">
             {{/edad}}
             {{#porcentajesDePreguntasBienRespondidas}}
             <h2 style="margin-top:0">Preguntas bien respondidas</h2>
-            <form id="filtroForm" action="/ProyectoFinal/index.php?controller=admin&action=getPorcentajesDePreguntasBienRespondidasRegistrados" method="POST">
+            <form id="filtroForm" action="/Admin/getPorcentajesDePreguntasBienRespondidasRegistrados" method="POST">
             {{/porcentajesDePreguntasBienRespondidas}}
                 <select id="filtroSelect" name="filtro">
                     <option>Seleccione un filtro</option>
@@ -62,7 +62,7 @@
                  <p style="display:none" class="fecha">{{dia}}</p>
                  {{/usuariosFiltro}}
             </div>
-            <script src="/ProyectoFinal/public/js/graficos/cantidadDeJugadores.js"></script>
+            <script src="/public/js/graficos/cantidadDeJugadores.js"></script>
             {{/usuarios}}
 
             {{#partidas}}
@@ -74,7 +74,7 @@
                  <p style="display:none" class="fecha">{{dia}}</p>
             {{/partidasFiltro}}
             </div>
-            <script src="/ProyectoFinal/public/js/graficos/cantidadDePartidas.js"></script>
+            <script src="/public/js/graficos/cantidadDePartidas.js"></script>
             {{/partidas}}
 
              {{#preguntas}}
@@ -86,7 +86,7 @@
                   <p style="display:none" class="fecha">{{dia}}</p>
                   {{/preguntasFiltro}}
              </div>
-             <script src="/ProyectoFinal/public/js/graficos/cantidadDePreguntas.js"></script>
+             <script src="/public/js/graficos/cantidadDePreguntas.js"></script>
              {{/preguntas}}
 
            {{#paises}}
@@ -98,7 +98,7 @@
                        <p style="display:none" class="pais">{{pais}}</p>
                    {{/paisesFiltro}}
                </div>
-               <script src="/ProyectoFinal/public/js/graficos/cantidadDePaises.js"></script>
+               <script src="/public/js/graficos/cantidadDePaises.js"></script>
            {{/paises}}
 
            {{#sexo}}
@@ -110,7 +110,7 @@
                        <p style="display:none" class="genero">{{genero}}</p>
                    {{/sexoFiltro}}
                </div>
-               <script src="/ProyectoFinal/public/js/graficos/cantidadDeGenero.js"></script>
+               <script src="/public/js/graficos/cantidadDeGenero.js"></script>
            {{/sexo}}
 
          {{#edad}}
@@ -122,7 +122,7 @@
                      <p style="display:none" class="edad">{{categoria_edad}}</p>
                  {{/edadFiltro}}
              </div>
-             <script src="/ProyectoFinal/public/js/graficos/cantidadDeEdad.js"></script>
+             <script src="/public/js/graficos/cantidadDeEdad.js"></script>
          {{/edad}}
 
          {{#porcentajesDePreguntasBienRespondidasFiltro}}
@@ -134,13 +134,13 @@
                               <p style="display:none" class="usuario">{{nombreUsuario}}</p>
                           {{/porcentajesDePreguntasBienRespondidasFiltro}}
                       </div>
-                      <script src="/ProyectoFinal/public/js/graficos/porcentajesDePreguntasBienRespondidas.js"></script>
+                      <script src="/public/js/graficos/porcentajesDePreguntasBienRespondidas.js"></script>
                   {{/porcentajesDePreguntasBienRespondidasFiltro}}
 
-            <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=admin&action=getGraficos'">Volver</button>
+            <button class="btn" onclick="location.href='/Admin/getGraficos'">Volver</button>
         </div>
     </div>
 
-<script src="/ProyectoFinal/public/js/graficos/filtro.js"></script>
-<script src="/ProyectoFinal/public/js/descargarGraficoPdf.js"></script>
+<script src="/public/js/graficos/filtro.js"></script>
+<script src="/public/js/descargarGraficoPdf.js"></script>
 

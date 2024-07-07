@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+<link rel="stylesheet" href="/public/css/inicioDeSesion.css">
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO-cs-AzjPpidbANQOQr9bWXK1mw0I9Ww&callback=initMap"></script>
-<script src="/ProyectoFinal/public/js/mapaRegistro.js"></script>
+<script src="/public/js/mapaRegistro.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="register-box">
         <h1>Regístrate</h1>
-        <form action="/ProyectoFinal/index.php/usuario/registrar" method="post" enctype="multipart/form-data">
+        <form action="/usuario/registrar" method="post" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="textbox">
                     <input type="text" placeholder="Nombre Completo" name="nombreCompleto" required>
@@ -55,7 +55,7 @@
                 <p style="color:red">{{error}}</p>
             {{/error}}
             <button type="submit" class="btn">Registrarse</button>
-            <button onclick="location.href='/ProyectoFinal/index.php'" class="btn" style="margin-top:.5em">Volver</button>
+            <button onclick="location.href='/login'" class="btn" style="margin-top:.5em">Volver</button>
         </form>
     </div>
 </div>

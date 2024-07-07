@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="/ProyectoFinal/public/css/inicioDeSesion.css">
+<link rel="stylesheet" href="/public/css/inicioDeSesion.css">
 </head>
 <body>
     <div class="container">
         <div class="register-box login-box">
             <h1>Inicia Sesión</h1>
-            <form action="/ProyectoFinal/index.php/usuario/iniciarSesion" method="post">
+            <form action="/usuario/iniciarSesion" method="post">
                 <div class="textbox">
                     <input type="text" placeholder="Usuario" name="nombreUsuario" required>
                 </div>
@@ -16,6 +16,6 @@
             {{#error}}
                <p style="color:red">{{error}}</p>
             {{/error}}
-            <p class="register-link">¿No tienes cuenta? <a href="/ProyectoFinal/index.php/usuario/getRegistro">Regístrate</a></p>
+            <p class="register-link">¿No tienes cuenta? <a href="/usuario/getRegistro">Regístrate</a></p>
         </div>
     </div>

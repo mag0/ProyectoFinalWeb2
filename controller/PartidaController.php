@@ -81,7 +81,7 @@ class PartidaController
             $this->model->sumarPreguntaAlUsuario($_SESSION['usuarioActivo']['id']);
             $this->model->sumarPreguntaBienRespondidaAlUsuario($_SESSION['usuarioActivo']['id']);
             $this->model->sumarPreguntaBienRespondida($_SESSION['pregunta']['id']);
-            header('location:/ProyectoFinal/index.php?controller=partida&action=get');
+            header('location:/Partida/partidaView');
             exit();
         }
     }
@@ -104,7 +104,7 @@ class PartidaController
             $_SESSION['puntaje'] += 1;
             $_SESSION['puntajeActual'] += 1;
             $_SESSION['numeroPregunta'] += 1;
-            header('location:/ProyectoFinal/index.php?controller=partida&action=get');
+            header('location:/Partida/partidaView');
             exit();
         }
     }

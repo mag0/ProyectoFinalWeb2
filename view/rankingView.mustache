@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="/ProyectoFinal/public/css/ranking.css">
+    <link rel="stylesheet" href="/public/css/ranking.css">
 </head>
 <body>
     <div class="container">
@@ -7,13 +7,13 @@
                 <div class="game-list">
                     <ul>
                     {{#usuarios}}
-                        <a href="/ProyectoFinal/index.php?controller=lobby&action=verPerfil&usuarioBuscado={{nombreUsuario}}"><li>{{numeroDeUsuario}} - {{nombreUsuario}} - Puntaje: {{puntaje_total}}</li><a>
+                        <a href="/Lobby/verPerfil&usuarioBuscado={{nombreUsuario}}"><li>{{numeroDeUsuario}} - {{nombreUsuario}} - Puntaje: {{puntaje_total}}</li><a>
                     {{/usuarios}}
                     {{^usuarios}}
                         <p>No hay usuarios disponibles.</p>
                     {{/usuarios}}
                     </ul>
                 </div>
-                <button class="btn" onclick="location.href='/ProyectoFinal/index.php?controller=lobby&action=get'">Volver</button>
+                <button class="btn" onclick="location.href='/Lobby/lobbyView'">Volver</button>
             </div>
         </div>
