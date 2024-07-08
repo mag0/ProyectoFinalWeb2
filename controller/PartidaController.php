@@ -142,10 +142,20 @@ class PartidaController
     {
         if($_SESSION['numeroPregunta'] <= 10){
             $dificultadActual = 'facil';
-        }else if($_SESSION['numeroPregunta'] >= 11 && $_SESSION['numeroPregunta'] <= 20){
-            $dificultadActual = 'normal';
         }else{
-            $dificultadActual = 'dificil';
+            $usuario = $this->model->getUsuario($_SESSION['usuarioActivo']['nombreUsuario'])[0];
+            if($usuario['preguntas_respondidas']!=0){
+                $nivelUsuario = ($usuario['preguntas_bien_respondidas']*100)/$usuario['preguntas_respondidas'];
+            }else{
+                $nivelUsuario = 0;
+            }
+
+            if($nivelUsuario<=50){
+                $dificultadActual = 'normal';
+            }else{
+                $dificultadActual = 'dificil';
+            }
+
         }
         return $dificultadActual;
     }
